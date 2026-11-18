@@ -1,0 +1,172 @@
+/* Story page. Header, hero and body share the hero's edges; the body is
+   a 5/12 + 7/12 split from tablet so line length stays comfortable. */
+.article-page {
+  --reveal-duration: 1600ms;
+  --reveal-distance: 20px;
+  --reveal-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --article-gap: calc(var(--section-y) * 1.25);
+  padding-top: var(--space-8);
+  padding-bottom: var(--article-gap);
+}
+
+/* ---- Header ---- */
+.article-page__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  margin-bottom: var(--space-10);
+}
+
+.article-page__category {
+  font-size: var(--fs-label-l);
+  line-height: var(--lh-label-l);
+  font-weight: var(--fw-medium);
+  color: var(--accent);
+}
+
+.article-page__title {
+  max-width: none;
+  font-size: var(--fs-display-l);
+  line-height: var(--lh-display-l);
+  font-weight: var(--fw-medium);
+}
+
+.article-page__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-5);
+  margin-top: var(--space-2);
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+  color: var(--text-tertiary);
+}
+
+.article-page__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+/* ---- Photo ---- */
+.article-page__hero {
+  margin: 0;
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-lg);
+  background: var(--bg-sunken);
+}
+
+.article-page__hero img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---- Body: one row per block, two columns from tablet ---- */
+.article-page__body {
+  margin-top: var(--space-12);
+}
+
+.article-page__row {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.article-page__row + .article-page__row {
+  margin-top: var(--space-12);
+}
+
+.article-page__lead {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  color: var(--text-primary);
+}
+
+.article-page__heading {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-medium);
+}
+
+.article-page__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.article-page__paragraph,
+.article-page__soon {
+  font-size: var(--fs-body-l);
+  line-height: var(--lh-body-l);
+  color: var(--text-secondary);
+}
+
+/* ---- More stories ---- */
+.article-page__more {
+  margin-top: var(--article-gap);
+}
+
+.article-page__more-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.article-page__more-grid > li {
+  display: flex;
+}
+
+/* ---- Tablet ---- */
+@media (min-width: 768px) {
+  .article-page {
+    padding-top: var(--space-12);
+  }
+
+  .article-page__hero {
+    aspect-ratio: 16 / 9;
+  }
+
+  .article-page__row {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--gutter);
+    align-items: start;
+  }
+
+  .article-page__row > :only-child {
+    grid-column: 2;
+  }
+
+  /* Tablet: two roomy cards (like the listing pages) instead of three
+     cramped ones; the third returns on desktop. */
+  .article-page__more-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
+
+  .article-page__more-grid > li:nth-child(n + 3) {
+    display: none;
+  }
+}
+
+/* ---- Desktop ---- */
+@media (min-width: 1280px) {
+  .article-page {
+    padding-top: var(--space-16);
+  }
+
+  .article-page__hero {
+    aspect-ratio: 21 / 9;
+  }
+
+  .article-page__more-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-6);
+  }
+
+  .article-page__more-grid > li:nth-child(n + 3) {
+    display: flex;
+  }
+}

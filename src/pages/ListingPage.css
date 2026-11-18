@@ -1,0 +1,81 @@
+/* Shared listing layout: intro, then a 1 / 2 / 3-column card grid. */
+.listing-page {
+  --reveal-duration: 1600ms;
+  --reveal-distance: 20px;
+  --reveal-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --listing-page-gap: calc(var(--section-y) * 1.25);
+  padding-bottom: var(--listing-page-gap);
+}
+
+.listing-page__intro {
+  padding-top: var(--space-12);
+}
+
+.listing-page__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--heading-to-content);
+}
+
+.listing-page__title {
+  font-size: var(--fs-display-l);
+  line-height: var(--lh-display-l);
+  font-weight: var(--fw-medium);
+}
+
+.listing-page__lead {
+  max-width: 46ch;
+  font-size: var(--fs-body-l);
+  line-height: var(--lh-body-l);
+  color: var(--text-secondary);
+}
+
+.listing-page__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-6);
+}
+
+.listing-page__item {
+  display: flex;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .listing-page__intro {
+    padding-top: var(--space-16);
+  }
+
+  /* Title left, lead pinned to the right edge. The title sits on the same
+     baseline as the lead's first line (shared by every page intro). */
+  .listing-page__head {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--gutter);
+    align-items: first baseline;
+  }
+
+  /* A fixed 40ch measure keeps the lead to two or three lines. */
+  .listing-page__lead {
+    justify-self: end;
+    width: 100%;
+    max-width: 40ch;
+  }
+
+  .listing-page__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--gutter);
+  }
+}
+
+@media (min-width: 1280px) {
+  .listing-page__intro {
+    padding-top: var(--space-20);
+  }
+
+  .listing-page__grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-10);
+  }
+}

@@ -1,0 +1,47 @@
+/* Photo credit tiles inside the shared listing grid. */
+.credit {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  width: 100%;
+  margin: 0;
+}
+
+.credit__image {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+}
+
+.credit__caption {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+  color: var(--text-secondary);
+}
+
+.credit__title {
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+}
+
+.credit__caption a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.credit__caption a:hover,
+.credit__caption a:focus-visible {
+  text-decoration: underline;
+}
+
+/* Pulled up into the listing page's bottom padding so it reads as a footnote. */
+.credits-note {
+  margin: calc(var(--section-y) * -0.75) 0 var(--section-y);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: var(--text-tertiary);
+}
