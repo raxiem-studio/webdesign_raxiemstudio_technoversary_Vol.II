@@ -30,7 +30,11 @@ export const STRINGS = {
     'destinations.next': 'Next destination',
 
     'story.title': 'Every Place Has a Story Worth Protecting',
-    'story.hint': 'Double-tap a photo to like it',
+    'story.hint': 'Drag to explore, tap a photo to open it',
+    'story.carousel': 'Photo stories. Drag, or use the left and right arrow keys, to turn.',
+    'story.open': 'Open the photo of {place}',
+    'story.close': 'Close',
+    'story.likeHint': 'Double-tap the photo to like it',
     'story.likes': 'likes',
     'story.like': 'Like the photo of {place}',
 
@@ -145,7 +149,11 @@ export const STRINGS = {
     'destinations.next': 'Destinasi berikutnya',
 
     'story.title': 'Setiap Tempat Punya Cerita yang Layak Dijaga',
-    'story.hint': 'Ketuk dua kali foto untuk menyukainya',
+    'story.hint': 'Geser untuk menjelajah, ketuk foto untuk membukanya',
+    'story.carousel': 'Cerita foto. Geser, atau gunakan tombol panah kiri dan kanan, untuk memutar.',
+    'story.open': 'Buka foto {place}',
+    'story.close': 'Tutup',
+    'story.likeHint': 'Ketuk dua kali foto untuk menyukainya',
     'story.likes': 'suka',
     'story.like': 'Sukai foto {place}',
 

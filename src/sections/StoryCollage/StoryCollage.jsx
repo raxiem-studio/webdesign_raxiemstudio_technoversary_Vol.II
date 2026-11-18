@@ -1,23 +1,27 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Container, SectionHeader } from '../../components/index.js'
 import { images } from '../../data/images.js'
 import { useInView } from '../../hooks/useInView.js'
 import { useLanguage } from '../../i18n/context.js'
 import StoryCard from './StoryCard.jsx'
+import { useBarrel } from './useBarrel.js'
 import './StoryCollage.css'
 
 /*
- * `fan`: posisi di kipas desktop, -2…2 (0 = tengah, paling atas).
+ * Foto di barel, urut searah putaran.
  * `likes`: angka DEMO untuk prototipe. Belum ada backend, jadi like pengunjung
  * ditambahkan di atasnya dan hanya disimpan di browser-nya (localStorage).
  * Jumlah like yang sama untuk semua orang butuh API + database.
  */
 const STORIES = [
-  { id: 'jatiluwih', fan: -2, image: images.articleJatiluwih, location: { en: 'Jatiluwih, Bali', id: 'Jatiluwih, Bali' }, likes: 842 },
-  { id: 'tongkonan', fan: -1, image: images.storyTongkonan, location: { en: 'Tana Toraja, South Sulawesi', id: 'Tana Toraja, Sulawesi Selatan' }, likes: 1249 },
-  { id: 'kelimutu', fan: 0, image: images.storyKelimutu, location: { en: 'Lake Kelimutu, Flores', id: 'Danau Kelimutu, Flores' }, likes: 2316 },
-  { id: 'bromo', fan: 1, image: images.articleBromo, location: { en: 'Mount Bromo, East Java', id: 'Gunung Bromo, Jawa Timur' }, likes: 1873 },
-  { id: 'tegenungan', fan: 2, image: images.galleryTegenungan, location: { en: 'Tegenungan Waterfall, Bali', id: 'Air Terjun Tegenungan, Bali' }, likes: 967 },
+  { id: 'kelimutu', image: images.storyKelimutu, location: { en: 'Lake Kelimutu, Flores', id: 'Danau Kelimutu, Flores' }, likes: 2316 },
+  { id: 'bromo', image: images.articleBromo, location: { en: 'Mount Bromo, East Java', id: 'Gunung Bromo, Jawa Timur' }, likes: 1873 },
+  { id: 'raja-ampat', image: images.destRajaAmpatGreen, location: { en: 'Raja Ampat, Southwest Papua', id: 'Raja Ampat, Papua Barat Daya' }, likes: 1532 },
+  { id: 'tegenungan', image: images.galleryTegenungan, location: { en: 'Tegenungan Waterfall, Bali', id: 'Air Terjun Tegenungan, Bali' }, likes: 967 },
+  { id: 'labuan-bajo', image: images.galleryLabuanBajoHills, location: { en: 'Labuan Bajo, Flores', id: 'Labuan Bajo, Flores' }, likes: 1387 },
+  { id: 'jatiluwih', image: images.articleJatiluwih, location: { en: 'Jatiluwih, Bali', id: 'Jatiluwih, Bali' }, likes: 842 },
+  { id: 'tumpak-sewu', image: images.impactTumpakSewu, location: { en: 'Tumpak Sewu Waterfall, East Java', id: 'Air Terjun Tumpak Sewu, Jawa Timur' }, likes: 1104 },
+  { id: 'tongkonan', image: images.storyTongkonan, location: { en: 'Tana Toraja, South Sulawesi', id: 'Tana Toraja, Sulawesi Selatan' }, likes: 1249 },
 ]
 
 const STORAGE_KEY = 'jejak:story-likes'
@@ -38,11 +42,33 @@ function writeLikes(likes) {
   }
 }
 
-/** Home: kipas kartu foto yang bisa di-like; angka demo plus like pengunjung (disimpan di browser lewat localStorage). */
+function CloseIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+      <path d="M18 6 6 18" />
+      <path d="m6 6 12 12" />
+    </svg>
+  )
+}
+
+/**
+ * Home: carousel barel 3D berisi foto cerita. Berputar pelan sendiri, bisa
+ * di-drag, dan digeser pakai panah kiri/kanan. Hanya tiga foto depan yang bisa
+ * diklik; foto yang diklik dibuka di dialog sebagai kartu polaroid yang bisa
+ * di-like (tombol hati atau ketuk dua kali).
+ */
 function StoryCollage() {
   const { t, pick } = useLanguage()
   const [liked, setLiked] = useState(readLikes)
+  const [openId, setOpenId] = useState(null)
+  const dialogRef = useRef(null)
+  const { stageRef, ringRef, setItemRef, focusItem, stageProps, wasDragged, nudge } = useBarrel({
+    count: STORIES.length,
+    paused: openId !== null,
+  })
+  const [revealRef, revealIn] = useInView()
   const hasLikedAny = Object.values(liked).some(Boolean)
+  const openStory = STORIES.find((story) => story.id === openId)
 
   const setLike = (id, value) =>
     setLiked((prev) => {
@@ -51,7 +77,19 @@ function StoryCollage() {
       return next
     })
 
-  const [revealRef, revealIn] = useInView()
+  // Sinkronkan state dengan <dialog> native (focus trap, Esc, dan backdrop gratis).
+  useEffect(() => {
+    const dialog = dialogRef.current
+    if (!dialog) return
+    if (openId && !dialog.open) dialog.showModal()
+    if (!openId && dialog.open) dialog.close()
+  }, [openId])
+
+  const onItemKeyDown = (event) => {
+    if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return
+    event.preventDefault()
+    focusItem(nudge(event.key === 'ArrowRight' ? 1 : -1))
+  }
 
   return (
     <section id="our-story" className="section story" aria-labelledby="story-title">
@@ -64,25 +102,90 @@ function StoryCollage() {
           titleWeight="medium"
           className="reveal"
         />
-        <div className="story__collage">
-          {STORIES.map(({ id, fan, image, location, likes }, i) => (
-            <StoryCard
-              key={id}
-              style={{ '--fan': fan, '--fan-abs': Math.abs(fan), '--i': i }}
-              image={image}
-              location={pick(location)}
-              likes={likes}
-              liked={Boolean(liked[id])}
-              hint={!hasLikedAny}
-              onToggle={() => setLike(id, !liked[id])}
-              onLike={() => setLike(id, true)}
-            />
-          ))}
+
+        <div
+          ref={stageRef}
+          className="story-barrel reveal"
+          style={{ '--n': STORIES.length, '--reveal-delay': '200ms' }}
+          role="group"
+          aria-roledescription="carousel"
+          aria-label={t('story.carousel')}
+          {...stageProps}
+        >
+          <ul ref={ringRef} className="story-barrel__ring" role="list">
+            {STORIES.map((story, i) => (
+              <li
+                key={story.id}
+                ref={setItemRef(i)}
+                className="story-barrel__item"
+                style={{ '--i': i }}
+              >
+                <button
+                  type="button"
+                  className="story-barrel__card"
+                  aria-label={t('story.open', { place: pick(story.location) })}
+                  onClick={() => {
+                    if (!wasDragged()) setOpenId(story.id)
+                  }}
+                  onKeyDown={onItemKeyDown}
+                >
+                  <img
+                    src={story.image.src}
+                    alt=""
+                    width={story.image.width}
+                    height={story.image.height}
+                    loading="lazy"
+                    decoding="async"
+                    draggable="false"
+                  />
+                </button>
+              </li>
+            ))}
+          </ul>
         </div>
-        <p className="story__hint reveal" style={{ '--reveal-delay': '1200ms' }}>
+
+        <p className="story__hint reveal" style={{ '--reveal-delay': '600ms' }}>
           {t('story.hint')}
         </p>
       </Container>
+
+      <dialog
+        ref={dialogRef}
+        className="story-dialog"
+        aria-label={openStory ? pick(openStory.location) : undefined}
+        onCancel={(event) => {
+          event.preventDefault()
+          setOpenId(null)
+        }}
+        onClick={(event) => {
+          // Klik di luar kartu (area backdrop) menutup dialog.
+          if (event.target === event.currentTarget) setOpenId(null)
+        }}
+      >
+        {openStory && (
+          <div className="story-dialog__inner">
+            <button
+              type="button"
+              className="story-dialog__close"
+              aria-label={t('story.close')}
+              onClick={() => setOpenId(null)}
+            >
+              <CloseIcon />
+            </button>
+            <StoryCard
+              className="story-card--modal"
+              image={openStory.image}
+              location={pick(openStory.location)}
+              likes={openStory.likes}
+              liked={Boolean(liked[openStory.id])}
+              hint={!hasLikedAny}
+              onToggle={() => setLike(openStory.id, !liked[openStory.id])}
+              onLike={() => setLike(openStory.id, true)}
+            />
+            <p className="story-dialog__hint">{t('story.likeHint')}</p>
+          </div>
+        )}
+      </dialog>
     </section>
   )
 }

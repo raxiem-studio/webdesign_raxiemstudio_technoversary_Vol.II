@@ -1,22 +1,80 @@
-/* Kartu foto yang bisa di-like. Mobile: baris snap-scroll. ≥768px: susunan kipas
-   diatur --fan (-2…2): diputar --fan × --story-tilt dan diturunkan sebesar |--fan|. */
+/* Carousel barel 3D (foto polos) + dialog kartu polaroid yang bisa di-like. */
 .story {
+  --like-color: var(--error-accent);
   overflow-x: clip;
 }
 
-.story__collage {
-  --like-color: var(--error-accent);
-  display: flex;
-  gap: var(--space-4);
-  margin-inline: calc(-1 * var(--margin-page));
-  padding: var(--space-2) var(--margin-page) var(--space-6);
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
+/* ---------- Barel ----------
+   Ring diputar lewat --angle (dari useBarrel). Item ke-i diputar i × 360°/n lalu
+   didorong keluar sejauh --r, jadi kartu membentuk tabung. Ring ditarik mundur
+   sejauh --r supaya kartu depan tampil di ukuran aslinya. */
+.story-barrel {
+  --card-w: 148px;
+  --card-h: calc(var(--card-w) * 1.25);
+  --r: calc(var(--card-w) / 2 / tan(calc(180deg / var(--n, 8))) * 1.15);
+  display: grid;
+  place-items: center;
+  height: calc(var(--card-h) + var(--space-16));
+  margin-top: var(--space-4);
+  perspective: 900px;
+  perspective-origin: 50% 45%;
+  touch-action: pan-y;
+  user-select: none;
+  cursor: grab;
 }
 
-.story__collage::-webkit-scrollbar {
-  display: none;
+.story-barrel.is-dragging {
+  cursor: grabbing;
+}
+
+.story-barrel__ring {
+  position: relative;
+  width: var(--card-w);
+  height: var(--card-h);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--r) * -1)) rotateY(var(--angle, 0deg));
+}
+
+.story-barrel__item {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(calc(var(--i) * 360deg / var(--n, 8))) translateZ(var(--r));
+}
+
+/* Kartu foto polos, gaya sama dengan tile galeri. */
+.story-barrel__card {
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: var(--radius-lg);
+  background: var(--bg-sunken);
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform var(--duration-slow) var(--ease-editorial);
+}
+
+.story-barrel__card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+  -webkit-user-drag: none;
+}
+
+/* Hanya tiga foto depan yang bisa diklik. */
+.story-barrel__item:not([data-front='true']) .story-barrel__card {
+  pointer-events: none;
+  cursor: default;
+}
+
+.story-barrel__item[data-front='true'] .story-barrel__card:hover {
+  transform: scale(1.03);
 }
 
 .story__hint {
@@ -27,43 +85,111 @@
   color: var(--text-tertiary);
 }
 
-/* ---------- Kartu ---------- */
+@media (min-width: 768px) {
+  .story-barrel {
+    --card-w: 200px;
+    perspective: 1200px;
+  }
+}
+
+@media (min-width: 1280px) {
+  .story-barrel {
+    --card-w: 236px;
+    perspective: 1400px;
+  }
+}
+
+/* ---------- Dialog ----------
+   <dialog> dibuat selebar layar supaya klik di luar kartu = klik di dialog
+   (dipakai untuk menutup). Scroll halaman dikunci selama terbuka. */
+:root:has(.story-dialog[open]) {
+  overflow: hidden;
+}
+
+.story-dialog {
+  width: 100%;
+  height: 100%;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  padding: var(--space-16) var(--margin-page) var(--space-8);
+  border: 0;
+  background: transparent;
+  color: var(--text-primary);
+}
+
+.story-dialog[open] {
+  display: grid;
+  place-items: center;
+}
+
+.story-dialog::backdrop {
+  background: rgba(17, 17, 17, 0.55);
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+  animation: story-fade-in var(--duration-slow) var(--ease-standard);
+}
+
+.story-dialog__inner {
+  position: relative;
+  width: min(360px, 100%);
+  animation: story-dialog-in 600ms var(--ease-editorial) both;
+}
+
+.story-dialog__close {
+  position: absolute;
+  bottom: calc(100% + var(--space-3));
+  right: 0;
+  display: grid;
+  place-items: center;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.92);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-standard);
+}
+
+.story-dialog__close:hover {
+  background: var(--color-white);
+}
+
+.story-dialog__hint {
+  margin-top: var(--space-3);
+  text-align: center;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: rgba(255, 255, 255, 0.88);
+}
+
+@keyframes story-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes story-dialog-in {
+  from { opacity: 0; transform: translateY(12px) scale(0.97); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-dialog::backdrop,
+  .story-dialog__inner {
+    animation: none;
+  }
+}
+
+/* ---------- Kartu polaroid (di dalam dialog) ---------- */
 .story-card {
-  flex: 0 0 64%;
-  max-width: 240px;
   margin: 0;
   padding: var(--space-3);
   background: var(--bg-primary);
   border: var(--hairline) solid var(--border-subtle);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-subtle);
-  scroll-snap-align: center;
-  /* Animasi masuk pakai properti translate/rotate terpisah supaya bisa digabung
-     dengan `transform` kipas dan efek angkat saat hover, bukan menimpanya. */
-  --enter-x: 0px;
-  --enter-rot: 0deg;
-  --enter-delay: calc(300ms + var(--i, 0) * 140ms);
-  --enter-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  opacity: 0;
-  translate: var(--enter-x) 32px;
-  rotate: var(--enter-rot);
-  transition: opacity 1600ms var(--enter-ease), translate 1600ms var(--enter-ease),
-    rotate 1600ms var(--enter-ease);
-  transition-delay: var(--enter-delay);
-}
-
-.is-visible .story-card {
-  opacity: 1;
-  translate: 0 0;
-  rotate: 0deg;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .story-card {
-    opacity: 1;
-    translate: none;
-    rotate: none;
-  }
+  box-shadow: var(--shadow-overlay);
 }
 
 .story-card__photo {
@@ -144,10 +270,6 @@
   animation: story-heart-beat 2.4s var(--ease-in-out) infinite;
 }
 
-.story-card:nth-child(2) .is-hinting .story-card__heart { animation-delay: 0.3s; }
-.story-card:nth-child(3) .is-hinting .story-card__heart { animation-delay: 0.6s; }
-.story-card:nth-child(4) .is-hinting .story-card__heart { animation-delay: 0.9s; }
-.story-card:nth-child(5) .is-hinting .story-card__heart { animation-delay: 1.2s; }
 
 .story-card__location {
   display: inline-flex;
@@ -198,57 +320,4 @@
   45% { transform: scale(0.95); }
   70% { opacity: 1; transform: scale(1); }
   100% { opacity: 0; transform: scale(1.05); }
-}
-
-/* ---------- Kipas (≥768px) ---------- */
-@media (min-width: 768px) {
-  .story__collage {
-    --story-card-width: clamp(184px, 20vw, 248px);
-    --story-tilt: 5deg;
-    --story-overlap: 72px;
-    justify-content: center;
-    align-items: flex-start;
-    gap: 0;
-    margin-inline: 0;
-    padding: var(--space-4) 0 var(--space-12);
-    overflow: visible;
-  }
-
-  .story-card {
-    position: relative;
-    z-index: calc(3 - var(--fan-abs));
-    flex: 0 0 var(--story-card-width);
-    max-width: none;
-    margin-inline: calc(-0.5 * var(--story-overlap));
-    --story-lift: 0px;
-    transform: translateY(calc(var(--fan-abs) * 18px - var(--story-lift))) rotate(calc(var(--fan) * var(--story-tilt)));
-    transform-origin: bottom center;
-    /* Layer compositing tetap: mencegah foto berubah dari buram ke tajam setelah hover. */
-    backface-visibility: hidden;
-    /* Animasi masuk: mulai bertumpuk tanpa miring di tengah, lalu menyebar
-       (kartu tengah duluan). */
-    --enter-x: calc(var(--fan) * (var(--story-overlap) - var(--story-card-width)));
-    --enter-rot: calc(var(--fan) * var(--story-tilt) * -1);
-    --enter-delay: calc(300ms + var(--fan-abs) * 180ms);
-    transition: transform var(--duration-slow) var(--ease-editorial),
-      box-shadow var(--duration-slow) var(--ease-editorial),
-      opacity 1600ms var(--enter-ease), translate 1800ms var(--enter-ease),
-      rotate 1800ms var(--enter-ease);
-    transition-delay: 0ms, 0ms, var(--enter-delay), var(--enter-delay), var(--enter-delay);
-  }
-
-  /* Hover cuma mengangkat; meluruskan rotasi bakal memaksa foto di-repaint. */
-  .story-card:hover,
-  .story-card:focus-within {
-    --story-lift: 12px;
-    z-index: 5;
-    box-shadow: var(--shadow-overlay);
-  }
-}
-
-@media (min-width: 1280px) {
-  .story__collage {
-    --story-overlap: 40px;
-    --story-tilt: 6deg;
-  }
 }
