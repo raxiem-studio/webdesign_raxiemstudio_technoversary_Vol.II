@@ -101,8 +101,10 @@
 
 /* ---------- Dialog ----------
    <dialog> dibuat selebar layar supaya klik di luar kartu = klik di dialog
-   (dipakai untuk menutup). Scroll halaman dikunci selama terbuka. */
-:root:has(.story-dialog[open]) {
+   (dipakai untuk menutup). Scroll dikunci lewat <body>: kalau lewat <html>,
+   overflow-x di body berhenti diteruskan ke viewport dan isi halaman di
+   belakang dialog jadi tidak tampil. */
+body:has(.story-dialog[open]) {
   overflow: hidden;
 }
 
@@ -124,9 +126,10 @@
 }
 
 .story-dialog::backdrop {
-  background: rgba(17, 17, 17, 0.55);
-  -webkit-backdrop-filter: blur(6px);
-  backdrop-filter: blur(6px);
+  /* Tipis saja: section di belakang tetap kelihatan. */
+  background: rgba(17, 17, 17, 0.32);
+  -webkit-backdrop-filter: blur(3px);
+  backdrop-filter: blur(3px);
   animation: story-fade-in var(--duration-slow) var(--ease-standard);
 }
 
@@ -157,12 +160,16 @@
   background: var(--color-white);
 }
 
+/* Pill putih supaya tetap terbaca di atas backdrop yang tipis. */
 .story-dialog__hint {
-  margin-top: var(--space-3);
-  text-align: center;
+  width: fit-content;
+  margin: var(--space-3) auto 0;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.92);
   font-size: var(--fs-caption);
   line-height: var(--lh-caption);
-  color: rgba(255, 255, 255, 0.88);
+  color: var(--text-secondary);
 }
 
 @keyframes story-fade-in {

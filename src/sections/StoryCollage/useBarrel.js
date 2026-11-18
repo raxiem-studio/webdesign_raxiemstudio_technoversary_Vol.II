@@ -14,7 +14,8 @@ const normalize = (deg) => ((((deg + 180) % 360) + 360) % 360) - 180
  * rAF supaya tidak re-render tiap frame.
  *
  * - `frontCount` item terdekat ke depan bisa diklik; sisanya diredupkan.
- * - Berhenti berputar saat di-hover, di-focus, di luar layar, atau `paused`.
+ * - Melambat saat di-hover; berhenti saat focus keyboard, di luar layar, atau `paused`.
+ *   Setelah itu kecepatan kembali normal dalam ±1 detik.
  * - prefers-reduced-motion: tanpa putar otomatis, drag tetap jalan.
  */
 export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = false }) {
@@ -86,9 +87,9 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
         st.vel = 0
         if (p === 1) st.tween = null
       } else if (!st.dragging) {
-        const idle = reduced || pausedRef.current || st.hover || st.focus || !st.visible
-        const target = idle ? 0 : autoSpeed
-        st.vel += (target - st.vel) * (1 - Math.exp(-dt * 1.5))
+        const stopped = reduced || pausedRef.current || st.focus || !st.visible
+        const target = stopped ? 0 : st.hover ? autoSpeed * 0.35 : autoSpeed
+        st.vel += (target - st.vel) * (1 - Math.exp(-dt * 3))
         st.angle += st.vel * dt
       }
       if (st.visible) apply()
@@ -164,8 +165,10 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
     onPointerLeave: (event) => {
       if (event.pointerType === 'mouse') state.current.hover = false
     },
-    onFocus: () => {
-      state.current.focus = true
+    // Hanya focus keyboard yang menghentikan putaran. Focus sisa klik mouse
+    // (mis. setelah dialog ditutup) tidak, jadi barel langsung jalan lagi.
+    onFocus: (event) => {
+      state.current.focus = event.target.matches(':focus-visible')
     },
     onBlur: (event) => {
       if (!event.currentTarget.contains(event.relatedTarget)) state.current.focus = false
