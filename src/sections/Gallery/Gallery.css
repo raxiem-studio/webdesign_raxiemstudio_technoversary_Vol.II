@@ -1,7 +1,7 @@
-/* Bento grid. Mobile: 2 columns. ≥768px: 4 columns × 2 rows —
+/* Grid bento. Mobile: 2 kolom. ≥768px: 4 kolom × 2 baris —
      tall | small-a | small-b | portrait
      tall |      wide        | portrait
-   Tiles reveal staggered by --i when the grid gets .is-visible. */
+   Tile muncul bergantian lewat --i saat grid dapat .is-visible. */
 .gallery__grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -12,10 +12,10 @@
   gap: var(--space-2);
 }
 
-/* Fade + rise only, like every other reveal on the site. A scale() here made
-   each tile render as a scaled layer during the entrance and re-render at its
-   real size when the transition ended, which read as the photos suddenly
-   resizing once the animation finished. */
+/* Hanya fade + naik, sama seperti reveal lain di situs. Dulu ada scale() di
+   sini, dan itu bikin tiap tile dirender sebagai layer berskala lalu dirender
+   ulang ke ukuran aslinya saat transisi selesai, sehingga foto terlihat
+   tiba-tiba berubah ukuran setelah animasi. */
 .gallery__item {
   min-width: 0;
   min-height: 0;

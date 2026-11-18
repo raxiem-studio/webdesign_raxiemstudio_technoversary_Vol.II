@@ -21,9 +21,9 @@ function PinIcon() {
 }
 
 /**
- * Likeable photo card. The heart button toggles; double-tap / double-click on
- * the photo only likes. `hint` pulses unliked hearts as an affordance.
- * `location` is already in the active language.
+ * Kartu foto yang bisa di-like. Tombol hati untuk toggle; double-tap / double-click
+ * di foto hanya untuk like. `hint` membuat hati yang belum di-like berdenyut.
+ * `location` sudah dalam bahasa aktif.
  */
 function StoryCard({ image, location, likes, liked, onToggle, onLike, hint, className = '', style }) {
   const { t, pick, formatNumber } = useLanguage()
@@ -73,7 +73,7 @@ function StoryCard({ image, location, likes, liked, onToggle, onLike, hint, clas
           type="button"
           className={`story-card__like${liked ? ' is-liked' : ''}${hint && !liked ? ' is-hinting' : ''}`}
           aria-pressed={liked}
-          // Count lives in the name; the pressed state announces the like itself.
+          // Jumlah like masuk ke nama aksesibel; status pressed yang mengumumkan like-nya.
           aria-label={`${t('story.like', { place: location })}, ${count} ${t('story.likes')}`}
           onClick={handleHeartClick}
         >

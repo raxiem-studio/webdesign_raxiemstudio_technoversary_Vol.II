@@ -3,11 +3,11 @@ import { CalendarIcon, ClockIcon } from '../Icons/Icons.jsx'
 import './ArticleCard.css'
 
 /**
- * Photo-led article card; the whole card is a single link.
- * @param {object} props.article  { category, title, excerpt, date, readingMinutes, image, href } — text is bilingual `{ en, id }`
+ * Kartu artikel berbasis foto; seluruh kartu jadi satu link.
+ * @param {object} props.article  { category, title, excerpt, date, readingMinutes, image, href } — teks dua bahasa `{ en, id }`
  * @param {1|2|3|4|5|6} [props.headingLevel=3]
- * `image.cardPosition` (optional) sets object-position for the crop so the
- * subject stays clear of the text overlay.
+ * `image.cardPosition` (opsional) mengatur object-position crop supaya
+ * subjek foto tidak tertutup teks.
  */
 function ArticleCard({ article, headingLevel = 3, className = '', ...rest }) {
   const { t, pick, formatDate } = useLanguage()

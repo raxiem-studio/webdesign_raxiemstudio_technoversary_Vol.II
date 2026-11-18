@@ -1,4 +1,4 @@
-/* Featured destinations: heading/controls column + scroll-snap card track. */
+/* Destinasi pilihan: kolom judul/kontrol + track kartu scroll-snap. */
 .destinations__inner {
   display: flex;
   flex-direction: column;
@@ -29,7 +29,7 @@
   gap: var(--space-4);
 }
 
-/* Circle icon buttons (44px) shared by every carousel. */
+/* Tombol ikon bulat (44px) yang dipakai semua carousel. */
 .carousel-button {
   display: inline-flex;
   align-items: center;
@@ -68,7 +68,7 @@
   transform: none;
 }
 
-/* Bleeds past the page margin; vertical padding leaves room for the hover shadow. */
+/* Melebar melewati margin halaman; padding vertikal memberi ruang untuk bayangan hover. */
 .destinations__track {
   display: flex;
   gap: var(--card-gap);
@@ -92,13 +92,13 @@
   scroll-snap-align: start;
 }
 
-/* ---- Tablet: heading and controls share a row ---- */
+/* ---- Tablet: judul dan kontrol satu baris ---- */
 @media (min-width: 768px) {
   .destinations__br {
     display: inline;
   }
 
-  /* Line breaks are authored with <br>; disable balancing. */
+  /* Pindah baris ditulis manual dengan <br>; matikan balancing. */
   .destinations__header .section-header__title {
     white-space: nowrap;
     text-wrap: initial;
@@ -126,7 +126,7 @@
   }
 }
 
-/* ---- Desktop: two columns, track bleeds right only ---- */
+/* ---- Desktop: dua kolom, track melebar ke kanan saja ---- */
 @media (min-width: 1280px) {
   .destinations__inner {
     display: grid;

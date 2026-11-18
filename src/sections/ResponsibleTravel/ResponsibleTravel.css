@@ -1,4 +1,4 @@
-/* Responsible travel: header, three panels, impact statistics. */
+/* Responsible travel: header, tiga panel, statistik dampak. */
 .responsible__header {
   display: flex;
   flex-direction: column;
@@ -17,7 +17,7 @@
   color: var(--text-secondary);
 }
 
-/* Panels */
+/* Panel */
 .responsible__panels {
   display: grid;
   grid-template-columns: 1fr;
@@ -81,7 +81,7 @@
   margin-bottom: var(--space-4);
 }
 
-/* Portrait photo in a landscape panel: keep the waterfall in frame. */
+/* Foto potret di panel landscape: jaga air terjun tetap masuk frame. */
 .impact-panel--photo .impact-panel__image {
   object-position: 50% 68%;
 }
@@ -90,7 +90,7 @@
   justify-content: space-between;
 }
 
-/* Frosted panel: blurred photo, scaled so the blur edges stay outside the card. */
+/* Panel buram: foto di-blur, diperbesar supaya tepi blur tetap di luar kartu. */
 .impact-panel--themes .impact-panel__image {
   filter: blur(18px) saturate(1.15);
   transform: scale(1.2);
@@ -119,7 +119,7 @@
   font-weight: var(--fw-medium);
 }
 
-/* One block per line keeps the title at exactly two lines. */
+/* Satu blok per baris menjaga judul tepat dua baris. */
 .impact-panel__title-line {
   display: block;
   white-space: nowrap;
@@ -153,7 +153,7 @@
   color: var(--color-gray-200);
 }
 
-/* Impact statistics */
+/* Statistik dampak */
 .impact {
   margin-top: var(--section-y);
   display: flex;
@@ -189,13 +189,13 @@
 .impact-stat__label {
   font-size: var(--fs-body-m);
   line-height: var(--lh-body-m);
-  /* Shared measure so all three labels break into two even lines at every
-     width and language, keeping the row visually level. */
+  /* Lebar yang sama supaya ketiga label pecah jadi dua baris rata di semua
+     ukuran layar dan bahasa, jadi barisnya tetap sejajar. */
   max-width: 22ch;
   text-wrap: balance;
 }
 
-/* Attribution for the figures above: caption scale, tertiary text. */
+/* Atribusi untuk angka di atas: ukuran caption, teks tersier. */
 .impact__sources {
   max-width: 64ch;
   font-size: var(--fs-caption);
@@ -207,7 +207,7 @@
 
 /* ---- Tablet ---- */
 @media (min-width: 768px) {
-  /* Title on the lead's first baseline, like the page intros. */
+  /* Judul di baseline baris pertama lead, seperti intro halaman. */
   .responsible__header {
     flex-direction: row;
     align-items: first baseline;
@@ -224,7 +224,7 @@
     flex: 0 1 384px;
   }
 
-  /* Named areas: two text panels side by side, photo full width below. */
+  /* Named area: dua panel teks berdampingan, foto selebar penuh di bawahnya. */
   .responsible__panels {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:

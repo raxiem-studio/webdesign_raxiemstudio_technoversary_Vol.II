@@ -1,6 +1,6 @@
 import { images } from './images.js'
 
-/** JEJAK's three values (from the brand brief): Responsible Travel panel and About. */
+/** Tiga nilai JEJAK (dari brief brand): panel Responsible Travel dan halaman About. */
 export const TRAVEL_THEMES = [
   { number: 1, label: { en: 'Discover Nature', id: 'Kenali Alam' } },
   { number: 2, label: { en: 'Preserve Stories', id: 'Lestarikan Cerita' } },
@@ -10,7 +10,7 @@ export const TRAVEL_THEMES = [
 export const IMPACT_PANELS = {
   quote: {
     image: images.impactBintanForest,
-    /* Rendered as: lead <strong>emphasisA</strong> middle <strong>emphasisB</strong> tail */
+    /* Dirender sebagai: lead <strong>emphasisA</strong> middle <strong>emphasisB</strong> tail */
     text: {
       en: {
         lead: 'Meaningful travel is not only about the places we visit, but also about ',
@@ -32,9 +32,9 @@ export const IMPACT_PANELS = {
     image: images.impactTumpakSewu,
   },
   themes: {
-    /* Rendered blurred behind the text — decorative. */
+    /* Di-blur di belakang teks — dekoratif. */
     image: images.impactSegaraAnak,
-    /* One string per rendered line. */
+    /* Satu string per baris yang ditampilkan. */
     titleLines: { en: ['A Journey That', 'Gives Back'], id: ['Perjalanan yang', 'Memberi Manfaat'] },
     description: {
       en: 'Every travel choice matters to the places we visit.',
@@ -44,10 +44,10 @@ export const IMPACT_PANELS = {
 }
 
 /**
- * Real, sourced figures about what responsible travel protects in Indonesia.
- * These are national figures, not JEJAK's own results. Re-check before each
- * launch; `source` is shown under the stats.
- * `value` is numeric and formatted per language; `suffix` follows the number.
+ * Angka nyata dan bersumber tentang apa yang dijaga oleh perjalanan bertanggung
+ * jawab di Indonesia. Ini angka nasional, bukan hasil JEJAK. Cek ulang sebelum
+ * rilis; `source` ditampilkan di bawah statistik.
+ * `value` berupa angka dan diformat per bahasa; `suffix` ditempel di belakangnya.
  */
 export const IMPACT_STATS = [
   {
@@ -59,7 +59,7 @@ export const IMPACT_STATS = [
       en: 'hectares of protected marine areas',
       id: 'hektare kawasan konservasi laut',
     },
-    // Kementerian Kelautan dan Perikanan, Renstra Ditjen PKRL 2025–2029 (2024 figure).
+    // Kementerian Kelautan dan Perikanan, Renstra Ditjen PKRL 2025–2029 (angka 2024).
     source: { en: 'Ministry of Marine Affairs and Fisheries, 2024', id: 'Kementerian Kelautan dan Perikanan, 2024' },
   },
   {
@@ -71,7 +71,7 @@ export const IMPACT_STATS = [
       en: 'registered tourism villages nationwide',
       id: 'desa wisata terdaftar secara nasional',
     },
-    // Menteri Pariwisata at DPR Commission VII, 17 June 2026 (ANTARA): 6,262 registered in Jadesta.
+    // Menteri Pariwisata di Komisi VII DPR, 17 Juni 2026 (ANTARA): 6.262 desa terdaftar di Jadesta.
     source: { en: 'Ministry of Tourism, 2026', id: 'Kementerian Pariwisata, 2026' },
   },
   {
@@ -83,7 +83,7 @@ export const IMPACT_STATS = [
       en: 'of surveyed reefs in excellent condition',
       id: 'karang yang disurvei berkondisi sangat baik',
     },
-    // LIPI (now BRIN), 2019 data from 1,153 reef sites, reported by ANTARA, 30 June 2020.
+    // LIPI (kini BRIN), data 2019 dari 1.153 lokasi terumbu karang, diberitakan ANTARA 30 Juni 2020.
     source: { en: 'LIPI/BRIN, 2019 data', id: 'LIPI/BRIN, data 2019' },
   },
 ]

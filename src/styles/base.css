@@ -1,6 +1,6 @@
-/* Global element styles, typography, forms, utilities and motion primitives. */
+/* Style elemen global, tipografi, form, utilitas, dan dasar animasi. */
 
-/* ---------- Document ---------- */
+/* ---------- Dokumen ---------- */
 html {
   color-scheme: light;
   font-family: var(--font-sans);
@@ -10,9 +10,9 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Set per element (not once on <html>): an inherited em letter-spacing is
-   resolved to px at the root, so other font sizes would get the wrong value.
-   Zero specificity so component rules still win. */
+/* Dipasang per elemen (bukan sekali di <html>): letter-spacing em yang diwarisi
+   dihitung jadi px di root, sehingga ukuran font lain dapat nilai yang salah.
+   Spesifisitas nol supaya aturan komponen tetap menang. */
 :where(*, *::before, *::after) {
   letter-spacing: var(--ls-text);
 }
@@ -22,7 +22,7 @@ body {
   line-height: var(--lh-body-m);
 }
 
-/* ---------- Selection ---------- */
+/* ---------- Seleksi teks ---------- */
 ::selection {
   background-color: var(--accent-tint);
   color: var(--text-primary);
@@ -39,7 +39,7 @@ body {
   --focus-ring-color: var(--text-inverse);
 }
 
-/* ---------- Headings ---------- */
+/* ---------- Judul ---------- */
 h1,
 h2,
 h3,
@@ -118,7 +118,7 @@ h6,
   letter-spacing: var(--ls-display-l);
 }
 
-/* ---------- Body & small text ---------- */
+/* ---------- Body & teks kecil ---------- */
 .text-body-l {
   font-size: var(--fs-body-l);
   line-height: var(--lh-body-l);
@@ -183,7 +183,7 @@ b {
   font-weight: var(--fw-medium);
 }
 
-/* ---------- Links ---------- */
+/* ---------- Link ---------- */
 a {
   color: inherit;
   text-decoration: underline;
@@ -201,7 +201,7 @@ a:active {
   color: var(--accent-active);
 }
 
-/* ---------- Button foundation ---------- */
+/* ---------- Dasar tombol ---------- */
 button,
 [role='button'] {
   font-weight: var(--fw-medium);
@@ -214,7 +214,7 @@ button:disabled,
   cursor: not-allowed;
 }
 
-/* ---------- Images ---------- */
+/* ---------- Gambar ---------- */
 img {
   object-fit: cover;
   font-style: italic; 
@@ -227,7 +227,7 @@ figcaption {
   margin-top: var(--space-2);
 }
 
-/* ---------- Forms ---------- */
+/* ---------- Form ---------- */
 label {
   display: block;
   font-size: var(--fs-label-l);
@@ -294,16 +294,16 @@ select:disabled {
   color: var(--error-fg);
 }
 
-/* ---------- Hairline rule ---------- */
+/* ---------- Garis tipis ---------- */
 hr {
   border: 0;
   border-top: var(--hairline) solid var(--border-default);
 }
 
-/* ---------- Section rhythm ---------- */
+/* ---------- Ritme section ---------- */
 .section {
   padding-block: var(--section-y);
-  /* Clears the sticky nav when jumping to an anchor. */
+  /* Memberi ruang untuk navbar sticky saat lompat ke anchor. */
   scroll-margin-top: var(--nav-height);
 }
 
@@ -333,9 +333,9 @@ main {
   outline-color: var(--text-primary);
 }
 
-/* ---------- Scroll reveal ----------
-   Add .reveal to elements and .is-visible to an ancestor (see useInView).
-   Stagger with --reveal-delay; tune with --reveal-duration / -distance / -ease. */
+/* ---------- Reveal saat scroll ----------
+   Tambahkan .reveal ke elemen dan .is-visible ke parent-nya (lihat useInView).
+   Atur jeda dengan --reveal-delay; setel lewat --reveal-duration / -distance / -ease. */
 .reveal {
   opacity: 0;
   transform: translateY(var(--reveal-distance, 20px));
@@ -358,8 +358,8 @@ main {
   }
 }
 
-/* ---------- Detail page "More …" header ----------
-   Title left, view-all link right; stacked below tablet. */
+/* ---------- Header "More …" di halaman detail ----------
+   Judul di kiri, link lihat semua di kanan; ditumpuk di bawah tablet. */
 .detail-more__header {
   display: flex;
   flex-direction: column;
@@ -383,7 +383,7 @@ main {
   }
 }
 
-/* ---------- Visually hidden ---------- */
+/* ---------- Tersembunyi secara visual ---------- */
 .visually-hidden {
   position: absolute !important;
   width: 1px;

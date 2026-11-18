@@ -7,10 +7,10 @@ import StoryCard from './StoryCard.jsx'
 import './StoryCollage.css'
 
 /*
- * `fan`: slot in the desktop fan, -2…2 (0 = centre, top).
- * `likes`: DEMO seed counts for the prototype. There is no backend yet, so a
- * visitor's own like is added on top and kept only in their browser
- * (localStorage). Real shared counts need an API + database.
+ * `fan`: posisi di kipas desktop, -2…2 (0 = tengah, paling atas).
+ * `likes`: angka DEMO untuk prototipe. Belum ada backend, jadi like pengunjung
+ * ditambahkan di atasnya dan hanya disimpan di browser-nya (localStorage).
+ * Jumlah like yang sama untuk semua orang butuh API + database.
  */
 const STORIES = [
   { id: 'jatiluwih', fan: -2, image: images.articleJatiluwih, location: { en: 'Jatiluwih, Bali', id: 'Jatiluwih, Bali' }, likes: 842 },
@@ -34,11 +34,11 @@ function writeLikes(likes) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(likes))
   } catch {
-    /* Storage unavailable (private mode, etc.): keep likes in memory only. */
+    /* Storage tidak tersedia (mode private, dll.): like hanya disimpan di memori. */
   }
 }
 
-/** Home: fan of likeable photo cards; demo counts plus the visitor's own like (kept in this browser via localStorage). */
+/** Home: kipas kartu foto yang bisa di-like; angka demo plus like pengunjung (disimpan di browser lewat localStorage). */
 function StoryCollage() {
   const { t, pick } = useLanguage()
   const [liked, setLiked] = useState(readLikes)

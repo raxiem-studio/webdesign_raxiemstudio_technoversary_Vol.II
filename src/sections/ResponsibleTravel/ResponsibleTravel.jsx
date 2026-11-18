@@ -36,9 +36,9 @@ const prefersReducedMotion = () =>
   window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
 
 /**
- * Animates 0 → stat.value once `start` is true, formatted for the active
- * language (6,262 / 6.262; 29.9 / 29,9). Screen readers get the final value
- * immediately; the animated digits are aria-hidden.
+ * Animasi 0 → stat.value saat `start` true, diformat sesuai bahasa aktif
+ * (6,262 / 6.262; 29.9 / 29,9). Screen reader langsung dapat nilai akhir;
+ * angka yang beranimasi di-aria-hidden.
  */
 function CountUp({ stat, start, delay = 0 }) {
   const { pick, formatNumber } = useLanguage()
@@ -77,7 +77,7 @@ function CountUp({ stat, start, delay = 0 }) {
   )
 }
 
-/** Renders a neutral placeholder when `value` is null, so unverified figures are never shown. */
+/** Tampilkan placeholder netral kalau `value` null, jadi angka yang belum terverifikasi tidak pernah tampil. */
 function ImpactStat({ stat, index, start }) {
   const { t, pick } = useLanguage()
   const pending = stat.value == null
@@ -101,7 +101,7 @@ function ImpactStat({ stat, index, start }) {
   )
 }
 
-/** Home: responsible-travel panels and sourced impact statistics. */
+/** Home: panel responsible travel dan statistik dampak bersumber. */
 function ResponsibleTravel() {
   const { lang, t, pick } = useLanguage()
   const { quote, photo, themes } = IMPACT_PANELS

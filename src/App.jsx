@@ -24,7 +24,7 @@ import JournalPage from './pages/JournalPage.jsx'
 import NotFound from './pages/NotFound.jsx'
 import { pageTitle, usePageChange, usePath } from './router.js'
 
-/* `titleKey` names the page title in src/i18n/strings.js. */
+/* `titleKey` = kunci judul halaman di src/i18n/strings.js. */
 const PAGES = {
   '/': { Page: Home, titleKey: null },
   '/destinations': { Page: DestinationsPage, titleKey: 'destinationsPage.title' },
@@ -34,7 +34,7 @@ const PAGES = {
   '/credits': { Page: Credits, titleKey: 'credits.title' },
 }
 
-/** Resolves a path to its page component, title and props. Unknown paths render the 404 page. */
+/** Cocokkan path ke komponen halaman, judul, dan props. Path tak dikenal → halaman 404. */
 function resolve(path, t, pick) {
   const page = PAGES[path]
   if (page) return { Page: page.Page, name: page.titleKey && t(page.titleKey), props: {} }
@@ -51,7 +51,7 @@ function resolve(path, t, pick) {
   return { Page: NotFound, name: t('notFound.title'), props: {} }
 }
 
-/** App shell: navigation, routed page, closing CTA and footer. */
+/** Kerangka app: navigasi, halaman aktif, CTA penutup, dan footer. */
 function App() {
   const { lang, t, pick } = useLanguage()
   const path = usePath()
@@ -59,7 +59,7 @@ function App() {
   const { Page, name, props } = resolve(path, t, pick)
   usePageChange(path, pageTitle(name, t('site.title')), mainRef)
 
-  // Stable per language: Navigation's scroll spy re-subscribes when `links` changes.
+  // Di-memo per bahasa: scroll spy di Navigation subscribe ulang tiap `links` berubah.
   const navLinks = useMemo(
     () => NAV_LINKS.map((link) => ({ ...link, label: pick(link.label) })),
     [pick],
@@ -85,12 +85,12 @@ function App() {
       <a href="#konten-utama" className="skip-link">
         {t('site.skipLink')}
       </a>
-      {/* Transparent nav only over the Home hero. */}
+      {/* Nav transparan hanya di atas hero Home. */}
       <Navigation links={navLinks} cta={navCta} inverse={isHome} path={path} noActive={Page === NotFound} />
       <main id="konten-utama" ref={mainRef} tabIndex={-1}>
-        {/* Keyed by path so entrance animations replay on navigation. */}
+        {/* Key pakai path supaya animasi masuk diputar ulang tiap pindah halaman. */}
         <Page key={path} {...props} />
-        {/* Hidden on Contact (it would link to itself) and on the 404 page. */}
+        {/* Disembunyikan di Contact (link ke dirinya sendiri) dan di halaman 404. */}
         {Page !== ContactPage && Page !== NotFound && <ClosingCta key={`cta-${path}`} />}
       </main>
       <Footer

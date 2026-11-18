@@ -1,8 +1,8 @@
 import './Container.css'
 
 /**
- * Horizontal layout boundary with page gutters.
- * @param {'full'|'content'|'prose'} [props.size='content']  1440 / 1248 / 640px max width.
+ * Batas layout horizontal dengan gutter halaman.
+ * @param {'full'|'content'|'prose'} [props.size='content']  Lebar maks 1440 / 1248 / 640px.
  * @param {string} [props.as='div']
  */
 function Container({ as: Tag = 'div', size = 'content', className = '', children, ...rest }) {

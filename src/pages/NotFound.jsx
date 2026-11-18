@@ -4,10 +4,10 @@ import { useLanguage } from '../i18n/context.js'
 import './NotFound.css'
 
 /**
- * 404 page: any route the app doesn't know, including links whose pages
- * don't exist yet (Privacy, Terms) and unknown destination/article slugs.
- * It's a client-side SPA, so the HTTP status stays 200 unless the host is
- * configured to serve a 404 for unknown paths.
+ * Halaman 404: semua route yang tidak dikenal app, termasuk link yang halamannya
+ * belum ada (Privacy, Terms) dan slug destinasi/artikel yang salah.
+ * Ini SPA client-side, jadi status HTTP tetap 200 kecuali hosting diatur
+ * mengirim 404 untuk path tak dikenal.
  */
 function NotFound() {
   const { t } = useLanguage()

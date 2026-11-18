@@ -29,11 +29,11 @@ const ICONS = {
 
 const EMPTY = { name: '', email: '', topic: '', message: '' }
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-const MESSAGE_MAX_HEIGHT = 480 // px; the message box scrolls beyond this
+const MESSAGE_MAX_HEIGHT = 480 // px; lewat dari ini kotak pesan bisa di-scroll
 
 /**
- * Returns error codes (keys of `contact.error.*` in strings.js), so a shown
- * error follows a language switch. Key order matches the visual order.
+ * Mengembalikan kode error (kunci `contact.error.*` di strings.js), jadi pesan
+ * error ikut berganti saat bahasa diganti. Urutan kunci = urutan tampilan.
  */
 function validate(values) {
   const errors = {}
@@ -45,7 +45,7 @@ function validate(values) {
   return errors
 }
 
-/* The inbox always gets the Indonesian topic label (see CONTACT_TOPICS). */
+/* Inbox selalu dapat label topik bahasa Indonesia (lihat CONTACT_TOPICS). */
 const topicForInbox = (id) => findTopic(id)?.label.id ?? ''
 
 const composeMail = (values) => ({
@@ -59,7 +59,7 @@ const SENT_AT = new Intl.DateTimeFormat('id-ID', {
   timeZone: 'Asia/Jakarta',
 })
 
-/** EmailJS: fills the branded template (email-templates/contact-notification.html). */
+/** EmailJS: mengisi template email (email-templates/contact-notification.html). */
 async function sendViaEmailJS(values) {
   const response = await fetch(EMAILJS.endpoint, {
     method: 'POST',
@@ -81,7 +81,7 @@ async function sendViaEmailJS(values) {
   if (!response.ok) throw new Error(await response.text().catch(() => 'Send failed'))
 }
 
-/** FormSubmit fallback: fixed layout, so only the field labels can be tidied. */
+/** Cadangan FormSubmit: tampilannya tetap, jadi hanya label field yang bisa dirapikan. */
 async function sendViaFormSubmit(values, mail, honey) {
   const response = await fetch(CONTACT_FORM_ENDPOINT, {
     method: 'POST',
@@ -102,16 +102,16 @@ async function sendViaFormSubmit(values, mail, honey) {
 }
 
 async function sendMessage(values, mail, honey) {
-  // Bots fill the hidden field; pretend success without sending anything.
+  // Bot mengisi field tersembunyi; pura-pura sukses tanpa mengirim apa pun.
   if (honey) return
   if (EMAILJS.ready) await sendViaEmailJS(values)
   else await sendViaFormSubmit(values, mail, honey)
 }
 
 /**
- * Label, control and inline error, wired with aria-invalid / aria-describedby.
- * `custom` controls aren't labelable elements: the label focuses them on click
- * and they take their name from aria-labelledby instead.
+ * Label, kontrol, dan error inline, terhubung lewat aria-invalid / aria-describedby.
+ * Kontrol `custom` bukan elemen yang bisa diberi label: label memfokuskannya
+ * saat diklik, dan namanya diambil dari aria-labelledby.
  */
 function Field({ id, label, error, optional, custom, children }) {
   const { t } = useLanguage()
@@ -127,7 +127,7 @@ function Field({ id, label, error, optional, custom, children }) {
         {optional ? (
           <span className="contact-form__optional"> {t('contact.optional')}</span>
         ) : (
-          // Visual cue only; assistive tech gets aria-required on the control.
+          // Cuma penanda visual; teknologi bantu dapat aria-required di kontrolnya.
           <span className="contact-form__required" aria-hidden="true">*</span>
         )}
       </label>
@@ -151,10 +151,10 @@ function Field({ id, label, error, optional, custom, children }) {
 }
 
 /**
- * Select-only combobox (WAI-ARIA APG pattern): focus stays on the trigger and
- * the highlighted option is exposed through aria-activedescendant.
- * `options` are `{ value, label }` with labels already in the active language;
- * `value` / onChange use the option's `value`.
+ * Combobox select-only (pola WAI-ARIA APG): focus tetap di trigger dan
+ * opsi yang disorot diumumkan lewat aria-activedescendant.
+ * `options` berupa `{ value, label }` dengan label sudah sesuai bahasa aktif;
+ * `value` / onChange memakai `value` dari opsi.
  */
 function TopicSelect({ id, labelId, value, options, placeholder, onChange, onBlur, ...aria }) {
   const listId = `${id}-listbox`
@@ -195,7 +195,7 @@ function TopicSelect({ id, labelId, value, options, placeholder, onChange, onBlu
     setOpen(false)
   }
 
-  /* Type-to-select: keystrokes within 500ms of each other build a prefix. */
+  /* Ketik untuk memilih: ketikan dalam jeda 500ms digabung jadi awalan. */
   const matchTyped = (key) => {
     const state = search.current
     clearTimeout(state.timer)
@@ -308,7 +308,7 @@ function TopicSelect({ id, labelId, value, options, placeholder, onChange, onBlu
         aria-labelledby={labelId}
         tabIndex={-1}
         className="contact-select__list"
-        // Keep focus on the trigger (and the list open) while using the pointer here.
+        // Jaga focus tetap di trigger (dan list tetap terbuka) saat pakai pointer di sini.
         onMouseDown={(event) => event.preventDefault()}
       >
         {options.map((option, index) => (
@@ -344,13 +344,13 @@ function TopicSelect({ id, labelId, value, options, placeholder, onChange, onBlu
 }
 
 /**
- * Contact page. Submissions go to CONTACT_FORM_RECIPIENT through EmailJS
- * (branded template), or FormSubmit until EmailJS keys are configured. If the
- * request fails, the visitor is offered a mailto link with the message prefilled.
+ * Halaman Contact. Pesan dikirim ke CONTACT_FORM_RECIPIENT lewat EmailJS
+ * (template bermerek), atau FormSubmit selama key EmailJS belum diset. Kalau
+ * request gagal, pengunjung diberi link mailto dengan pesan yang sudah terisi.
  *
- * Submit button has two states: disabled (grey) until every field is valid,
- * then active (accent). Because a disabled button can't reveal what's missing,
- * each field shows its error when the visitor leaves it.
+ * Tombol submit punya dua state: disabled (abu-abu) sampai semua field valid,
+ * lalu aktif (accent). Karena tombol disabled tidak bisa memberi tahu apa yang
+ * kurang, tiap field menampilkan error-nya saat ditinggalkan.
  */
 function ContactPage() {
   const { t, pick } = useLanguage()
@@ -368,8 +368,8 @@ function ContactPage() {
   const ready = Object.keys(validate(values)).length === 0
   const sending = status === 'sending'
 
-  // Message box grows with its content (min = rows={6}), then scrolls past the
-  // cap. Re-measured on width changes too, since the text re-wraps.
+  // Kotak pesan memanjang mengikuti isi (min = rows={6}), lalu bisa di-scroll
+  // setelah batas. Diukur ulang saat lebar berubah juga, karena teks pindah baris.
   useLayoutEffect(() => {
     const fit = () => {
       const el = messageRef.current
@@ -385,15 +385,15 @@ function ContactPage() {
     return () => window.removeEventListener('resize', fit)
   }, [values.message])
 
-  // Latest values, readable from a blur that fires in the same event as a change
-  // (e.g. Tab picking a topic) before React has re-rendered.
-  // setField also writes it synchronously; this keeps it in step after resets.
+  // Nilai terbaru, bisa dibaca dari blur yang terjadi di event yang sama dengan change
+  // (mis. Tab memilih topik) sebelum React sempat re-render.
+  // setField juga menulisnya secara sinkron; ini menjaganya tetap sinkron setelah reset.
   const latest = useRef(values)
   useLayoutEffect(() => {
     latest.current = values
   }, [values])
 
-  /** Shows or clears one field's error, leaving fields not yet visited alone. */
+  /** Tampilkan atau hapus error satu field, field yang belum disentuh dibiarkan. */
   const refreshError = (field, source) => {
     const message = validate(source)[field]
     setErrors((prev) => {
@@ -407,9 +407,9 @@ function ContactPage() {
 
   const touch = (field) => () => refreshError(field, latest.current)
 
-  // After a successful send the form empties and the submit button disables
-  // itself, so move focus to the confirmation instead of letting it fall to
-  // <body>. (On error the button stays enabled and keeps focus; the alert speaks.)
+  // Setelah terkirim, form kosong dan tombol submit jadi disabled,
+  // jadi pindahkan focus ke pesan konfirmasi supaya tidak jatuh ke
+  // <body>. (Kalau gagal, tombol tetap aktif dan pegang focus; alert yang bicara.)
   useEffect(() => {
     if (status === 'sent') statusRef.current?.focus()
   }, [status])
@@ -426,8 +426,8 @@ function ContactPage() {
 
   const onSubmit = async (event) => {
     event.preventDefault()
-    // The button is disabled until valid, which also blocks Enter-to-submit;
-    // this guard only covers a double submit while a request is in flight.
+    // Tombol disabled sampai valid, dan itu juga memblokir submit lewat Enter;
+    // guard ini cuma mencegah submit ganda saat request masih berjalan.
     if (sending || !ready) return
     const form = event.currentTarget
 
@@ -496,7 +496,7 @@ function ContactPage() {
                       <Icon size={20} />
                     </span>
                     <span className="contact-details__text">
-                      {/* Visible label is dropped; keep it for screen readers. */}
+                      {/* Label visual dihilangkan; tetap disimpan untuk screen reader. */}
                       <span className="visually-hidden">{t(`contact.detail.${item.type}`)}: </span>
                       {value}
                     </span>
@@ -512,7 +512,7 @@ function ContactPage() {
               noValidate
               aria-busy={sending || undefined}
             >
-              {/* Honeypot: invisible to people, filled by bots, dropped by FormSubmit. */}
+              {/* Honeypot: tak terlihat manusia, diisi bot, lalu dibuang FormSubmit. */}
               <input
                 type="text"
                 name="_honey"
@@ -559,8 +559,8 @@ function ContactPage() {
                   size="lg"
                   variant="accent"
                   className="contact-form__submit"
-                  // Native disabled until valid; while sending the button keeps
-                  // focus and is blocked through aria-disabled + the onSubmit guard.
+                  // Disabled native sampai valid; saat mengirim tombol tetap pegang
+                  // focus dan diblokir lewat aria-disabled + guard di onSubmit.
                   disabled={!ready}
                   aria-disabled={sending || undefined}
                 >
@@ -569,7 +569,7 @@ function ContactPage() {
               </div>
 
               {status === 'sent' && (
-                // Announced by receiving focus, so no live-region role (avoids a double read).
+                // Diumumkan lewat focus, jadi tanpa role live-region (biar tidak dibaca dua kali).
                 <p ref={statusRef} tabIndex={-1} className="contact-form__status">
                   <CheckCircleIcon />
                   {t('contact.sent')}

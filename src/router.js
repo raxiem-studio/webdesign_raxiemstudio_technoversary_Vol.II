@@ -1,12 +1,12 @@
 import { useEffect, useRef, useState } from 'react'
 
 /**
- * Dependency-free pathname router.
- * Same-origin link clicks that change the path are intercepted and pushed to
- * history; hash-only links fall through to native anchor scrolling.
- * Production hosting must rewrite every route to index.html.
+ * Router pathname tanpa dependency.
+ * Klik link same-origin yang mengganti path dicegat lalu di-push ke history;
+ * link yang cuma hash dibiarkan memakai scroll anchor bawaan browser.
+ * Di hosting produksi, semua route harus di-rewrite ke index.html.
  */
-/** pageTitle('About', home) → 'About — JEJAK'; no name → the (translated) home title. */
+/** pageTitle('About', home) → 'About — JEJAK'; tanpa nama → judul home (sudah diterjemahkan). */
 export const pageTitle = (name, homeTitle) => (name ? `${name} — JEJAK` : homeTitle)
 
 const normalise = (path) => (path.length > 1 ? path.replace(/\/+$/, '') : path)
@@ -41,7 +41,7 @@ export function usePath() {
   return path
 }
 
-/** Syncs document.title, scroll position and focus after client-side navigation. */
+/** Sinkronkan document.title, posisi scroll, dan focus setelah navigasi client-side. */
 export function usePageChange(path, title, mainRef) {
   const firstRender = useRef(true)
 
@@ -50,14 +50,14 @@ export function usePageChange(path, title, mainRef) {
   }, [title])
 
   useEffect(() => {
-    // Initial load: the browser already handles hash scrolling and focus.
+    // Load pertama: browser sudah menangani scroll hash dan focus.
     if (firstRender.current) {
       firstRender.current = false
       return undefined
     }
     const frame = requestAnimationFrame(() => {
       const target = window.location.hash && document.getElementById(window.location.hash.slice(1))
-      // Override global smooth scrolling so a new page doesn't animate from the old offset.
+      // Timpa smooth scroll global supaya halaman baru tidak beranimasi dari posisi lama.
       if (target) {
         target.scrollIntoView({ behavior: 'instant' })
       } else {

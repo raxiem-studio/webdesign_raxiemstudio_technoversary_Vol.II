@@ -1,6 +1,6 @@
 import { images } from './images.js'
 
-/** Site-wide closing CTA rendered above the footer (hidden on Contact). */
+/** CTA penutup di atas footer (disembunyikan di Contact). */
 export const CLOSING_CTA = {
   title: { en: 'Ready to Leave a Good Trace?', id: 'Siap Meninggalkan Jejak yang Baik?' },
   image: images.aboutHiker,

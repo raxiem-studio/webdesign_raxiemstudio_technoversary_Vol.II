@@ -1,4 +1,4 @@
-/* Photo-led article card: text overlays the lower part of a 4:5 photo. */
+/* Kartu artikel berbasis foto: teks menumpuk di bagian bawah foto 4:5. */
 .article-card {
   display: flex;
   width: 100%;
@@ -15,8 +15,8 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  /* Transparent (not dark) so any sub-pixel seam at the rounded edge during
-     the hover zoom shows page white instead of a dark stroke. */
+  /* Transparan (bukan gelap) supaya celah sub-piksel di sudut saat zoom
+     hover kelihatan putih, bukan garis gelap. */
   background: transparent;
   color: var(--text-inverse);
   text-decoration: none;
@@ -75,9 +75,9 @@
   font-weight: var(--fw-medium);
 }
 
-/* Exactly two lines on every card: the measure (tested across all cards,
-   widths and both languages) is narrow enough that every title wraps and
-   wide enough that none needs a third line; balance splits it evenly. */
+/* Selalu dua baris di semua kartu. Lebar ini sudah dites di semua kartu,
+   ukuran layar, dan dua bahasa: cukup sempit agar judul turun baris,
+   cukup lega agar tak sampai tiga baris. Balance membagi rata. */
 .article-card__title {
   font-size: var(--fs-h3);
   line-height: var(--lh-h3);
@@ -87,8 +87,8 @@
   text-wrap: balance;
 }
 
-/* Exactly two filled lines, same method as the title (24ch measure +
-   balance); the clamp is only a safety net for future copy. */
+/* Selalu dua baris terisi, cara sama dengan judul (lebar 24ch + balance).
+   Clamp cuma jaring pengaman untuk copy baru. */
 .article-card__excerpt {
   display: -webkit-box;
   max-width: 24ch;

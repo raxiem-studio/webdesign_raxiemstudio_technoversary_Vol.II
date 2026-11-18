@@ -1,6 +1,6 @@
 import './Badge.css'
 
-/** Category pill. */
+/** Pill kategori. */
 function Badge({ as: Tag = 'span', className = '', children, ...rest }) {
   const classes = ['badge', className].filter(Boolean).join(' ')
   return (

@@ -1,4 +1,4 @@
-/* Shared listing layout: intro, then a 1 / 2 / 3-column card grid. */
+/* Layout listing bersama: intro, lalu grid kartu 1 / 2 / 3 kolom. */
 .listing-page {
   --reveal-duration: 1600ms;
   --reveal-distance: 20px;
@@ -47,8 +47,8 @@
     padding-top: var(--space-16);
   }
 
-  /* Title left, lead pinned to the right edge. The title sits on the same
-     baseline as the lead's first line (shared by every page intro). */
+  /* Judul di kiri, lead nempel di tepi kanan. Judul duduk di baseline yang
+     sama dengan baris pertama lead (berlaku di semua intro halaman). */
   .listing-page__head {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -56,7 +56,7 @@
     align-items: first baseline;
   }
 
-  /* A fixed 40ch measure keeps the lead to two or three lines. */
+  /* Lebar tetap 40ch menjaga lead di dua atau tiga baris. */
   .listing-page__lead {
     justify-self: end;
     width: 100%;

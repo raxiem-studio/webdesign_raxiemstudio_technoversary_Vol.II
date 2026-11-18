@@ -1,7 +1,7 @@
 import './Eyebrow.css'
 
 /**
- * Uppercase overline label.
+ * Label overline huruf kapital.
  * @param {'accent'|'secondary'|'inverse'} [props.tone='accent']
  */
 function Eyebrow({ as: Tag = 'p', tone = 'accent', className = '', children, ...rest }) {

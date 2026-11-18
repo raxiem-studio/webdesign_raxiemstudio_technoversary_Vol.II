@@ -3,7 +3,7 @@ import { useInView } from '../hooks/useInView.js'
 import './ListingPage.css'
 
 /**
- * Shared layout for listing pages: title + lead, then a responsive card grid.
+ * Layout bersama halaman listing: judul + lead, lalu grid kartu responsif.
  * @param {Array<{slug: string}>} props.items
  * @param {(item) => import('react').ReactNode} props.renderItem
  */

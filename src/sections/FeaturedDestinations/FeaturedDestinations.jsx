@@ -6,13 +6,13 @@ import { useCarousel } from '../../hooks/useCarousel.js'
 import { useInView } from '../../hooks/useInView.js'
 import './FeaturedDestinations.css'
 
-/* Desktop line breaks of the section title, per language. */
+/* Titik pindah baris judul section di desktop, per bahasa. */
 const TITLE_LINES = {
   en: ['Nature speaks through', 'the hands of its', 'guardians'],
   id: ['Alam bercerita', 'lewat tangan', 'para penjaganya'],
 }
 
-/** Home: featured destinations carousel (native scroll-snap + prev/next controls). */
+/** Home: carousel destinasi pilihan (scroll-snap native + kontrol prev/next). */
 function FeaturedDestinations({ destinations = DESTINATIONS }) {
   const { lang, t } = useLanguage()
   const { trackRef, canPrev, canNext, scrollByItem } = useCarousel(
@@ -32,7 +32,7 @@ function FeaturedDestinations({ destinations = DESTINATIONS }) {
           <SectionHeader
             rule={false}
             title={TITLE_LINES[lang].map((line, i) => (
-              // Explicit spaces: the <br>s are display:none below tablet.
+              // Spasi eksplisit: <br> di-display:none di bawah tablet.
               <Fragment key={line}>
                 {i > 0 && (
                   <>

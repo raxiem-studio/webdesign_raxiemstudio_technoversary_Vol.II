@@ -1,5 +1,5 @@
-/* Buttons: radius-xl, Medium weight. Horizontal padding ≈ half the height
-   (sm 36/20, md 44/24, lg 52/28) to keep the pill proportional. */
+/* Tombol: radius-xl, weight Medium. Padding horizontal ≈ setengah tinggi
+   (sm 36/20, md 44/24, lg 52/28) supaya bentuk pill tetap proporsional. */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -24,7 +24,7 @@
   transition: transform var(--duration-base) var(--ease-standard);
 }
 
-/* Sizes */
+/* Ukuran */
 .btn--sm {
   min-height: 36px;
   padding-inline: var(--space-5);
@@ -38,7 +38,7 @@
   letter-spacing: var(--ls-text);
 }
 
-/* Primary — Black */
+/* Primary — hitam */
 .btn--primary {
   background: var(--bg-inverse);
   color: var(--text-inverse);
@@ -54,7 +54,7 @@
   transform: translateY(1px);
 }
 
-/* Accent — Forest */
+/* Accent — hijau Forest */
 .btn--accent {
   background: var(--accent);
   color: var(--text-inverse);
@@ -70,7 +70,7 @@
   transform: translateY(1px);
 }
 
-/* For use over photography only. */
+/* Khusus di atas foto. */
 .btn--glass {
   background: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.35);
@@ -95,7 +95,7 @@
   transform: translateY(1px);
 }
 
-/* Secondary — outline Black */
+/* Secondary — outline hitam */
 .btn--secondary {
   background: transparent;
   color: var(--text-primary);
@@ -111,7 +111,7 @@
   background: var(--color-forest-100);
 }
 
-/* Text */
+/* Teks */
 .btn--text {
   min-height: var(--touch-target-min);
   padding: 0;
@@ -137,14 +137,14 @@
   color: var(--accent-active);
 }
 
-/* Disabled */
+/* Nonaktif */
 .btn:disabled,
 .btn[aria-disabled='true'] {
   opacity: 0.35;
   pointer-events: none;
 }
 
-/* Inverse context: on dark or photographic backgrounds. */
+/* Konteks gelap: di atas latar gelap atau foto. */
 .on-dark .btn--primary {
   background: var(--bg-primary);
   color: var(--text-primary);
@@ -164,9 +164,9 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* ---- .link-draw: underline draws in on hover/focus (use with variant="text") ----
-   Enter: line draws in, then line + label tint to accent.
-   Leave: tint reverts first, then the line retracts. */
+/* ---- .link-draw: garis bawah tergambar saat hover/focus (pakai dengan variant="text") ----
+   Masuk: garis tergambar, lalu garis + label berubah ke warna accent.
+   Keluar: warna balik dulu, baru garisnya ditarik. */
 .link-draw {
   --link-draw: 500ms;
   --link-tint: 600ms;

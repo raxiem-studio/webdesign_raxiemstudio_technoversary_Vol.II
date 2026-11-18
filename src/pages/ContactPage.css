@@ -1,4 +1,4 @@
-/* Contact page: details (5/12) beside the form (7/12) from tablet. */
+/* Halaman Contact: detail (5/12) di samping form (7/12) mulai tablet. */
 .contact-page {
   --reveal-duration: 1600ms;
   --reveal-distance: 20px;
@@ -36,7 +36,7 @@
   gap: var(--space-12);
 }
 
-/* ---- Contact details ---- */
+/* ---- Detail kontak ---- */
 .contact-details {
   display: flex;
   flex-direction: column;
@@ -103,7 +103,7 @@ a.contact-details__value:focus-visible {
   color: var(--text-tertiary);
 }
 
-/* Fields: radius-md, soft fill, hairline border. */
+/* Field: radius-md, fill lembut, border tipis. */
 .contact-form input,
 .contact-form textarea,
 .contact-form .contact-select__trigger {
@@ -120,8 +120,8 @@ a.contact-details__value:focus-visible {
   border-color: var(--border-strong);
 }
 
-/* Single-stroke focus: the accent border replaces the global outline
-   (≥3:1 against the fill). */
+/* Focus satu garis: border accent menggantikan outline global
+   (kontras ≥3:1 terhadap fill). */
 .contact-form input:focus,
 .contact-form textarea:focus,
 .contact-form .contact-select__trigger:focus {
@@ -135,7 +135,7 @@ a.contact-details__value:focus-visible {
   border-color: var(--error-accent);
 }
 
-/* Grows with its content from JS (see MESSAGE_MAX_HEIGHT), so no manual handle. */
+/* Tinggi mengikuti isi lewat JS (lihat MESSAGE_MAX_HEIGHT), jadi tanpa handle resize. */
 .contact-form textarea {
   resize: none;
   overflow-y: hidden;
@@ -146,7 +146,7 @@ a.contact-details__value:focus-visible {
   color: var(--error-accent);
 }
 
-/* Honeypot: kept out of sight and out of the tab order. */
+/* Honeypot: disembunyikan dan dikeluarkan dari urutan tab. */
 .contact-form .contact-form__honey {
   position: absolute;
   left: -9999px;
@@ -157,12 +157,12 @@ a.contact-details__value:focus-visible {
   pointer-events: none;
 }
 
-/* ---- Topic dropdown (custom listbox) ---- */
+/* ---- Dropdown topik (listbox custom) ---- */
 .contact-select {
   position: relative;
 }
 
-/* Mirrors the base field box: the trigger is a div, so base input rules don't reach it. */
+/* Meniru kotak field dasar: trigger-nya div, jadi aturan input dasar tidak kena. */
 .contact-select__trigger {
   display: flex;
   align-items: center;
@@ -200,14 +200,14 @@ a.contact-details__value:focus-visible {
   color: var(--accent);
 }
 
-/* Menu: floats below the trigger, fades and settles in slowly. Visibility
-   flips after the fade so the closed list leaves the accessibility tree. */
+/* Menu: muncul di bawah trigger, fade dan turun pelan. Visibility baru berubah
+   setelah fade, supaya list yang tertutup keluar dari accessibility tree. */
 .contact-select__list {
   position: absolute;
   top: calc(100% + var(--space-2));
   left: 0;
   right: 0;
-  /* Above page content, below the sticky navigation. */
+  /* Di atas konten halaman, di bawah navbar sticky. */
   z-index: calc(var(--z-nav) - 1);
   display: flex;
   flex-direction: column;
@@ -256,7 +256,7 @@ a.contact-details__value:focus-visible {
   background: var(--color-forest-50);
 }
 
-/* Selected: solid Forest with white text (≈7.6:1). */
+/* Terpilih: hijau Forest solid dengan teks putih (≈7.6:1). */
 .contact-select__option[aria-selected='true'] {
   background: var(--accent);
   color: var(--text-inverse);
@@ -277,8 +277,8 @@ a.contact-details__value:focus-visible {
   opacity: 1;
 }
 
-/* Submit: two states only. Disabled is a flat grey (not the faded accent the
-   shared .btn:disabled opacity would give); ready is the accent. Slow cross-fade. */
+/* Submit: hanya dua state. Disabled abu-abu datar (bukan accent pudar dari
+   opacity .btn:disabled bawaan); siap kirim pakai accent. Transisi pelan. */
 .contact-form__submit {
   transition: background-color var(--duration-slow) var(--ease-standard),
     color var(--duration-slow) var(--ease-standard);
@@ -290,7 +290,7 @@ a.contact-details__value:focus-visible {
   color: var(--text-tertiary);
 }
 
-/* While sending it stays the solid accent ("Mengirim…"), not the shared faded look. */
+/* Saat mengirim tetap accent solid ("Mengirim…"), bukan tampilan pudar bawaan. */
 .contact-form__submit[aria-disabled='true'] {
   opacity: 1;
 }
@@ -316,7 +316,7 @@ a.contact-details__value:focus-visible {
   flex-shrink: 0;
 }
 
-/* Receives focus programmatically after a send; not interactive. */
+/* Dapat focus lewat kode setelah terkirim; bukan elemen interaktif. */
 .contact-form__status:focus {
   outline: none;
 }
@@ -351,8 +351,8 @@ a.contact-details__value:focus-visible {
     gap: var(--gutter);
   }
 
-  /* Title on the lead's first baseline, like the other page intros; the lead
-     keeps the form's left edge (7fr column) so the two still line up. */
+  /* Judul di baseline baris pertama lead, seperti intro halaman lain; lead
+     tetap sejajar tepi kiri form (kolom 7fr). */
   .contact-page__head {
     align-items: first baseline;
   }

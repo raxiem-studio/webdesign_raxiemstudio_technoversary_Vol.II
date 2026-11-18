@@ -2,9 +2,9 @@ import { useLanguage } from '../../i18n/context.js'
 import './DestinationCard.css'
 
 /**
- * Photo-led destination card. The whole card is one link; the "Explore"
- * pill is presentational so there's a single click/focus target.
- * @param {object} props.destination  { name, description, image, href } — text is bilingual `{ en, id }`
+ * Kartu destinasi berbasis foto. Seluruh kartu satu link; pill "Explore"
+ * cuma hiasan supaya target klik/focus tetap satu.
+ * @param {object} props.destination  { name, description, image, href } — teks dua bahasa `{ en, id }`
  */
 function DestinationCard({ destination, className = '', ...rest }) {
   const { t, pick } = useLanguage()

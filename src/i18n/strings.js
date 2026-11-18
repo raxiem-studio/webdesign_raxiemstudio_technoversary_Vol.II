@@ -1,7 +1,7 @@
 /**
- * Interface strings (labels, buttons, messages, accessible names).
- * Page content lives in src/data as bilingual `{ en, id }` values.
- * `{name}` placeholders are filled by t('key', { name }).
+ * Teks antarmuka (label, tombol, pesan, nama aksesibel).
+ * Konten halaman ada di src/data sebagai nilai dua bahasa `{ en, id }`.
+ * Placeholder `{name}` diisi lewat t('key', { name }).
  */
 export const STRINGS = {
   en: {

@@ -1,4 +1,4 @@
-/** Shared line icons (24px grid, currentColor, aria-hidden). */
+/** Ikon garis bersama (grid 24px, currentColor, aria-hidden). */
 
 const line = (size, strokeWidth = 1.5) => ({
   width: size,
@@ -68,7 +68,7 @@ export function InstagramIcon({ size = 16, strokeWidth = 1.75 }) {
   )
 }
 
-/** Filled brand glyph. */
+/** Glyph brand versi isi penuh. */
 export function WhatsAppIcon({ size = 16 }) {
   return (
     <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">

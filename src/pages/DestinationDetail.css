@@ -1,4 +1,4 @@
-/* Destination page. Shares the About page's entrance and section rhythm. */
+/* Halaman destinasi. Animasi masuk dan ritme section sama dengan halaman About. */
 .destination-page {
   --reveal-duration: 1600ms;
   --reveal-distance: 20px;
@@ -59,7 +59,7 @@
   object-fit: cover;
 }
 
-/* ---- Sections ---- */
+/* ---- Section ---- */
 .destination-page__section {
   margin-top: var(--dest-gap);
 }
@@ -91,7 +91,7 @@
   color: var(--text-secondary);
 }
 
-/* Highlights */
+/* Pengalaman utama */
 .destination-page__highlights {
   display: grid;
   grid-template-columns: 1fr;
@@ -105,7 +105,7 @@
   gap: var(--space-3);
 }
 
-/* Same numbered circle as the About values. */
+/* Lingkaran bernomor yang sama dengan nilai di About. */
 .destination-page__number {
   --number-circle: 56px;
   display: grid;
@@ -162,7 +162,7 @@
   background: var(--accent);
 }
 
-/* Gallery */
+/* Galeri */
 .destination-page__gallery {
   display: grid;
   grid-template-columns: 1fr;
@@ -176,7 +176,7 @@
   color: var(--text-secondary);
 }
 
-/* More destinations */
+/* Destinasi lainnya */
 .destination-page__more {
   display: grid;
   grid-template-columns: 1fr;
@@ -216,8 +216,8 @@
     gap: var(--gutter);
   }
 
-  /* Tablet: two roomy cards (like the listing pages) instead of three
-     cramped ones; the third returns on desktop. */
+  /* Tablet: dua kartu lega (seperti halaman listing), bukan tiga yang
+     sempit; kartu ketiga muncul lagi di desktop. */
   .destination-page__more {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--gutter);

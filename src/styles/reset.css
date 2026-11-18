@@ -1,4 +1,4 @@
-/* Minimal modern reset; keeps semantic defaults that aid accessibility. */
+/* Reset modern minimal; tetap mempertahankan default semantik yang membantu aksesibilitas. */
 
 *,
 *::before,
@@ -69,7 +69,7 @@ h6 {
   overflow-wrap: break-word;
 }
 
-/* :where() → zero specificity, so component padding always wins. */
+/* :where() → spesifisitas nol, jadi padding komponen selalu menang. */
 :where(ul[role='list'], ol[role='list']) {
   list-style: none;
   padding: 0;

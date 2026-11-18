@@ -1,6 +1,6 @@
 /**
- * Prev/next circle buttons for a carousel track (pair with useCarousel).
- * @param {{prev: string, next: string}} props.labels  Accessible names.
+ * Tombol bulat prev/next untuk track carousel (pasangan useCarousel).
+ * @param {{prev: string, next: string}} props.labels  Nama aksesibel.
  */
 function CarouselControls({ canPrev, canNext, onPrev, onNext, labels, className = '', ...rest }) {
   return (

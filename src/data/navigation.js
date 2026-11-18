@@ -1,7 +1,6 @@
 /**
- * Nav, footer and legal links. Text is bilingual `{ en, id }`; components pick
- * the active language. Section anchors are prefixed with "/" so they resolve
- * from any route.
+ * Link nav, footer, dan legal. Teks dua bahasa `{ en, id }`; komponen memilih
+ * bahasa aktif. Anchor section diawali "/" supaya bisa diakses dari route mana pun.
  */
 export const NAV_LINKS = [
   { label: { en: 'Destinations', id: 'Destinasi' }, href: '/destinations' },
@@ -40,7 +39,7 @@ export const FOOTER_COLUMNS = [
   },
   {
     title: { en: 'Follow', id: 'Ikuti' },
-    // TODO: confirm official social handles before launch.
+    // TODO: pastikan akun media sosial resmi sebelum rilis.
     links: [
       { label: 'Instagram', href: 'https://www.instagram.com/jejak.id', external: true },
       { label: 'Facebook', href: 'https://www.facebook.com/jejak.id', external: true },
@@ -49,7 +48,7 @@ export const FOOTER_COLUMNS = [
   },
 ]
 
-/** Footer brand block. TODO: confirm address and contact details before launch. */
+/** Blok brand footer. TODO: pastikan alamat dan kontak sebelum rilis. */
 export const FOOTER_ADDRESS = ['JEJAK Indonesia', 'Jl. Kemang Raya No. 8', 'Jakarta Selatan 12730, Indonesia']
 
 export const FOOTER_CONTACTS = [
@@ -59,8 +58,8 @@ export const FOOTER_CONTACTS = [
 ]
 
 /**
- * Bottom-row links. Privacy and Terms have no pages yet, so they open the
- * 404 page (any unknown route does); Photo Credits is a real page.
+ * Link baris bawah. Privacy dan Terms belum punya halaman, jadi membuka
+ * halaman 404 (seperti route tak dikenal lainnya); Photo Credits halaman asli.
  */
 export const LEGAL_LINKS = [
   { label: { en: 'Privacy Policy', id: 'Kebijakan Privasi' }, href: '/privacy-policy' },

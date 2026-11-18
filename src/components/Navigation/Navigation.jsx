@@ -5,8 +5,8 @@ import Container from '../Container/Container.jsx'
 import './Navigation.css'
 
 /**
- * EN / ID toggle. Typeset like the nav links (inherits their colour over the
- * hero); the active language is Medium, the other is dimmed.
+ * Toggle EN / ID. Tipografinya sama dengan link nav (ikut warnanya di atas
+ * hero); bahasa aktif Medium, yang lain diredupkan.
  */
 function LanguageSwitch() {
   const { lang, setLang, t } = useLanguage()
@@ -36,13 +36,13 @@ function LanguageSwitch() {
 }
 
 /**
- * Primary navigation: inline links on desktop, full-screen menu below it.
+ * Navigasi utama: link inline di desktop, menu layar penuh di bawahnya.
  * @param {Array<{label: string, href: string, current?: boolean}>} props.links
- *   `current` only seeds the initial state; scroll spy takes over after mount.
+ *   `current` cuma nilai awal; setelah mount diambil alih scroll spy.
  * @param {{label: string, href: string, variant?: string}} [props.cta]
- * @param {boolean} [props.inverse]  Transparent over the hero, solid once past it.
- * @param {string}  [props.path]     Current route; re-runs scroll spy on navigation.
- * @param {boolean} [props.noActive] Mark no link as current (e.g. on the 404 page).
+ * @param {boolean} [props.inverse]  Transparan di atas hero, solid setelah melewatinya.
+ * @param {string}  [props.path]     Route aktif; scroll spy dijalankan ulang tiap pindah halaman.
+ * @param {boolean} [props.noActive] Tidak ada link yang ditandai aktif (mis. di halaman 404).
  */
 function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, noActive = false }) {
   const { t } = useLanguage()
@@ -54,7 +54,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
   const toggleRef = useRef(null)
   const firstLinkRef = useRef(null)
 
-  // Derives scrolled / past-hero state and the active link from scroll position.
+  // Hitung status scrolled / lewat hero dan link aktif dari posisi scroll.
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
@@ -69,9 +69,9 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
         setPastHero(true)
       }
 
-      // Only links to the current route participate. Page links (no hash) are
-      // active for the route and its sub-routes; section links once their
-      // section has passed under the bar.
+      // Hanya link ke route yang sedang aktif yang dihitung. Link halaman (tanpa hash)
+      // aktif untuk route itu dan sub-route-nya; link section aktif setelah
+      // section-nya lewat di bawah navbar.
       const here = window.location.pathname
       let current = null
       for (const link of links) {
@@ -98,7 +98,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
     }
   }, [inverse, links, path])
 
-  // While open: Esc closes, body scroll is locked, focus moves into the menu and back.
+  // Saat terbuka: Esc menutup, scroll body dikunci, focus masuk ke menu lalu kembali.
   useEffect(() => {
     if (!open) return undefined
     const onKey = (event) => {
@@ -115,10 +115,10 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
     }
   }, [open])
 
-  // Auto-close when resized past the desktop breakpoint.
+  // Tutup otomatis kalau layar diperlebar melewati breakpoint desktop.
   useEffect(() => {
     if (!open) return undefined
-    // Keep in sync with the desktop breakpoint in Navigation.css.
+    // Samakan dengan breakpoint desktop di Navigation.css.
     const mq = window.matchMedia('(min-width: 1280px)')
     const onChange = (event) => {
       if (event.matches) setOpen(false)
@@ -129,7 +129,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
 
   const ctaVariant = cta?.variant ?? 'primary'
 
-  // Transparent at the top of the hero, frosted once scrolled, solid past it or while the menu is open.
+  // Transparan di atas hero, buram setelah di-scroll, solid setelah lewat hero atau saat menu terbuka.
   const overHero = inverse && !open && !pastHero
   const classes = [
     'nav',

@@ -1,5 +1,5 @@
-/* Story page. Header, hero and body share the hero's edges; the body is
-   a 5/12 + 7/12 split from tablet so line length stays comfortable. */
+/* Halaman cerita. Header, hero, dan body berbagi tepi yang sama dengan hero;
+   mulai tablet body dibagi 5/12 + 7/12 supaya panjang baris tetap nyaman. */
 .article-page {
   --reveal-duration: 1600ms;
   --reveal-distance: 20px;
@@ -48,7 +48,7 @@
   gap: var(--space-2);
 }
 
-/* ---- Photo ---- */
+/* ---- Foto ---- */
 .article-page__hero {
   margin: 0;
   overflow: hidden;
@@ -63,7 +63,7 @@
   object-fit: cover;
 }
 
-/* ---- Body: one row per block, two columns from tablet ---- */
+/* ---- Body: satu baris per blok, dua kolom mulai tablet ---- */
 .article-page__body {
   margin-top: var(--space-12);
 }
@@ -103,7 +103,7 @@
   color: var(--text-secondary);
 }
 
-/* ---- More stories ---- */
+/* ---- Cerita lainnya ---- */
 .article-page__more {
   margin-top: var(--article-gap);
 }
@@ -139,8 +139,8 @@
     grid-column: 2;
   }
 
-  /* Tablet: two roomy cards (like the listing pages) instead of three
-     cramped ones; the third returns on desktop. */
+  /* Tablet: dua kartu lega (seperti halaman listing), bukan tiga yang
+     sempit; kartu ketiga muncul lagi di desktop. */
   .article-page__more-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--gutter);

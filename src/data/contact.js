@@ -1,9 +1,9 @@
 import { FOOTER_ADDRESS, FOOTER_CONTACTS } from './navigation.js'
 
 /**
- * Contact page content. Title, lead and form copy live in src/i18n/strings.js
- * (contact.*). Details derive from the footer data so both stay in sync; each
- * screen-reader label comes from `contact.detail.<type>`.
+ * Konten halaman Contact. Judul, lead, dan copy form ada di src/i18n/strings.js
+ * (contact.*). Detail kontak diambil dari data footer supaya selalu sinkron;
+ * label screen reader dari `contact.detail.<type>`.
  */
 const byType = (type) => FOOTER_CONTACTS.find((c) => c.type === type)
 const pick = (contact) => ({ value: contact.label, href: contact.href })
@@ -14,22 +14,22 @@ export const CONTACT_DETAILS = [
   { type: 'phone', ...pick(byType('phone')) },
   {
     type: 'address',
-    /* One entry per rendered line. */
+    /* Satu entri per baris yang ditampilkan. */
     lines: FOOTER_ADDRESS.slice(1),
     href: null,
   },
 ]
 
-/** Public contact address shown on the page. */
+/** Alamat kontak publik yang tampil di halaman. */
 export const CONTACT_EMAIL = byType('email').label
 
-/** Inbox that receives contact-form submissions (separate from the public address). */
+/** Inbox penerima pesan form (terpisah dari alamat publik). */
 export const CONTACT_FORM_RECIPIENT = 'raxiemstudio@gmail.com'
 
 /**
- * Primary delivery: EmailJS with the branded template in
- * email-templates/contact-notification.html. Keys come from .env.local
- * (see .env.example); EmailJS public keys are meant to live in the browser.
+ * Pengiriman utama: EmailJS dengan template di
+ * email-templates/contact-notification.html. Key diambil dari .env.local
+ * (lihat .env.example); public key EmailJS memang aman ada di browser.
  */
 export const EMAILJS = {
   endpoint: 'https://api.emailjs.com/api/v1.0/email/send',
@@ -39,13 +39,13 @@ export const EMAILJS = {
 }
 EMAILJS.ready = Boolean(EMAILJS.serviceId && EMAILJS.templateId && EMAILJS.publicKey)
 
-/** Fallback delivery while EmailJS isn't configured (FormSubmit's fixed layout). */
+/** Cadangan selama EmailJS belum diset (tampilan FormSubmit tidak bisa diubah). */
 export const CONTACT_FORM_ENDPOINT = `https://formsubmit.co/ajax/${CONTACT_FORM_RECIPIENT}`
 
 /**
- * Form topics. The form stores `id`; the visitor sees the label in their
- * language, and the notification email always gets the Indonesian label so
- * the inbox stays consistent with the (Indonesian) email template.
+ * Topik form. Form menyimpan `id`; pengunjung melihat label sesuai bahasanya,
+ * sedangkan email notifikasi selalu dapat label bahasa Indonesia supaya
+ * inbox konsisten dengan template email (berbahasa Indonesia).
  */
 export const CONTACT_TOPICS = [
   { id: 'trip', label: { en: 'Planning a trip', id: 'Merencanakan perjalanan' } },

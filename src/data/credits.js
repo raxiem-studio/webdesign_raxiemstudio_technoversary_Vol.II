@@ -1,9 +1,9 @@
 import { images } from './images.js'
 
 /**
- * Photos whose licence requires visible attribution (CC BY / CC BY-SA).
- * Every other photo on the site is under the Unsplash License or CC0.
- * Source of truth for all photos: src/assets/ASSETS.md.
+ * Foto yang lisensinya wajib mencantumkan atribusi (CC BY / CC BY-SA).
+ * Foto lain di situs ini memakai Lisensi Unsplash atau CC0.
+ * Sumber lengkap semua foto: src/assets/ASSETS.md.
  */
 export const PHOTO_CREDITS = [
   {

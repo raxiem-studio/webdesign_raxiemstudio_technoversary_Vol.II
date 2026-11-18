@@ -1,4 +1,4 @@
-/* Import order matters: tokens → reset → base. */
+/* Urutan import penting: tokens → reset → base. */
 @import './styles/tokens.css';
 @import './styles/reset.css';
 @import './styles/base.css';

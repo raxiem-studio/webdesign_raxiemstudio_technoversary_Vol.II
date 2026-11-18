@@ -4,7 +4,7 @@ import { useLanguage } from '../i18n/context.js'
 import ListingPage from './ListingPage.jsx'
 import './Credits.css'
 
-/** /credits: attribution for CC-licensed photos (linked from the footer). */
+/** /credits: atribusi foto berlisensi CC (link dari footer). */
 function Credits() {
   const { t, pick } = useLanguage()
   return (

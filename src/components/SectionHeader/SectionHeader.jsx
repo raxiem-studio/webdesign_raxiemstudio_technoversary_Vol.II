@@ -3,12 +3,12 @@ import SectionIndex from '../SectionIndex/SectionIndex.jsx'
 import './SectionHeader.css'
 
 /**
- * Section heading block: optional rule, index + eyebrow, title and lead.
- * @param {1|2|3} [props.headingLevel=2]  Keep a single h1 per page.
- * @param {boolean} [props.compact]  Tighter spacing, H1-size title, no lead.
+ * Blok judul section: garis (opsional), nomor + eyebrow, judul, dan lead.
+ * @param {1|2|3} [props.headingLevel=2]  Pastikan hanya ada satu h1 per halaman.
+ * @param {boolean} [props.compact]  Jarak lebih rapat, judul seukuran H1, tanpa lead.
  * @param {'left'|'center'} [props.align='left']
- * @param {boolean} [props.rule=true]  Hairline above the heading.
- * @param {string}  [props.titleId]    For aria-labelledby on the parent section.
+ * @param {boolean} [props.rule=true]  Garis tipis di atas judul.
+ * @param {string}  [props.titleId]    Untuk aria-labelledby di section induk.
  */
 function SectionHeader({
   index,

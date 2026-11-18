@@ -1,9 +1,9 @@
-/* Design tokens (source: Figma style guide). Mobile-first; tablet ≥768px and
-   desktop ≥1280px override below. Breakpoints are repeated literally in media
-   queries because custom properties can't be used there. */
+/* Design token (sumber: style guide Figma). Mobile-first; tablet ≥768px dan
+   desktop ≥1280px menimpa di bawah. Breakpoint ditulis ulang di media query
+   karena custom property tidak bisa dipakai di sana. */
 
 :root {
-  /* ---- Color · primitives ---- */
+  /* ---- Warna · primitif ---- */
   --color-white: #ffffff;
   --color-black: #111111;
   --color-forest: #2f5d46;
@@ -25,7 +25,7 @@
   --color-black-800: #2b2e2c;
   --color-black-900: #000000;
 
-  /* ---- Color · roles ---- */
+  /* ---- Warna · peran ---- */
   --bg-primary: var(--color-white);
   --bg-secondary: var(--color-forest-100);
   --bg-sunken: var(--color-gray-100);
@@ -45,7 +45,7 @@
   --accent-active: var(--color-forest-700);
   --accent-tint: var(--color-forest-150);
 
-  /* ---- Color · status ---- */
+  /* ---- Warna · status ---- */
   --success-bg: #e3ede6;
   --success-fg: #1b3829;
   --success-accent: #2f5d46;
@@ -59,14 +59,14 @@
   --info-fg: #3c5163;
   --info-accent: #4f6272;
 
-  /* ---- Typography ---- */
+  /* ---- Tipografi ---- */
   --font-sans: 'Poppins', system-ui, sans-serif;
 
   --fw-regular: 400;
   --fw-medium: 500;
   --fw-semibold: 600;
 
-  /* Single tracking value; role tokens are kept as aliases for clarity at call sites. */
+  /* Satu nilai tracking; token per peran disimpan sebagai alias supaya jelas saat dipakai. */
   --ls-text: -0.02em;
   --ls-display: var(--ls-text);
   --ls-display-l: var(--ls-text);
@@ -78,7 +78,7 @@
   --ls-nav: var(--ls-text);
   --ls-wordmark: var(--ls-text);
 
-  /* Type scale — mobile (size / line-height) */
+  /* Skala tipografi — mobile (ukuran / line-height) */
   --fs-display-xl: 36px; --lh-display-xl: 44px;
   --fs-display-l: 30px;  --lh-display-l: 38px;
   --fs-h1: 26px; --lh-h1: 34px;
@@ -100,7 +100,7 @@
   --fs-mobile-menu: 28px; --lh-mobile-menu: 36px;
   --fs-section-title: 28px; --lh-section-title: 36px;
 
-  /* ---- Spacing (basis 4px) ---- */
+  /* ---- Spasi (basis 4px) ---- */
   --space-1: 4px;
   --space-2: 8px;
   --space-3: 12px;
@@ -122,15 +122,15 @@
   --radius-xl: 24px;
   --radius-full: 9999px;
 
-  /* ---- Hairline ---- */
+  /* ---- Garis tipis ---- */
   --hairline: 1px;
 
-  /* ---- Shadow ---- */
+  /* ---- Bayangan ---- */
   --shadow-card: 0 1px 4px rgba(17, 17, 17, 0.06);
   --shadow-subtle: 0 3px 12px rgba(17, 17, 17, 0.08);
   --shadow-overlay: 0 16px 40px -8px rgba(17, 17, 17, 0.16);
 
-  /* ---- Motion ---- */
+  /* ---- Gerak ---- */
   --duration-instant: 100ms;
   --duration-fast: 150ms;
   --duration-base: 240ms;
@@ -141,8 +141,8 @@
   --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
 
   /* ---- Layout (mobile first) ---- */
-  --margin-page: 20px; /* horizontal page margin */
-  --gutter: 16px; /* grid column gutter */
+  --margin-page: 20px; /* margin halaman horizontal */
+  --gutter: 16px; /* gutter kolom grid */
   --grid-columns: 4;
   --section-y: var(--space-12);
   --heading-to-content: var(--space-8);
@@ -153,7 +153,7 @@
   --prose-max: 640px;
   --nav-height: 64px;
 
-  /* ---- Accessibility ---- */
+  /* ---- Aksesibilitas ---- */
   --focus-ring-width: 2px;
   --focus-ring-offset: 3px;
   --focus-ring-color: var(--text-primary);

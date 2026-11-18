@@ -1,4 +1,4 @@
-/* Closing CTA photo card. --scroll-zoom is driven by useScrollZoom. */
+/* Kartu foto CTA penutup. --scroll-zoom diatur oleh useScrollZoom. */
 .closing-cta {
   --reveal-duration: 1600ms;
   --reveal-distance: 20px;
@@ -30,7 +30,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  /* Keep the off-centre subject in frame on narrow screens. */
+  /* Jaga subjek yang tidak di tengah tetap masuk frame di layar sempit. */
   object-position: 68% 50%;
   transform: scale(var(--scroll-zoom, 1));
   will-change: transform;
@@ -59,11 +59,11 @@
   font-weight: var(--fw-medium);
 }
 
-/* Glass button entrance. The fade runs on the button itself: backdrop-filter
-   can't see through an ancestor with opacity < 1, so a fading wrapper made
-   the glass pop in only after the reveal. `backwards` fill keeps it hidden
-   during the delay and hands back to the normal styles at the end, so hover
-   and press still work. Same timing as the other reveals. */
+/* Animasi masuk tombol glass. Fade dijalankan di tombolnya sendiri: backdrop-filter
+   tidak bisa "melihat" lewat parent yang opacity-nya < 1, jadi kalau wrapper yang
+   fade, efek glass baru muncul setelah animasi selesai. Fill `backwards` menyembunyikan
+   tombol selama delay lalu kembali ke style normal, jadi hover dan press tetap jalan.
+   Timing sama dengan reveal lain. */
 .closing-cta__action .btn {
   opacity: 0;
 }

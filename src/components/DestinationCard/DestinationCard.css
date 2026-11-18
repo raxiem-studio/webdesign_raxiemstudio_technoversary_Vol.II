@@ -1,4 +1,4 @@
-/* Photo-led destination card; only the "Explore" pill reacts to hover/focus. */
+/* Kartu destinasi berbasis foto; hanya pill "Explore" yang bereaksi saat hover/focus. */
 .destination-card {
   position: relative;
   display: flex;
@@ -54,8 +54,8 @@
   font-weight: var(--fw-medium);
 }
 
-/* Exactly two filled lines on every card (24ch measure + balance, same as
-   ArticleCard); the clamp is only a safety net for future copy. */
+/* Selalu dua baris terisi di semua kartu (lebar 24ch + balance, sama seperti
+   ArticleCard). Clamp cuma jaring pengaman untuk copy baru. */
 .destination-card__description {
   display: -webkit-box;
   max-width: 24ch;

@@ -1,9 +1,9 @@
 import './SectionIndex.css'
 
 /**
- * Zero-padded section number (01–99).
+ * Nomor section dengan nol di depan (01–99).
  * @param {number} props.number
- * @param {boolean} [props.inverse]  For dark backgrounds.
+ * @param {boolean} [props.inverse]  Untuk latar gelap.
  */
 function SectionIndex({ number, inverse = false, className = '', ...rest }) {
   const padded = String(number).padStart(2, '0')

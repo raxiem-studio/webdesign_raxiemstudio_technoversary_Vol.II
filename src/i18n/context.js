@@ -1,8 +1,8 @@
 import { createContext, useContext } from 'react'
 
 /**
- * Site languages. English is the default (international audience).
- * `locale` drives number and date formatting.
+ * Bahasa situs. Default English (audiens internasional).
+ * `locale` dipakai untuk format angka dan tanggal.
  */
 export const LANGUAGES = [
   { code: 'en', label: 'EN', name: 'English', locale: 'en-GB' },
@@ -15,8 +15,8 @@ export const LanguageContext = createContext(null)
 
 /**
  * { lang, setLang, locale, t, pick, formatNumber, formatDate }
- * - t('key', { var })  → interface string from strings.js
- * - pick(value)        → value[lang] for bilingual `{ en, id }` content, else value
+ * - t('key', { var })  → teks antarmuka dari strings.js
+ * - pick(value)        → value[lang] untuk konten dua bahasa `{ en, id }`, selain itu value apa adanya
  */
 export function useLanguage() {
   const value = useContext(LanguageContext)

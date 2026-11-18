@@ -1,9 +1,9 @@
 import { useEffect, useRef } from 'react'
 
 /**
- * Scroll-linked zoom. Writes --scroll-zoom (1 → max) on the ref'd element as
- * it crosses the viewport; consumers apply it with `transform: scale()`.
- * Updates the DOM directly in rAF to avoid re-renders. No-op under
+ * Zoom yang ikut scroll. Menulis --scroll-zoom (1 → max) di elemen ref
+ * selama melewati viewport; pemakainya menerapkan lewat `transform: scale()`.
+ * Update DOM langsung di rAF supaya tidak re-render. Tidak aktif saat
  * prefers-reduced-motion.
  */
 export function useScrollZoom(max = 1.15) {
@@ -19,7 +19,7 @@ export function useScrollZoom(max = 1.15) {
       frame = 0
       const rect = node.getBoundingClientRect()
       const vh = window.innerHeight
-      // 0 when the top enters the viewport bottom, 1 when the bottom leaves the top.
+      // 0 saat bagian atas masuk dari bawah viewport, 1 saat bagian bawah keluar dari atas.
       const progress = Math.min(Math.max((vh - rect.top) / (vh + rect.height), 0), 1)
       node.style.setProperty('--scroll-zoom', (1 + (max - 1) * progress).toFixed(4))
     }

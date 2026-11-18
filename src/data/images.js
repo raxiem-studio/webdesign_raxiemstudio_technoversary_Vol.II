@@ -1,9 +1,9 @@
 /**
- * Image registry — the single place to swap photography.
- * width/height are the intrinsic file dimensions (prevents layout shift).
- * Sources and licences: src/assets/ASSETS.md. Only photos the site uses are
- * imported here (Vite bundles every import); unused files stay in assets/.
- * `alt` is bilingual `{ en, id }` (empty string = decorative).
+ * Registry gambar — satu-satunya tempat untuk ganti foto.
+ * width/height = ukuran asli file (mencegah layout shift).
+ * Sumber dan lisensi: src/assets/ASSETS.md. Hanya foto yang dipakai yang
+ * di-import di sini (Vite mem-bundle semua import); file lain tetap di assets/.
+ * `alt` dua bahasa `{ en, id }` (string kosong = dekoratif).
  */
 import heroTegalalang from '../assets/images/hero-tegalalang.jpg'
 import storyTongkonan from '../assets/images/story-tongkonan.jpg'
@@ -45,13 +45,13 @@ export const images = {
     height: 1280,
     alt: { en: 'Green rice terraces of Tegalalang, Bali, with coconut palms between the paddies.', id: 'Terasering sawah hijau Tegalalang, Bali, dengan pohon kelapa di antara petak-petak padi.' },
   },
-  /* Journal */
+  /* Jurnal */
   articleLovinaBoat: {
     src: articleLovinaBoat,
     width: 1080,
     height: 2400,
     alt: { en: 'A traditional jukung fishing boat on calm blue-green water at Lovina, Bali.', id: 'Perahu jukung nelayan di laut biru kehijauan yang tenang di Lovina, Bali.' },
-    /* Keeps the boat clear of the card's text overlay. */
+    /* Supaya perahu tidak tertutup teks di kartu. */
     cardPosition: '50% 88%',
   },
   articleBogorHiker: {
@@ -84,7 +84,7 @@ export const images = {
     height: 853,
     alt: { en: 'A small boat on shallow turquoise water over coral reef at Pecatu, Bali.', id: 'Perahu kecil di atas perairan dangkal berwarna toska dengan terumbu karang di Pecatu, Bali.' },
   },
-  /* Destinations */
+  /* Destinasi */
   destLabuanBajoGreen: {
     src: destLabuanBajoGreen,
     width: 1080,
@@ -147,14 +147,14 @@ export const images = {
     height: 1281,
     alt: { en: 'Stepped green rice fields in Penebel, Tabanan, Bali, with a small hut, coconut palms and clouded mountains.', id: 'Sawah hijau berundak di Penebel, Tabanan, Bali, dengan pondok kecil, pohon kelapa, dan pegunungan berawan.' },
   },
-  /* Closing CTA background (decorative). */
+  /* Latar CTA penutup (dekoratif). */
   aboutHiker: {
     src: aboutHiker,
     width: 1920,
     height: 1080,
     alt: '',
   },
-  /* About title pill (decorative). */
+  /* Pill di judul About (dekoratif). */
   aboutAccent: {
     src: aboutPillViewer,
     width: 640,
@@ -191,7 +191,7 @@ export const images = {
     height: 1920,
     alt: { en: 'Tegenungan Waterfall dropping into a pool between cliffs and Balinese trees.', id: 'Air terjun Tegenungan jatuh ke kolam di antara tebing dan pepohonan Bali.' },
   },
-  /* Gallery */
+  /* Galeri */
   galleryPangalenganHills: {
     src: galleryPangalenganHills,
     width: 1080,

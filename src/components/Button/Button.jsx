@@ -2,10 +2,10 @@ import './Button.css'
 
 /**
  * @param {'primary'|'accent'|'secondary'|'text'|'glass'} [props.variant='primary']
- *   `glass` is intended for use over photography only.
+ *   `glass` khusus dipakai di atas foto.
  * @param {'sm'|'md'|'lg'} [props.size='md']
- * @param {boolean} [props.arrow]  Appends a trailing arrow icon.
- * @param {string}  [props.href]   Renders an <a> instead of a <button>.
+ * @param {boolean} [props.arrow]  Tambah ikon panah di belakang.
+ * @param {string}  [props.href]   Render <a>, bukan <button>.
  */
 function Button({
   variant = 'primary',

@@ -12,9 +12,9 @@ function ContactIcon({ type }) {
 }
 
 /**
- * Site footer: brand block, link columns, optional oversized wordmark, legal row.
- * @param {object}   [props.background]  Image rendered blurred behind the footer.
- * @param {string|string[]} [props.tagline]  Pass an array to force line breaks.
+ * Footer situs: blok brand, kolom link, wordmark besar (opsional), baris legal.
+ * @param {object}   [props.background]  Gambar yang di-blur di belakang footer.
+ * @param {string|string[]} [props.tagline]  Isi array untuk memaksa pindah baris.
  * @param {string[]} [props.address]
  * @param {Array<{type: 'email'|'phone'|'whatsapp', label: string, href: string}>} [props.contacts]
  * @param {Array<{title: string, links: Array<{label: string, href: string, external?: boolean}>}>} [props.columns]
@@ -53,7 +53,7 @@ function Footer({
         </div>
       )}
       <Container size="content" className="footer__inner">
-        {/* Column count drives the grid, so dropping a column leaves no empty track. */}
+        {/* Jumlah kolom mengatur grid, jadi kalau satu kolom dihapus tidak ada track kosong. */}
         <div className="footer__grid" style={{ '--footer-columns': columns.length || 1 }}>
           <div className="footer__brand">
             <p className="footer__wordmark">{brand}</p>

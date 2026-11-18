@@ -4,7 +4,7 @@ import { useInView } from '../hooks/useInView.js'
 import { useLanguage } from '../i18n/context.js'
 import './About.css'
 
-/** About page (linked from "About" in the nav). */
+/** Halaman About (dari menu "About" di nav). */
 function About() {
   const { pick } = useLanguage()
   const [introRef, introIn] = useInView({ threshold: 0 })

@@ -1,9 +1,9 @@
 import { images } from './images.js'
 
 /**
- * Destinations (Home carousel, /destinations, /destinations/:slug).
- * Text is bilingual `{ en, id }`. `detail` is optional; destinations without
- * one render a "coming soon" page. Keep copy general: no figures or prices.
+ * Destinasi (carousel Home, /destinations, /destinations/:slug).
+ * Teks dua bahasa `{ en, id }`. `detail` opsional; destinasi tanpa detail
+ * menampilkan halaman "segera hadir". Copy dibuat umum: tanpa angka atau harga.
  */
 export const DESTINATIONS = [
   {

@@ -13,11 +13,11 @@ function readStoredLang() {
   }
 }
 
-/** Bilingual content is written as `{ en: …, id: … }`. */
+/** Konten dua bahasa ditulis sebagai `{ en: …, id: … }`. */
 const isBilingual = (value) =>
   value !== null && typeof value === 'object' && !Array.isArray(value) && 'en' in value && 'id' in value
 
-/** Holds the chosen language; remembers it per browser and mirrors it on <html lang>. */
+/** Menyimpan bahasa pilihan; diingat per browser dan disalin ke <html lang>. */
 function LanguageProvider({ children }) {
   const [lang, setLang] = useState(readStoredLang)
 
@@ -26,7 +26,7 @@ function LanguageProvider({ children }) {
     try {
       localStorage.setItem(STORAGE_KEY, lang)
     } catch {
-      /* Storage unavailable: the choice lasts for this visit only. */
+      /* Storage tidak tersedia: pilihan hanya berlaku di kunjungan ini. */
     }
   }, [lang])
 

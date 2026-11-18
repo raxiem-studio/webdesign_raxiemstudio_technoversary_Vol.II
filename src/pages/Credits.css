@@ -1,4 +1,4 @@
-/* Photo credit tiles inside the shared listing grid. */
+/* Kartu kredit foto di dalam grid listing bersama. */
 .credit {
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@
   text-decoration: underline;
 }
 
-/* Pulled up into the listing page's bottom padding so it reads as a footnote. */
+/* Ditarik naik ke padding bawah halaman listing supaya terbaca seperti catatan kaki. */
 .credits-note {
   margin: calc(var(--section-y) * -0.75) 0 var(--section-y);
   font-size: var(--fs-caption);

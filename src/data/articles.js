@@ -7,11 +7,11 @@ const CATEGORY = {
 }
 
 /**
- * Journal articles (Home carousel, /journal, /journal/:slug).
- * Text is bilingual `{ en, id }`; the date is formatted per language and
- * `readingMinutes` becomes "6 min read" / "6 menit baca". `body` is optional;
- * articles without one render a "coming soon" story page.
- * Keep copy general: no statistics, prices or scientific claims.
+ * Artikel jurnal (carousel Home, /journal, /journal/:slug).
+ * Teks dua bahasa `{ en, id }`; tanggal diformat per bahasa dan
+ * `readingMinutes` jadi "6 min read" / "6 menit baca". `body` opsional;
+ * artikel tanpa body menampilkan halaman "segera hadir".
+ * Copy dibuat umum: tanpa statistik, harga, atau klaim ilmiah.
  */
 export const ARTICLES = [
   {

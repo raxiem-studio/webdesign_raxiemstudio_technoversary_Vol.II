@@ -1,9 +1,9 @@
-/* Full-bleed hero under the transparent nav. */
+/* Hero selebar layar di bawah nav transparan. */
 .hero {
   position: relative;
   display: flex;
   flex-direction: column;
-  /* Pulls the photo up behind the sticky nav. */
+  /* Tarik foto naik ke belakang navbar sticky. */
   margin-top: calc(-1 * var(--nav-height));
   min-height: 100vh;
   min-height: 100svh;
@@ -30,9 +30,9 @@
   animation: hero-settle 3200ms cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
 }
 
-/* ---- Load entrance (once, not scroll-triggered) ----
-   Photo settles, then headline lines, lead and CTA rise in sequence.
-   Reduced motion is handled globally; `both` keeps the end state. */
+/* ---- Animasi saat load (sekali, bukan dipicu scroll) ----
+   Foto masuk dulu, lalu baris judul, lead, dan CTA naik berurutan.
+   Reduced motion ditangani global; `both` menahan state akhir. */
 .hero__line,
 .hero__lead,
 .hero__cta {
@@ -75,7 +75,7 @@
   }
 }
 
-/* Darker at top (nav, headline) and bottom (lead, CTA). */
+/* Lebih gelap di atas (nav, judul) dan bawah (lead, CTA). */
 .hero__scrim {
   position: absolute;
   inset: 0;
@@ -160,7 +160,7 @@
     padding-bottom: var(--space-20);
   }
 
-  /* Keep the second line on one line; scale type down below ~1422px to fit. */
+  /* Baris kedua dijaga tetap satu baris; ukuran font dikecilkan di bawah ~1422px agar muat. */
   .hero__title {
     max-width: none;
     font-size: min(var(--fs-display-xl), 4.5vw);

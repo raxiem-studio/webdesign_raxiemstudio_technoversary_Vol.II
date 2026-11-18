@@ -1,6 +1,6 @@
 import { images } from './images.js'
 
-/** Gallery items; `area` maps to grid-template-areas in Gallery.css. */
+/** Item galeri; `area` dipetakan ke grid-template-areas di Gallery.css. */
 export const GALLERY_ITEMS = [
   {
     id: 'pangalengan',

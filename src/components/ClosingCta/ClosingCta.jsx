@@ -6,7 +6,7 @@ import Button from '../Button/Button.jsx'
 import Container from '../Container/Container.jsx'
 import './ClosingCta.css'
 
-/** Site-wide closing CTA: photo card with scroll-linked zoom and a staggered reveal. */
+/** CTA penutup di semua halaman: kartu foto dengan zoom ikut scroll dan reveal bertahap. */
 function ClosingCta({ content = CLOSING_CTA }) {
   const [frameRef, inView] = useInView()
   const zoomRef = useScrollZoom()
@@ -35,8 +35,8 @@ function ClosingCta({ content = CLOSING_CTA }) {
             >
               {pick(title)}
             </h2>
-            {/* Not .reveal: a fading ancestor would hide the glass blur until the
-                fade ends. The button animates itself (see ClosingCta.css). */}
+            {/* Bukan .reveal: parent yang fade bakal menyembunyikan blur glass sampai
+                fade selesai. Tombol dianimasikan sendiri (lihat ClosingCta.css). */}
             <div className="closing-cta__action">
               <Button href={cta.href} size="lg" variant="glass">
                 {pick(cta.label)}

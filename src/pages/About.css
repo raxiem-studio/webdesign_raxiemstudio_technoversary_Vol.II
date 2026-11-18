@@ -1,8 +1,8 @@
-/* About page. Below tablet everything stacks; from tablet, intro and story
-   split into a 5/12 heading column and a 7/12 text column. */
+/* Halaman About. Di bawah tablet semua ditumpuk; mulai tablet, intro dan story
+   dibagi jadi kolom judul 5/12 dan kolom teks 7/12. */
 
-/* Slower entrance than the global default. --about-gap is the single
-   vertical rhythm between sections. */
+/* Animasi masuk lebih pelan dari default. --about-gap adalah satu-satunya
+   ritme vertikal antar-section. */
 .about {
   --reveal-duration: 1600ms;
   --reveal-distance: 20px;
@@ -11,7 +11,7 @@
   padding-bottom: var(--about-gap);
 }
 
-/* Sections carry no vertical padding; --about-gap is the only spacing. */
+/* Section tanpa padding vertikal; jaraknya cuma dari --about-gap. */
 .about > section {
   padding-block: 0;
 }
@@ -32,8 +32,8 @@
   margin-bottom: var(--heading-to-content);
 }
 
-/* Two explicit lines (see ABOUT_INTRO); below tablet a line may still wrap
-   on very narrow screens rather than overflow. */
+/* Dua baris eksplisit (lihat ABOUT_INTRO); di bawah tablet baris boleh turun
+   di layar yang sangat sempit daripada meluber. */
 .about__title {
   font-size: var(--fs-display-l);
   line-height: var(--lh-display-l);
@@ -44,7 +44,7 @@
   display: block;
 }
 
-/* Inline photo pill sized to cap height (~0.7em) and sat on the baseline. */
+/* Pill foto inline seukuran cap height (~0.7em), duduk di baseline. */
 .about__pill {
   display: inline-block;
   vertical-align: baseline;
@@ -84,7 +84,7 @@
   object-fit: cover;
 }
 
-/* ---- Headings ---- */
+/* ---- Judul ---- */
 .about__heading {
   font-size: var(--fs-section-title);
   line-height: var(--lh-section-title);
@@ -108,7 +108,7 @@
   color: var(--text-secondary);
 }
 
-/* ---- Values: heading left, numbered rows right ---- */
+/* ---- Nilai: judul di kiri, baris bernomor di kanan ---- */
 .about__values-grid {
   display: flex;
   flex-direction: column;
@@ -181,8 +181,8 @@
     align-items: start;
   }
 
-  /* Intro stays stacked on tablet, as on mobile: side by side, the
-     Indonesian title left the lead too narrow (4+ lines). */
+  /* Intro tetap ditumpuk di tablet seperti mobile: kalau berdampingan, judul
+     versi Indonesia bikin lead terlalu sempit (4+ baris). */
 
   .about__title-line {
     white-space: nowrap;
@@ -215,9 +215,9 @@
     padding-top: var(--space-20);
   }
 
-  /* Title left, lead pinned to the right edge; the title's first line sits
-     on the lead's first baseline (same as the other page intros). The title
-     column stays 5/12 but never narrower than the title's longest line. */
+  /* Judul di kiri, lead nempel di tepi kanan; baris pertama judul sejajar
+     baseline baris pertama lead (sama dengan intro halaman lain). Kolom judul
+     tetap 5/12, tapi tidak lebih sempit dari baris judul terpanjang. */
   .about__intro-grid {
     display: grid;
     grid-template-columns: minmax(max-content, 5fr) minmax(0, 7fr);
