@@ -46,7 +46,7 @@ function validate(values) {
 const topicForInbox = (id) => findTopic(id)?.label.id ?? ''
 
 const composeMail = (values) => ({
-  subject: `[JEJAK] ${topicForInbox(values.topic)} — ${values.name.trim()}`,
+  subject: `[JEJAK] ${topicForInbox(values.topic)} | ${values.name.trim()}`,
   body: `${values.message.trim()}\n\n${values.name.trim()}\n${values.email.trim()}`,
 })
 

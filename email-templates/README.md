@@ -10,7 +10,7 @@
 
    | Field | Value |
    |---|---|
-   | Subject | `[JEJAK] {{topic}} — {{name}}` |
+   | Subject | `[JEJAK] {{topic}} | {{name}}` |
    | To Email | `{{to_email}}` |
    | From Name | `JEJAK Contact` |
    | Reply To | `{{email}}` |
