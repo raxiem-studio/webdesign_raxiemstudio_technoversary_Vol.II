@@ -31,6 +31,7 @@ export const STRINGS = {
 
     'story.title': 'Every Place Has a Story Worth Protecting',
     'story.hint': 'Double-tap a photo to like it',
+    'story.likes': 'likes',
     'story.like': 'Like the photo of {place}',
 
     'journal.title': 'Stories That Bring Us Closer',
@@ -145,6 +146,7 @@ export const STRINGS = {
 
     'story.title': 'Setiap Tempat Punya Cerita yang Layak Dijaga',
     'story.hint': 'Ketuk dua kali foto untuk menyukainya',
+    'story.likes': 'suka',
     'story.like': 'Sukai foto {place}',
 
     'journal.title': 'Cerita yang Mendekatkan Kita',

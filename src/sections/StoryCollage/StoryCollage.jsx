@@ -6,14 +6,18 @@ import { useLanguage } from '../../i18n/context.js'
 import StoryCard from './StoryCard.jsx'
 import './StoryCollage.css'
 
-/* `fan`: slot in the desktop fan, -2…2 (0 = centre, top). No like counts are shown:
-   there is no shared backend, and invented numbers would be fictitious data. */
+/*
+ * `fan`: slot in the desktop fan, -2…2 (0 = centre, top).
+ * `likes`: DEMO seed counts for the prototype. There is no backend yet, so a
+ * visitor's own like is added on top and kept only in their browser
+ * (localStorage). Real shared counts need an API + database.
+ */
 const STORIES = [
-  { id: 'jatiluwih', fan: -2, image: images.articleJatiluwih, location: { en: 'Jatiluwih, Bali', id: 'Jatiluwih, Bali' } },
-  { id: 'tongkonan', fan: -1, image: images.storyTongkonan, location: { en: 'Tana Toraja, South Sulawesi', id: 'Tana Toraja, Sulawesi Selatan' } },
-  { id: 'kelimutu', fan: 0, image: images.storyKelimutu, location: { en: 'Lake Kelimutu, Flores', id: 'Danau Kelimutu, Flores' } },
-  { id: 'bromo', fan: 1, image: images.articleBromo, location: { en: 'Mount Bromo, East Java', id: 'Gunung Bromo, Jawa Timur' } },
-  { id: 'tegenungan', fan: 2, image: images.galleryTegenungan, location: { en: 'Tegenungan Waterfall, Bali', id: 'Air Terjun Tegenungan, Bali' } },
+  { id: 'jatiluwih', fan: -2, image: images.articleJatiluwih, location: { en: 'Jatiluwih, Bali', id: 'Jatiluwih, Bali' }, likes: 842 },
+  { id: 'tongkonan', fan: -1, image: images.storyTongkonan, location: { en: 'Tana Toraja, South Sulawesi', id: 'Tana Toraja, Sulawesi Selatan' }, likes: 1249 },
+  { id: 'kelimutu', fan: 0, image: images.storyKelimutu, location: { en: 'Lake Kelimutu, Flores', id: 'Danau Kelimutu, Flores' }, likes: 2316 },
+  { id: 'bromo', fan: 1, image: images.articleBromo, location: { en: 'Mount Bromo, East Java', id: 'Gunung Bromo, Jawa Timur' }, likes: 1873 },
+  { id: 'tegenungan', fan: 2, image: images.galleryTegenungan, location: { en: 'Tegenungan Waterfall, Bali', id: 'Air Terjun Tegenungan, Bali' }, likes: 967 },
 ]
 
 const STORAGE_KEY = 'jejak:story-likes'
@@ -34,7 +38,7 @@ function writeLikes(likes) {
   }
 }
 
-/** Home: fan of photo cards you can like (a personal favourite, kept in this browser via localStorage). */
+/** Home: fan of likeable photo cards; demo counts plus the visitor's own like (kept in this browser via localStorage). */
 function StoryCollage() {
   const { t, pick } = useLanguage()
   const [liked, setLiked] = useState(readLikes)
@@ -61,12 +65,13 @@ function StoryCollage() {
           className="reveal"
         />
         <div className="story__collage">
-          {STORIES.map(({ id, fan, image, location }, i) => (
+          {STORIES.map(({ id, fan, image, location, likes }, i) => (
             <StoryCard
               key={id}
               style={{ '--fan': fan, '--fan-abs': Math.abs(fan), '--i': i }}
               image={image}
               location={pick(location)}
+              likes={likes}
               liked={Boolean(liked[id])}
               hint={!hasLikedAny}
               onToggle={() => setLike(id, !liked[id])}

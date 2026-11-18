@@ -25,8 +25,8 @@ function PinIcon() {
  * the photo only likes. `hint` pulses unliked hearts as an affordance.
  * `location` is already in the active language.
  */
-function StoryCard({ image, location, liked, onToggle, onLike, hint, className = '', style }) {
-  const { t, pick } = useLanguage()
+function StoryCard({ image, location, likes, liked, onToggle, onLike, hint, className = '', style }) {
+  const { t, pick, formatNumber } = useLanguage()
   const [burst, setBurst] = useState(0)
   const [pop, setPop] = useState(0)
   const lastTap = useRef(0)
@@ -47,6 +47,8 @@ function StoryCard({ image, location, liked, onToggle, onLike, hint, className =
     if (!liked) setPop((p) => p + 1)
     onToggle()
   }
+
+  const count = formatNumber(likes + (liked ? 1 : 0))
 
   return (
     <figure className={`story-card ${className}`} style={style}>
@@ -71,12 +73,15 @@ function StoryCard({ image, location, liked, onToggle, onLike, hint, className =
           type="button"
           className={`story-card__like${liked ? ' is-liked' : ''}${hint && !liked ? ' is-hinting' : ''}`}
           aria-pressed={liked}
-          // The pressed state announces the like itself.
-          aria-label={t('story.like', { place: location })}
+          // Count lives in the name; the pressed state announces the like itself.
+          aria-label={`${t('story.like', { place: location })}, ${count} ${t('story.likes')}`}
           onClick={handleHeartClick}
         >
           <span key={pop} className={`story-card__heart${pop > 0 && liked ? ' is-popping' : ''}`}>
             <HeartIcon filled={liked} />
+          </span>
+          <span className="story-card__count" aria-hidden="true">
+            <strong>{count}</strong> {t('story.likes')}
           </span>
         </button>
         <span className="story-card__location">
