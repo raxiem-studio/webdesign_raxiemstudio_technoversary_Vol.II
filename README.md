@@ -1,7 +1,7 @@
 # JEJAK | Closer to Nature, Closer to Indonesia
 
 **Karya Web Design Competition | Techno Versary Vol. II**
-Tema: **Destinasi Wisata Ramah Lingkungan**
+Tema: **Lingkungan** | Konsep: **Website Traveling/Destinasi**
 
 ## Tim
 
