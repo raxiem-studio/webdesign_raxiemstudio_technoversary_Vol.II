@@ -1,0 +1,412 @@
+/* Global element styles, typography, forms, utilities and motion primitives. */
+
+/* ---------- Document ---------- */
+html {
+  color-scheme: light;
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  scroll-behavior: smooth;
+}
+
+/* Set per element (not once on <html>): an inherited em letter-spacing is
+   resolved to px at the root, so other font sizes would get the wrong value.
+   Zero specificity so component rules still win. */
+:where(*, *::before, *::after) {
+  letter-spacing: var(--ls-text);
+}
+
+body {
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+}
+
+/* ---------- Selection ---------- */
+::selection {
+  background-color: var(--accent-tint);
+  color: var(--text-primary);
+}
+
+/* ---------- Focus ---------- */
+:focus-visible {
+  outline: var(--focus-ring-width) solid var(--focus-ring-color);
+  outline-offset: var(--focus-ring-offset);
+}
+
+.on-dark,
+.on-dark :focus-visible {
+  --focus-ring-color: var(--text-inverse);
+}
+
+/* ---------- Headings ---------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  color: inherit;
+  text-wrap: balance;
+}
+
+h1,
+.text-h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-h1);
+}
+
+h2,
+.text-h2 {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+}
+
+h3,
+.text-h3 {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+}
+
+h4,
+.text-h4 {
+  font-size: var(--fs-h4);
+  line-height: var(--lh-h4);
+}
+
+h5,
+.text-h5 {
+  font-size: var(--fs-h5);
+  line-height: var(--lh-h5);
+}
+
+h6,
+.text-h6 {
+  font-size: var(--fs-h6);
+  line-height: var(--lh-h6);
+  letter-spacing: var(--ls-h6);
+}
+
+@media (min-width: 768px) {
+  h1,
+  .text-h1 {
+    letter-spacing: var(--ls-heading);
+  }
+}
+
+@media (min-width: 1280px) {
+  h2,
+  .text-h2 {
+    letter-spacing: var(--ls-heading-sm);
+  }
+}
+
+/* ---------- Display ---------- */
+.display-xl {
+  font-size: var(--fs-display-xl);
+  line-height: var(--lh-display-xl);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-display);
+}
+
+.display-l {
+  font-size: var(--fs-display-l);
+  line-height: var(--lh-display-l);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-display-l);
+}
+
+/* ---------- Body & small text ---------- */
+.text-body-l {
+  font-size: var(--fs-body-l);
+  line-height: var(--lh-body-l);
+}
+
+.text-body-m {
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+}
+
+.text-body-s {
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+}
+
+.text-label-l {
+  font-size: var(--fs-label-l);
+  line-height: var(--lh-label-l);
+  font-weight: var(--fw-medium);
+}
+
+.text-label-s {
+  font-size: var(--fs-label-s);
+  line-height: var(--lh-label-s);
+  font-weight: var(--fw-medium);
+}
+
+.text-caption,
+small,
+figcaption {
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+}
+
+.overline {
+  font-size: var(--fs-overline);
+  line-height: var(--lh-overline);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+p {
+  text-wrap: pretty;
+}
+
+.prose {
+  max-width: var(--prose-max);
+}
+
+strong,
+b {
+  font-weight: var(--fw-medium);
+}
+
+/* ---------- Links ---------- */
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: var(--hairline);
+  text-underline-offset: 0.2em;
+  transition: color var(--duration-base) var(--ease-standard),
+    text-decoration-color var(--duration-base) var(--ease-standard);
+}
+
+a:hover {
+  color: var(--accent);
+}
+
+a:active {
+  color: var(--accent-active);
+}
+
+/* ---------- Button foundation ---------- */
+button,
+[role='button'] {
+  font-weight: var(--fw-medium);
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:disabled,
+[aria-disabled='true'] {
+  cursor: not-allowed;
+}
+
+/* ---------- Images ---------- */
+img {
+  object-fit: cover;
+  font-style: italic; 
+  color: var(--text-tertiary);
+  background-color: var(--bg-sunken);
+}
+
+figcaption {
+  color: var(--text-tertiary);
+  margin-top: var(--space-2);
+}
+
+/* ---------- Forms ---------- */
+label {
+  display: block;
+  font-size: var(--fs-label-l);
+  line-height: var(--lh-label-l);
+  font-weight: var(--fw-medium);
+  margin-bottom: var(--space-2);
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--space-4);
+  font: var(--fw-regular) 16px / 1.5 var(--font-sans);
+  background: var(--bg-primary);
+  border: var(--hairline) solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  transition: border-color var(--duration-base) var(--ease-standard);
+}
+
+textarea {
+  padding-block: var(--space-3);
+  min-height: 120px;
+}
+
+input:hover,
+textarea:hover,
+select:hover {
+  border-color: var(--text-primary);
+}
+
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  border-color: var(--text-primary);
+  outline-offset: 2px;
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+  background: var(--bg-sunken);
+  color: var(--text-tertiary);
+  cursor: not-allowed;
+}
+
+::placeholder {
+  color: var(--text-tertiary);
+  opacity: 1;
+}
+
+[aria-invalid='true'] {
+  border-color: var(--error-accent);
+}
+
+.field-error {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-2);
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+  color: var(--error-fg);
+}
+
+/* ---------- Hairline rule ---------- */
+hr {
+  border: 0;
+  border-top: var(--hairline) solid var(--border-default);
+}
+
+/* ---------- Section rhythm ---------- */
+.section {
+  padding-block: var(--section-y);
+  /* Clears the sticky nav when jumping to an anchor. */
+  scroll-margin-top: var(--nav-height);
+}
+
+main {
+  flex: 1 0 auto;
+}
+
+/* ---------- Skip link ---------- */
+.skip-link {
+  position: absolute;
+  top: var(--space-2);
+  left: var(--space-2);
+  z-index: var(--z-skip-link);
+  padding: var(--space-3) var(--space-4);
+  background: var(--bg-inverse);
+  color: var(--text-inverse);
+  font-size: var(--fs-button);
+  line-height: var(--lh-button);
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  border-radius: var(--radius-sm);
+  transform: translateY(-200%);
+}
+
+.skip-link:focus-visible {
+  transform: translateY(0);
+  outline-color: var(--text-primary);
+}
+
+/* ---------- Scroll reveal ----------
+   Add .reveal to elements and .is-visible to an ancestor (see useInView).
+   Stagger with --reveal-delay; tune with --reveal-duration / -distance / -ease. */
+.reveal {
+  opacity: 0;
+  transform: translateY(var(--reveal-distance, 20px));
+  transition: opacity var(--reveal-duration, 1600ms) var(--reveal-ease, cubic-bezier(0.25, 0.46, 0.45, 0.94)),
+    transform var(--reveal-duration, 1600ms) var(--reveal-ease, cubic-bezier(0.25, 0.46, 0.45, 0.94));
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+.is-visible .reveal,
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Detail page "More …" header ----------
+   Title left, view-all link right; stacked below tablet. */
+.detail-more__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-bottom: var(--space-8);
+}
+
+.detail-more__title {
+  font-size: var(--fs-section-title);
+  line-height: var(--lh-section-title);
+  font-weight: var(--fw-medium);
+}
+
+@media (min-width: 768px) {
+  .detail-more__header {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+}
+
+/* ---------- Visually hidden ---------- */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ---------- Reduced motion ---------- */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

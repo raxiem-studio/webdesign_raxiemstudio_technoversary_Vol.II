@@ -1,0 +1,221 @@
+/* Design tokens (source: Figma style guide). Mobile-first; tablet ≥768px and
+   desktop ≥1280px override below. Breakpoints are repeated literally in media
+   queries because custom properties can't be used there. */
+
+:root {
+  /* ---- Color · primitives ---- */
+  --color-white: #ffffff;
+  --color-black: #111111;
+  --color-forest: #2f5d46;
+
+  --color-forest-50: #f3f7f4;
+  --color-forest-100: #e3ede6;
+  --color-forest-150: #d3e3d9;
+  --color-forest-200: #c6d8cc;
+  --color-forest-600: #244a37;
+  --color-forest-700: #1b3829;
+
+  --color-gray-50: #f7f8f7;
+  --color-gray-100: #eef0ee;
+  --color-gray-200: #e2e5e3;
+  --color-gray-300: #cdd2ce;
+  --color-gray-500: #6d726f;
+  --color-gray-700: #4a4f4c;
+
+  --color-black-800: #2b2e2c;
+  --color-black-900: #000000;
+
+  /* ---- Color · roles ---- */
+  --bg-primary: var(--color-white);
+  --bg-secondary: var(--color-forest-100);
+  --bg-sunken: var(--color-gray-100);
+  --bg-inverse: var(--color-black);
+
+  --text-primary: var(--color-black);
+  --text-secondary: var(--color-gray-700);
+  --text-tertiary: var(--color-gray-500);
+  --text-inverse: var(--color-white);
+
+  --border-subtle: var(--color-gray-200);
+  --border-default: var(--color-gray-300);
+  --border-strong: var(--color-gray-500);
+
+  --accent: var(--color-forest);
+  --accent-hover: var(--color-forest-600);
+  --accent-active: var(--color-forest-700);
+  --accent-tint: var(--color-forest-150);
+
+  /* ---- Color · status ---- */
+  --success-bg: #e3ede6;
+  --success-fg: #1b3829;
+  --success-accent: #2f5d46;
+  --warning-bg: #f6ead0;
+  --warning-fg: #7a4f0d;
+  --warning-accent: #b7822f;
+  --error-bg: #f5ddd7;
+  --error-fg: #8c2a1e;
+  --error-accent: #a33a2b;
+  --info-bg: #e3e8ec;
+  --info-fg: #3c5163;
+  --info-accent: #4f6272;
+
+  /* ---- Typography ---- */
+  --font-sans: 'Poppins', system-ui, sans-serif;
+
+  --fw-regular: 400;
+  --fw-medium: 500;
+  --fw-semibold: 600;
+
+  /* Single tracking value; role tokens are kept as aliases for clarity at call sites. */
+  --ls-text: -0.02em;
+  --ls-display: var(--ls-text);
+  --ls-display-l: var(--ls-text);
+  --ls-heading: var(--ls-text);
+  --ls-heading-sm: var(--ls-text);
+  --ls-h6: var(--ls-text);
+  --ls-overline: var(--ls-text);
+  --ls-button: var(--ls-text);
+  --ls-nav: var(--ls-text);
+  --ls-wordmark: var(--ls-text);
+
+  /* Type scale — mobile (size / line-height) */
+  --fs-display-xl: 36px; --lh-display-xl: 44px;
+  --fs-display-l: 30px;  --lh-display-l: 38px;
+  --fs-h1: 26px; --lh-h1: 34px;
+  --fs-h2: 22px; --lh-h2: 30px;
+  --fs-h3: 18px; --lh-h3: 26px;
+  --fs-h4: 18px; --lh-h4: 26px;
+  --fs-h5: 16px; --lh-h5: 24px;
+  --fs-h6: 14px; --lh-h6: 20px;
+  --fs-body-l: 17px; --lh-body-l: 28px;
+  --fs-body-m: 16px; --lh-body-m: 26px;
+  --fs-body-s: 14px; --lh-body-s: 22px;
+  --fs-label-l: 14px; --lh-label-l: 20px;
+  --fs-label-s: 12px; --lh-label-s: 18px;
+  --fs-overline: 11px; --lh-overline: 16px;
+  --fs-caption: 12px; --lh-caption: 18px;
+  --fs-button: 14px; --lh-button: 20px;
+  --fs-button-lg: 16px; --lh-button-lg: 24px;
+  --fs-nav: 16px; --lh-nav: 24px;
+  --fs-mobile-menu: 28px; --lh-mobile-menu: 36px;
+  --fs-section-title: 28px; --lh-section-title: 36px;
+
+  /* ---- Spacing (basis 4px) ---- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ---- Radius ---- */
+  --radius-none: 0;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* ---- Hairline ---- */
+  --hairline: 1px;
+
+  /* ---- Shadow ---- */
+  --shadow-card: 0 1px 4px rgba(17, 17, 17, 0.06);
+  --shadow-subtle: 0 3px 12px rgba(17, 17, 17, 0.08);
+  --shadow-overlay: 0 16px 40px -8px rgba(17, 17, 17, 0.16);
+
+  /* ---- Motion ---- */
+  --duration-instant: 100ms;
+  --duration-fast: 150ms;
+  --duration-base: 240ms;
+  --duration-slow: 400ms;
+  --duration-slower: 700ms;
+  --ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* ---- Layout (mobile first) ---- */
+  --margin-page: 20px; /* horizontal page margin */
+  --gutter: 16px; /* grid column gutter */
+  --grid-columns: 4;
+  --section-y: var(--space-12);
+  --heading-to-content: var(--space-8);
+  --card-gap: var(--space-4);
+  --card-padding: var(--space-5);
+  --container-max: 1440px;
+  --content-max: 1248px;
+  --prose-max: 640px;
+  --nav-height: 64px;
+
+  /* ---- Accessibility ---- */
+  --focus-ring-width: 2px;
+  --focus-ring-offset: 3px;
+  --focus-ring-color: var(--text-primary);
+  --touch-target-min: 44px;
+
+  /* ---- Z-index ---- */
+  --z-nav: 100;
+  --z-overlay: 200;
+  --z-skip-link: 1000;
+}
+
+/* ---- Tablet >= 768px ---- */
+@media (min-width: 768px) {
+  :root {
+    --fs-display-xl: 48px; --lh-display-xl: 56px;
+    --fs-display-l: 36px;  --lh-display-l: 44px;
+    --fs-h1: 30px; --lh-h1: 38px;
+    --fs-h2: 24px; --lh-h2: 32px;
+    --fs-h3: 20px; --lh-h3: 28px;
+    --fs-body-l: 18px; --lh-body-l: 30px;
+    --fs-overline: 12px; --lh-overline: 16px;
+    --fs-nav: 14px; --lh-nav: 20px;
+    --fs-section-title: 34px; --lh-section-title: 42px;
+
+    --margin-page: 40px;
+    --gutter: 20px;
+    --grid-columns: 8;
+    --section-y: var(--space-16);
+    --heading-to-content: var(--space-10);
+    --card-gap: var(--space-5);
+    --card-padding: var(--space-6);
+    --nav-height: 72px;
+  }
+}
+
+/* ---- Desktop >= 1280px ---- */
+@media (min-width: 1280px) {
+  :root {
+    --fs-display-xl: 64px; --lh-display-xl: 72px;
+    --fs-display-l: 44px;  --lh-display-l: 52px;
+    --fs-h1: 36px; --lh-h1: 44px;
+    --fs-h2: 28px; --lh-h2: 36px;
+    --fs-h3: 22px; --lh-h3: 30px;
+    --fs-section-title: 40px; --lh-section-title: 48px;
+
+    --margin-page: 96px;
+    --gutter: 24px;
+    --grid-columns: 12;
+    --section-y: var(--space-24);
+    --heading-to-content: var(--space-12);
+    --card-gap: var(--space-6);
+    --nav-height: 80px;
+  }
+}
+
+/* ---- Reduced motion ---- */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duration-instant: 0ms;
+    --duration-fast: 0ms;
+    --duration-base: 0ms;
+    --duration-slow: 0ms;
+    --duration-slower: 0ms;
+  }
+}
