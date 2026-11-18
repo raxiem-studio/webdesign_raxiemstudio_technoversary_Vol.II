@@ -13,8 +13,9 @@
   place-items: center;
   height: calc(var(--card-h) + var(--space-16));
   margin-top: var(--space-4);
-  perspective: 900px;
-  perspective-origin: 50% 45%;
+  --p: 900px;
+  /* Titik hilang 45% tinggi barel */
+  --vp: calc((var(--card-h) + var(--space-16)) * -0.05);
   touch-action: pan-y;
   user-select: none;
   cursor: grab;
@@ -31,14 +32,17 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  transform-style: preserve-3d;
-  transform: translateZ(calc(var(--r) * -1)) rotateY(var(--angle, 0deg));
+  /* z-index kartu tetap di bawah nav */
+  isolation: isolate;
 }
 
+/* 3D per kartu, tanpa preserve-3d */
 .story-barrel__item {
   position: absolute;
   inset: 0;
-  transform: rotateY(calc(var(--i) * 360deg / var(--n, 8))) translateZ(var(--r));
+  transform: translateY(var(--vp)) perspective(var(--p)) translateY(calc(var(--vp) * -1))
+    translateZ(calc(var(--r) * -1)) rotateY(calc(var(--i) * 360deg / var(--n, 8) + var(--angle, 0deg)))
+    translateZ(var(--r));
 }
 
 /* Kartu foto */
@@ -85,14 +89,14 @@
 @media (min-width: 768px) {
   .story-barrel {
     --card-w: 200px;
-    perspective: 1200px;
+    --p: 1200px;
   }
 }
 
 @media (min-width: 1280px) {
   .story-barrel {
     --card-w: 236px;
-    perspective: 1400px;
+    --p: 1400px;
   }
 }
 

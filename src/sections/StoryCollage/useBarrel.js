@@ -50,6 +50,8 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
       // Opacity
       const opacity = d <= 60 ? 1 : 0.4 + 0.6 * Math.min(Math.max((110 - d) / 50, 0), 1)
       el.style.opacity = opacity.toFixed(3)
+      // Urutan depan-belakang
+      el.style.zIndex = String(Math.round(180 - d))
       const isFront = front.has(i)
       if (el.dataset.front !== String(isFront)) {
         el.dataset.front = String(isFront)
