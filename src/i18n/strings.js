@@ -1,10 +1,10 @@
 /** Teks antarmuka */
 export const STRINGS = {
   en: {
-    'site.title': 'JEJAK — Closer to Nature, Closer to Indonesia',
+    'site.title': 'JEJAK | Closer to Nature, Closer to Indonesia',
     'site.skipLink': 'Skip to content',
 
-    'nav.home': 'JEJAK — home',
+    'nav.home': 'JEJAK, home',
     'nav.main': 'Main navigation',
     'nav.mainMobile': 'Main navigation (mobile)',
     'nav.openMenu': 'Open menu',
@@ -120,10 +120,10 @@ export const STRINGS = {
   },
 
   id: {
-    'site.title': 'JEJAK — Lebih Dekat dengan Alam, Lebih Dekat dengan Indonesia',
+    'site.title': 'JEJAK | Lebih Dekat dengan Alam, Lebih Dekat dengan Indonesia',
     'site.skipLink': 'Langsung ke konten',
 
-    'nav.home': 'JEJAK — beranda',
+    'nav.home': 'JEJAK, beranda',
     'nav.main': 'Navigasi utama',
     'nav.mainMobile': 'Navigasi utama (seluler)',
     'nav.openMenu': 'Buka menu',

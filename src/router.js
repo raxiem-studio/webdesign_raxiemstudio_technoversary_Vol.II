@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 
 /** Router */
 /** Judul halaman */
-export const pageTitle = (name, homeTitle) => (name ? `${name} — JEJAK` : homeTitle)
+export const pageTitle = (name, homeTitle) => (name ? `JEJAK | ${name}` : homeTitle)
 
 const normalise = (path) => (path.length > 1 ? path.replace(/\/+$/, '') : path)
 
