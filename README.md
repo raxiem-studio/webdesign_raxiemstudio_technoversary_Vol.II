@@ -51,8 +51,8 @@ Nilai utama JEJAK: **Discover Nature · Preserve Stories · Travel Responsibly**
 Prasyarat: **Node.js 20.19+ atau 22.12+** dan **npm**.
 
 ```bash
-git clone <URL-repository-ini> webdesign_RaxiemStudio_technoversary_vol.II
-cd webdesign_RaxiemStudio_technoversary_vol.II
+git clone https://github.com/raxiem-studio/webdesign_raxiemstudio_technoversary_Vol.II.git
+cd webdesign_raxiemstudio_technoversary_Vol.II
 npm install
 ```
 
