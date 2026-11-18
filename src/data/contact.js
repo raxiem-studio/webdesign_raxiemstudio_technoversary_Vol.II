@@ -1,20 +1,30 @@
+import { FOOTER_ADDRESS, FOOTER_CONTACTS } from './navigation.js'
+
 /**
  * Contact page content. Title, lead and form copy live in src/i18n/strings.js
- * (contact.*). Each screen-reader label comes from `contact.detail.<type>`.
- *
- * The Contact page lists only channels that really work (competition brief
- * 11.4), so it does not read the footer's contact data.
+ * (contact.*). Details derive from the footer data so both stay in sync; each
+ * screen-reader label comes from `contact.detail.<type>`.
  */
-
-/** Inbox that receives contact-form submissions (also shown on the page). */
-export const CONTACT_FORM_RECIPIENT = 'raxiemstudio@gmail.com'
-
-/** Public contact address shown on the page. */
-export const CONTACT_EMAIL = CONTACT_FORM_RECIPIENT
+const byType = (type) => FOOTER_CONTACTS.find((c) => c.type === type)
+const pick = (contact) => ({ value: contact.label, href: contact.href })
 
 export const CONTACT_DETAILS = [
-  { type: 'email', value: CONTACT_EMAIL, href: `mailto:${CONTACT_EMAIL}` },
+  { type: 'email', ...pick(byType('email')) },
+  { type: 'whatsapp', ...pick(byType('whatsapp')), external: true },
+  { type: 'phone', ...pick(byType('phone')) },
+  {
+    type: 'address',
+    /* One entry per rendered line. */
+    lines: FOOTER_ADDRESS.slice(1),
+    href: null,
+  },
 ]
+
+/** Public contact address shown on the page. */
+export const CONTACT_EMAIL = byType('email').label
+
+/** Inbox that receives contact-form submissions (separate from the public address). */
+export const CONTACT_FORM_RECIPIENT = 'raxiemstudio@gmail.com'
 
 /**
  * Primary delivery: EmailJS with the branded template in
