@@ -1,7 +1,7 @@
 # JEJAK | Closer to Nature, Closer to Indonesia
 
 **Karya Web Design Competition | Techno Versary Vol. II**
-Tema: *EcoDigital For Environment* · Subtema: **Travel Destination Ramah Lingkungan**
+Tema: **EcoDigital For Environment: Web Design Competition**
 
 ## Tim
 
@@ -73,7 +73,7 @@ npm run preview   # menjalankan hasil build secara lokal
 npm run lint      # pemeriksaan kode (oxlint)
 ```
 
-Saat di-*hosting*, semua rute harus diarahkan ke `index.html` karena website ini adalah *single-page app*.
+Saat di-*hosting*, semua rute harus diarahkan ke `index.html` karena website ini adalah *single-page app*. Untuk Vercel, aturan ini sudah ada di `vercel.json`.
 
 ## Struktur folder
 
