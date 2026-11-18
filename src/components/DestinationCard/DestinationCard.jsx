@@ -1,11 +1,7 @@
 import { useLanguage } from '../../i18n/context.js'
 import './DestinationCard.css'
 
-/**
- * Kartu destinasi berbasis foto. Seluruh kartu satu link; pill "Explore"
- * cuma hiasan supaya target klik/focus tetap satu.
- * @param {object} props.destination  { name, description, image, href } — teks dua bahasa `{ en, id }`
- */
+/** Kartu destinasi */
 function DestinationCard({ destination, className = '', ...rest }) {
   const { t, pick } = useLanguage()
   const { image, href } = destination

@@ -1,4 +1,4 @@
-/* Halaman destinasi. Animasi masuk dan ritme section sama dengan halaman About. */
+/* Halaman destinasi */
 .destination-page {
   --reveal-duration: 1600ms;
   --reveal-distance: 20px;
@@ -105,7 +105,7 @@
   gap: var(--space-3);
 }
 
-/* Lingkaran bernomor yang sama dengan nilai di About. */
+/* Nomor */
 .destination-page__number {
   --number-circle: 56px;
   display: grid;
@@ -216,8 +216,7 @@
     gap: var(--gutter);
   }
 
-  /* Tablet: dua kartu lega (seperti halaman listing), bukan tiga yang
-     sempit; kartu ketiga muncul lagi di desktop. */
+  /* Destinasi lainnya */
   .destination-page__more {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: var(--gutter);

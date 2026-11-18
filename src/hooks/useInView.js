@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 
-/**
- * Mengembalikan [ref, inView]; inView terkunci true saat elemen pertama kali
- * terlihat. Kalau IntersectionObserver tidak ada, langsung dianggap terlihat.
- */
+/** In view */
 export function useInView({ threshold = 0.15, rootMargin = '0px 0px -10% 0px' } = {}) {
   const ref = useRef(null)
   const [inView, setInView] = useState(false)

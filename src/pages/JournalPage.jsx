@@ -3,7 +3,7 @@ import { ARTICLES } from '../data/articles.js'
 import { useLanguage } from '../i18n/context.js'
 import ListingPage from './ListingPage.jsx'
 
-/** Listing /journal. */
+/** Listing jurnal */
 function JournalPage({ articles = ARTICLES }) {
   const { t } = useLanguage()
   return (

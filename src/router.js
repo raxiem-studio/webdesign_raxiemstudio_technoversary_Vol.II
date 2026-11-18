@@ -1,12 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 
-/**
- * Router pathname tanpa dependency.
- * Klik link same-origin yang mengganti path dicegat lalu di-push ke history;
- * link yang cuma hash dibiarkan memakai scroll anchor bawaan browser.
- * Di hosting produksi, semua route harus di-rewrite ke index.html.
- */
-/** pageTitle('About', home) → 'About — JEJAK'; tanpa nama → judul home (sudah diterjemahkan). */
+/** Router */
+/** Judul halaman */
 export const pageTitle = (name, homeTitle) => (name ? `${name} — JEJAK` : homeTitle)
 
 const normalise = (path) => (path.length > 1 ? path.replace(/\/+$/, '') : path)
@@ -41,7 +36,7 @@ export function usePath() {
   return path
 }
 
-/** Sinkronkan document.title, posisi scroll, dan focus setelah navigasi client-side. */
+/** Perubahan halaman */
 export function usePageChange(path, title, mainRef) {
   const firstRender = useRef(true)
 
@@ -50,14 +45,14 @@ export function usePageChange(path, title, mainRef) {
   }, [title])
 
   useEffect(() => {
-    // Load pertama: browser sudah menangani scroll hash dan focus.
+    // Load pertama
     if (firstRender.current) {
       firstRender.current = false
       return undefined
     }
     const frame = requestAnimationFrame(() => {
       const target = window.location.hash && document.getElementById(window.location.hash.slice(1))
-      // Timpa smooth scroll global supaya halaman baru tidak beranimasi dari posisi lama.
+      // Scroll ke atas
       if (target) {
         target.scrollIntoView({ behavior: 'instant' })
       } else {

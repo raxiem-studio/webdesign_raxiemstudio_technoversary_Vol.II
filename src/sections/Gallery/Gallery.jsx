@@ -4,7 +4,7 @@ import { GALLERY_ITEMS } from '../../data/gallery.js'
 import { useLanguage } from '../../i18n/context.js'
 import './Gallery.css'
 
-/** Home: grid foto bento. Posisi tiap item diambil dari `area`-nya. */
+/** Galeri */
 function Gallery({ items = GALLERY_ITEMS }) {
   const { t, pick } = useLanguage()
   const [gridRef, visible] = useInView()

@@ -1,5 +1,4 @@
-/* Tombol: radius-xl, weight Medium. Padding horizontal ≈ setengah tinggi
-   (sm 36/20, md 44/24, lg 52/28) supaya bentuk pill tetap proporsional. */
+/* Tombol */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -70,7 +69,7 @@
   transform: translateY(1px);
 }
 
-/* Khusus di atas foto. */
+/* Glass */
 .btn--glass {
   background: rgba(255, 255, 255, 0.16);
   border-color: rgba(255, 255, 255, 0.35);
@@ -144,7 +143,7 @@
   pointer-events: none;
 }
 
-/* Konteks gelap: di atas latar gelap atau foto. */
+/* Latar gelap */
 .on-dark .btn--primary {
   background: var(--bg-primary);
   color: var(--text-primary);
@@ -164,9 +163,7 @@
   background: rgba(255, 255, 255, 0.1);
 }
 
-/* ---- .link-draw: garis bawah tergambar saat hover/focus (pakai dengan variant="text") ----
-   Masuk: garis tergambar, lalu garis + label berubah ke warna accent.
-   Keluar: warna balik dulu, baru garisnya ditarik. */
+/* ---- .link-draw ---- */
 .link-draw {
   --link-draw: 500ms;
   --link-tint: 600ms;

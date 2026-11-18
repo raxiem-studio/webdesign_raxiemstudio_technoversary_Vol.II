@@ -1,8 +1,4 @@
-/**
- * Teks antarmuka (label, tombol, pesan, nama aksesibel).
- * Konten halaman ada di src/data sebagai nilai dua bahasa `{ en, id }`.
- * Placeholder `{name}` diisi lewat t('key', { name }).
- */
+/** Teks antarmuka */
 export const STRINGS = {
   en: {
     'site.title': 'JEJAK — Closer to Nature, Closer to Indonesia',

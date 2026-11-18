@@ -1,13 +1,10 @@
-/* Carousel barel 3D (foto polos) + dialog kartu polaroid yang bisa di-like. */
+/* Cerita */
 .story {
   --like-color: var(--error-accent);
   overflow-x: clip;
 }
 
-/* ---------- Barel ----------
-   Ring diputar lewat --angle (dari useBarrel). Item ke-i diputar i × 360°/n lalu
-   didorong keluar sejauh --r, jadi kartu membentuk tabung. Ring ditarik mundur
-   sejauh --r supaya kartu depan tampil di ukuran aslinya. */
+/* ---------- Barel ---------- */
 .story-barrel {
   --card-w: 148px;
   --card-h: calc(var(--card-w) * 1.25);
@@ -44,7 +41,7 @@
   transform: rotateY(calc(var(--i) * 360deg / var(--n, 8))) translateZ(var(--r));
 }
 
-/* Kartu foto polos, gaya sama dengan tile galeri. */
+/* Kartu foto */
 .story-barrel__card {
   display: block;
   width: 100%;
@@ -67,7 +64,7 @@
   -webkit-user-drag: none;
 }
 
-/* Hanya tiga foto depan yang bisa diklik. */
+/* Foto belakang */
 .story-barrel__item:not([data-front='true']) .story-barrel__card {
   pointer-events: none;
   cursor: default;
@@ -99,11 +96,7 @@
   }
 }
 
-/* ---------- Dialog ----------
-   <dialog> dibuat selebar layar supaya klik di luar kartu = klik di dialog
-   (dipakai untuk menutup). Scroll dikunci lewat <body>: kalau lewat <html>,
-   overflow-x di body berhenti diteruskan ke viewport dan isi halaman di
-   belakang dialog jadi tidak tampil. */
+/* ---------- Dialog ---------- */
 body:has(.story-dialog[open]) {
   overflow: hidden;
 }
@@ -126,7 +119,7 @@ body:has(.story-dialog[open]) {
 }
 
 .story-dialog::backdrop {
-  /* Tipis saja: section di belakang tetap kelihatan. */
+  /* Backdrop */
   background: rgba(17, 17, 17, 0.32);
   -webkit-backdrop-filter: blur(3px);
   backdrop-filter: blur(3px);
@@ -160,7 +153,7 @@ body:has(.story-dialog[open]) {
   background: var(--color-white);
 }
 
-/* Pill putih supaya tetap terbaca di atas backdrop yang tipis. */
+/* Petunjuk */
 .story-dialog__hint {
   width: fit-content;
   margin: var(--space-3) auto 0;
@@ -189,7 +182,7 @@ body:has(.story-dialog[open]) {
   }
 }
 
-/* ---------- Kartu polaroid (di dalam dialog) ---------- */
+/* ---------- Kartu polaroid ---------- */
 .story-card {
   margin: 0;
   padding: var(--space-3);
@@ -241,7 +234,7 @@ body:has(.story-dialog[open]) {
   cursor: pointer;
 }
 
-/* Memperluas area klik jadi 44px tanpa menambah tinggi yang terlihat. */
+/* Area klik */
 .story-card__like::after {
   content: '';
   position: absolute;
@@ -272,7 +265,7 @@ body:has(.story-dialog[open]) {
   animation: story-heart-pop var(--duration-slow) var(--ease-editorial);
 }
 
-/* Hati yang belum di-like berdenyut sampai pengunjung me-like sesuatu. */
+/* Animasi hati */
 .story-card__like.is-hinting .story-card__heart {
   animation: story-heart-beat 2.4s var(--ease-in-out) infinite;
 }

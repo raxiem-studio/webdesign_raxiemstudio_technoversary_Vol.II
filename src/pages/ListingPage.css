@@ -1,4 +1,4 @@
-/* Layout listing bersama: intro, lalu grid kartu 1 / 2 / 3 kolom. */
+/* Listing */
 .listing-page {
   --reveal-duration: 1600ms;
   --reveal-distance: 20px;
@@ -47,8 +47,7 @@
     padding-top: var(--space-16);
   }
 
-  /* Judul di kiri, lead nempel di tepi kanan. Judul duduk di baseline yang
-     sama dengan baris pertama lead (berlaku di semua intro halaman). */
+  /* Intro */
   .listing-page__head {
     display: grid;
     grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
@@ -56,7 +55,7 @@
     align-items: first baseline;
   }
 
-  /* Lebar tetap 40ch menjaga lead di dua atau tiga baris. */
+  /* Lead */
   .listing-page__lead {
     justify-self: end;
     width: 100%;

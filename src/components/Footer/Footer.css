@@ -1,4 +1,4 @@
-/* Footer situs di atas latar foto yang di-blur dan diberi tint. */
+/* Footer */
 .footer {
   position: relative;
   background: var(--color-forest-700);
@@ -7,7 +7,7 @@
   isolation: isolate;
 }
 
-/* Diperbesar untuk menutupi tepi blur yang lembut; diberi tint agar teks kontras. */
+/* Latar blur */
 .footer__backdrop {
   position: absolute;
   inset: 0;
@@ -46,8 +46,7 @@
   gap: var(--space-10);
 }
 
-/* Tinggi wordmark + margin tagline (45px) bikin tagline sejajar dengan
-   link pertama tiap kolom (baris judul 40px + inset baris link 5px). */
+/* Tagline */
 .footer__brand {
   display: flex;
   flex-direction: column;
@@ -194,7 +193,7 @@
   color: var(--text-inverse);
 }
 
-/* ---- Tablet: brand selebar penuh, kolom link dikelompokkan di bawah ---- */
+/* ---- Tablet ---- */
 @media (min-width: 768px) {
   .footer__grid {
     grid-template-columns: repeat(var(--footer-columns, 3), max-content);
@@ -212,7 +211,7 @@
   }
 }
 
-/* ---- Desktop: brand di kiri, kolom link dikelompokkan di kanan ---- */
+/* ---- Desktop ---- */
 @media (min-width: 1280px) {
   .footer__inner {
     padding-top: var(--space-20);

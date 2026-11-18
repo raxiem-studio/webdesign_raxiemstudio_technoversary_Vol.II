@@ -21,7 +21,7 @@ function Photo({ image, className, eager = false, ...rest }) {
   )
 }
 
-/** Bungkus children dalam container `.reveal` yang dipicu scroll. */
+/** Reveal */
 function Reveal({ as: Tag = 'div', className = '', children, ...rest }) {
   const [ref, inView] = useInView()
   return (
@@ -31,7 +31,7 @@ function Reveal({ as: Tag = 'div', className = '', children, ...rest }) {
   )
 }
 
-/** Halaman destinasi untuk /destinations/:slug. Kalau belum ada panduan, tampilkan catatan "segera hadir". */
+/** Detail destinasi */
 function DestinationDetail({ destination }) {
   const { t, pick } = useLanguage()
   const { image, detail } = destination

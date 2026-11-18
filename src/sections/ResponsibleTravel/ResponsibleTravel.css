@@ -1,4 +1,4 @@
-/* Responsible travel: header, tiga panel, statistik dampak. */
+/* Responsible travel */
 .responsible__header {
   display: flex;
   flex-direction: column;
@@ -81,7 +81,7 @@
   margin-bottom: var(--space-4);
 }
 
-/* Foto potret di panel landscape: jaga air terjun tetap masuk frame. */
+/* Posisi foto */
 .impact-panel--photo .impact-panel__image {
   object-position: 50% 68%;
 }
@@ -90,7 +90,7 @@
   justify-content: space-between;
 }
 
-/* Panel buram: foto di-blur, diperbesar supaya tepi blur tetap di luar kartu. */
+/* Panel blur */
 .impact-panel--themes .impact-panel__image {
   filter: blur(18px) saturate(1.15);
   transform: scale(1.2);
@@ -119,7 +119,7 @@
   font-weight: var(--fw-medium);
 }
 
-/* Satu blok per baris menjaga judul tepat dua baris. */
+/* Judul panel */
 .impact-panel__title-line {
   display: block;
   white-space: nowrap;
@@ -189,13 +189,12 @@
 .impact-stat__label {
   font-size: var(--fs-body-m);
   line-height: var(--lh-body-m);
-  /* Lebar yang sama supaya ketiga label pecah jadi dua baris rata di semua
-     ukuran layar dan bahasa, jadi barisnya tetap sejajar. */
+  /* Label statistik */
   max-width: 22ch;
   text-wrap: balance;
 }
 
-/* Atribusi untuk angka di atas: ukuran caption, teks tersier. */
+/* Sumber */
 .impact__sources {
   max-width: 64ch;
   font-size: var(--fs-caption);
@@ -207,7 +206,7 @@
 
 /* ---- Tablet ---- */
 @media (min-width: 768px) {
-  /* Judul di baseline baris pertama lead, seperti intro halaman. */
+  /* Header */
   .responsible__header {
     flex-direction: row;
     align-items: first baseline;
@@ -224,7 +223,7 @@
     flex: 0 1 384px;
   }
 
-  /* Named area: dua panel teks berdampingan, foto selebar penuh di bawahnya. */
+  /* Layout panel */
   .responsible__panels {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     grid-template-areas:

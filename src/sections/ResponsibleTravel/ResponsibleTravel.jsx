@@ -35,11 +35,7 @@ const prefersReducedMotion = () =>
   typeof window !== 'undefined' &&
   window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
 
-/**
- * Animasi 0 → stat.value saat `start` true, diformat sesuai bahasa aktif
- * (6,262 / 6.262; 29.9 / 29,9). Screen reader langsung dapat nilai akhir;
- * angka yang beranimasi di-aria-hidden.
- */
+/** Count up */
 function CountUp({ stat, start, delay = 0 }) {
   const { pick, formatNumber } = useLanguage()
   const reduced = prefersReducedMotion()
@@ -77,7 +73,7 @@ function CountUp({ stat, start, delay = 0 }) {
   )
 }
 
-/** Tampilkan placeholder netral kalau `value` null, jadi angka yang belum terverifikasi tidak pernah tampil. */
+/** Statistik */
 function ImpactStat({ stat, index, start }) {
   const { t, pick } = useLanguage()
   const pending = stat.value == null
@@ -101,7 +97,7 @@ function ImpactStat({ stat, index, start }) {
   )
 }
 
-/** Home: panel responsible travel dan statistik dampak bersumber. */
+/** Responsible travel */
 function ResponsibleTravel() {
   const { lang, t, pick } = useLanguage()
   const { quote, photo, themes } = IMPACT_PANELS

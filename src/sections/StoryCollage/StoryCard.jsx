@@ -20,11 +20,7 @@ function PinIcon() {
   )
 }
 
-/**
- * Kartu foto yang bisa di-like. Tombol hati untuk toggle; double-tap / double-click
- * di foto hanya untuk like. `hint` membuat hati yang belum di-like berdenyut.
- * `location` sudah dalam bahasa aktif.
- */
+/** Kartu cerita */
 function StoryCard({ image, location, likes, liked, onToggle, onLike, hint, className = '', style }) {
   const { t, pick, formatNumber } = useLanguage()
   const [burst, setBurst] = useState(0)
@@ -73,7 +69,7 @@ function StoryCard({ image, location, likes, liked, onToggle, onLike, hint, clas
           type="button"
           className={`story-card__like${liked ? ' is-liked' : ''}${hint && !liked ? ' is-hinting' : ''}`}
           aria-pressed={liked}
-          // Jumlah like masuk ke nama aksesibel; status pressed yang mengumumkan like-nya.
+          // Tombol like
           aria-label={`${t('story.like', { place: location })}, ${count} ${t('story.likes')}`}
           onClick={handleHeartClick}
         >

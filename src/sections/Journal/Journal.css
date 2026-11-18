@@ -1,4 +1,4 @@
-/* Carousel jurnal: 1 / 2 / 3 kartu terlihat di mobile / tablet / desktop. */
+/* Carousel jurnal */
 .journal {
   background: var(--bg-primary);
 }
@@ -15,7 +15,7 @@
   margin-bottom: 0;
 }
 
-/* Di bawah desktop track melebar sampai tepi layar supaya kartu berikutnya mengintip. */
+/* Track */
 .journal__track {
   --journal-gap: var(--space-6);
   display: flex;
@@ -42,7 +42,7 @@
 }
 
 .journal__controls {
-  display: flex;
+  display: none;
   justify-content: center;
   gap: var(--space-4);
   margin-top: var(--space-10);
@@ -70,7 +70,11 @@
 }
 
 @media (min-width: 1280px) {
-  /* Desktop: pas tiga kartu selebar konten, tanpa bleed. */
+  .journal__controls {
+    display: flex;
+  }
+
+  /* Desktop */
   .journal__track {
     --journal-gap: var(--space-10);
     margin-inline: 0;

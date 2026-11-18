@@ -1,4 +1,4 @@
-/* Kartu artikel berbasis foto: teks menumpuk di bagian bawah foto 4:5. */
+/* Kartu artikel */
 .article-card {
   display: flex;
   width: 100%;
@@ -15,8 +15,7 @@
   aspect-ratio: 4 / 5;
   overflow: hidden;
   border-radius: var(--radius-lg);
-  /* Transparan (bukan gelap) supaya celah sub-piksel di sudut saat zoom
-     hover kelihatan putih, bukan garis gelap. */
+  /* Link kartu */
   background: transparent;
   color: var(--text-inverse);
   text-decoration: none;
@@ -75,9 +74,7 @@
   font-weight: var(--fw-medium);
 }
 
-/* Selalu dua baris di semua kartu. Lebar ini sudah dites di semua kartu,
-   ukuran layar, dan dua bahasa: cukup sempit agar judul turun baris,
-   cukup lega agar tak sampai tiga baris. Balance membagi rata. */
+/* Judul 2 baris */
 .article-card__title {
   font-size: var(--fs-h3);
   line-height: var(--lh-h3);
@@ -87,8 +84,7 @@
   text-wrap: balance;
 }
 
-/* Selalu dua baris terisi, cara sama dengan judul (lebar 24ch + balance).
-   Clamp cuma jaring pengaman untuk copy baru. */
+/* Ringkasan 2 baris */
 .article-card__excerpt {
   display: -webkit-box;
   max-width: 24ch;

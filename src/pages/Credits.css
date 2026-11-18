@@ -1,4 +1,4 @@
-/* Kartu kredit foto di dalam grid listing bersama. */
+/* Kartu kredit */
 .credit {
   display: flex;
   flex-direction: column;
@@ -38,7 +38,7 @@
   text-decoration: underline;
 }
 
-/* Ditarik naik ke padding bawah halaman listing supaya terbaca seperti catatan kaki. */
+/* Catatan */
 .credits-note {
   margin: calc(var(--section-y) * -0.75) 0 var(--section-y);
   font-size: var(--fs-caption);

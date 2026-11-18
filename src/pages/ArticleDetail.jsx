@@ -5,7 +5,7 @@ import { useInView } from '../hooks/useInView.js'
 import { useLanguage } from '../i18n/context.js'
 import './ArticleDetail.css'
 
-/** Bungkus children dalam container `.reveal` yang dipicu scroll. */
+/** Reveal */
 function Reveal({ as: Tag = 'div', className = '', children, ...rest }) {
   const [ref, inView] = useInView()
   return (
@@ -15,7 +15,7 @@ function Reveal({ as: Tag = 'div', className = '', children, ...rest }) {
   )
 }
 
-/** Halaman cerita untuk /journal/:slug. Kalau artikel belum punya body, tampilkan catatan "segera hadir". */
+/** Detail artikel */
 function ArticleDetail({ article }) {
   const { t, pick, formatDate } = useLanguage()
   const { date, readingMinutes, image, body } = article
@@ -57,7 +57,7 @@ function ArticleDetail({ article }) {
           </figure>
         </Reveal>
 
-        {/* Body dua kolom selebar hero: judul di kiri, isi di kanan. */}
+        {/* Body */}
         <div className="article-page__body">
           <Reveal className="article-page__row">
             <p className="article-page__lead reveal">{pick(body?.lead ?? article.excerpt)}</p>

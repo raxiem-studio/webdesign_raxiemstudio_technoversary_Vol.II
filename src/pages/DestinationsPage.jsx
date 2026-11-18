@@ -3,7 +3,7 @@ import { DESTINATIONS } from '../data/destinations.js'
 import { useLanguage } from '../i18n/context.js'
 import ListingPage from './ListingPage.jsx'
 
-/** Listing /destinations. */
+/** Listing destinasi */
 function DestinationsPage({ destinations = DESTINATIONS }) {
   const { t } = useLanguage()
   return (

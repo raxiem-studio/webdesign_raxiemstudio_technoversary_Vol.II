@@ -11,16 +11,7 @@ function ContactIcon({ type }) {
   return <WhatsAppIcon />
 }
 
-/**
- * Footer situs: blok brand, kolom link, wordmark besar (opsional), baris legal.
- * @param {object}   [props.background]  Gambar yang di-blur di belakang footer.
- * @param {string|string[]} [props.tagline]  Isi array untuk memaksa pindah baris.
- * @param {string[]} [props.address]
- * @param {Array<{type: 'email'|'phone'|'whatsapp', label: string, href: string}>} [props.contacts]
- * @param {Array<{title: string, links: Array<{label: string, href: string, external?: boolean}>}>} [props.columns]
- * @param {Array<{label: string, href: string}>} [props.legalLinks]
- * @param {'default'|'oversized'} [props.wordmark='default']
- */
+/** Footer */
 function Footer({
   brand = 'JEJAK',
   background,
@@ -53,7 +44,7 @@ function Footer({
         </div>
       )}
       <Container size="content" className="footer__inner">
-        {/* Jumlah kolom mengatur grid, jadi kalau satu kolom dihapus tidak ada track kosong. */}
+        {/* Grid kolom */}
         <div className="footer__grid" style={{ '--footer-columns': columns.length || 1 }}>
           <div className="footer__brand">
             <p className="footer__wordmark">{brand}</p>

@@ -1,10 +1,6 @@
 import { images } from './images.js'
 
-/**
- * Foto yang lisensinya wajib mencantumkan atribusi (CC BY / CC BY-SA).
- * Foto lain di situs ini memakai Lisensi Unsplash atau CC0.
- * Sumber lengkap semua foto: src/assets/ASSETS.md.
- */
+/** Kredit foto */
 export const PHOTO_CREDITS = [
   {
     slug: 'tegalalang',

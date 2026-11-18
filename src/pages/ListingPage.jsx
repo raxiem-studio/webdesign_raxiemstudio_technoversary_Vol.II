@@ -2,11 +2,7 @@ import { Container } from '../components/index.js'
 import { useInView } from '../hooks/useInView.js'
 import './ListingPage.css'
 
-/**
- * Layout bersama halaman listing: judul + lead, lalu grid kartu responsif.
- * @param {Array<{slug: string}>} props.items
- * @param {(item) => import('react').ReactNode} props.renderItem
- */
+/** Listing */
 function ListingPage({ id, title, lead, listLabel, items, renderItem }) {
   const [introRef, introIn] = useInView({ threshold: 0 })
   const [gridRef, gridIn] = useInView({ threshold: 0.05 })

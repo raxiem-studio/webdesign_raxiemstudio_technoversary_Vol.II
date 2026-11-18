@@ -1,14 +1,9 @@
 import { images } from './images.js'
 import { TRAVEL_THEMES } from './impact.js'
 
-/** Copy halaman About. Fokus ke misi dan nilai sampai data perusahaan pasti. */
+/** About */
 export const ABOUT_INTRO = {
-  /*
-   * Dua baris, baris pertama maksimal tiga kata mengapit pill foto:
-   *   titleBefore [pill] titleMiddle
-   *   titleAfter
-   * `title` dipakai sebagai nama aksesibel.
-   */
+  /* Judul 2 baris */
   title: { en: 'Every Journey Leaves a Trace', id: 'Setiap Perjalanan Meninggalkan Jejak' },
   titleBefore: { en: 'Every', id: 'Setiap' },
   titleMiddle: { en: 'Journey', id: 'Perjalanan' },
@@ -51,7 +46,7 @@ const VALUE_TEXT = {
   },
 }
 
-/** Pakai ulang label nilai dari Homepage. */
+/** Nilai */
 export const ABOUT_VALUES = {
   title: { en: 'What We Believe', id: 'Yang Kami Yakini' },
   items: TRAVEL_THEMES.map((theme) => ({ ...theme, text: VALUE_TEXT[theme.number] })),

@@ -3,12 +3,7 @@ import { useInView } from '../hooks/useInView.js'
 import { useLanguage } from '../i18n/context.js'
 import './NotFound.css'
 
-/**
- * Halaman 404: semua route yang tidak dikenal app, termasuk link yang halamannya
- * belum ada (Privacy, Terms) dan slug destinasi/artikel yang salah.
- * Ini SPA client-side, jadi status HTTP tetap 200 kecuali hosting diatur
- * mengirim 404 untuk path tak dikenal.
- */
+/** 404 */
 function NotFound() {
   const { t } = useLanguage()
   const [ref, inView] = useInView({ threshold: 0 })

@@ -6,13 +6,13 @@ import { useCarousel } from '../../hooks/useCarousel.js'
 import { useInView } from '../../hooks/useInView.js'
 import './FeaturedDestinations.css'
 
-/* Titik pindah baris judul section di desktop, per bahasa. */
+/* Baris judul */
 const TITLE_LINES = {
   en: ['Nature speaks through', 'the hands of its', 'guardians'],
   id: ['Alam bercerita', 'lewat tangan', 'para penjaganya'],
 }
 
-/** Home: carousel destinasi pilihan (scroll-snap native + kontrol prev/next). */
+/** Destinasi pilihan */
 function FeaturedDestinations({ destinations = DESTINATIONS }) {
   const { lang, t } = useLanguage()
   const { trackRef, canPrev, canNext, scrollByItem } = useCarousel(
@@ -32,7 +32,7 @@ function FeaturedDestinations({ destinations = DESTINATIONS }) {
           <SectionHeader
             rule={false}
             title={TITLE_LINES[lang].map((line, i) => (
-              // Spasi eksplisit: <br> di-display:none di bawah tablet.
+              // Pindah baris
               <Fragment key={line}>
                 {i > 0 && (
                   <>

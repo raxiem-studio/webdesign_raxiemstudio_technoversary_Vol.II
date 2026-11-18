@@ -7,12 +7,7 @@ import StoryCard from './StoryCard.jsx'
 import { useBarrel } from './useBarrel.js'
 import './StoryCollage.css'
 
-/*
- * Foto di barel, urut searah putaran.
- * `likes`: angka DEMO untuk prototipe. Belum ada backend, jadi like pengunjung
- * ditambahkan di atasnya dan hanya disimpan di browser-nya (localStorage).
- * Jumlah like yang sama untuk semua orang butuh API + database.
- */
+/* Foto cerita */
 const STORIES = [
   { id: 'kelimutu', image: images.storyKelimutu, location: { en: 'Lake Kelimutu, Flores', id: 'Danau Kelimutu, Flores' }, likes: 2316 },
   { id: 'bromo', image: images.articleBromo, location: { en: 'Mount Bromo, East Java', id: 'Gunung Bromo, Jawa Timur' }, likes: 1873 },
@@ -38,7 +33,7 @@ function writeLikes(likes) {
   try {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(likes))
   } catch {
-    /* Storage tidak tersedia (mode private, dll.): like hanya disimpan di memori. */
+    /* Storage tidak tersedia */
   }
 }
 
@@ -51,12 +46,7 @@ function CloseIcon() {
   )
 }
 
-/**
- * Home: carousel barel 3D berisi foto cerita. Berputar pelan sendiri, bisa
- * di-drag, dan digeser pakai panah kiri/kanan. Hanya tiga foto depan yang bisa
- * diklik; foto yang diklik dibuka di dialog sebagai kartu polaroid yang bisa
- * di-like (tombol hati atau ketuk dua kali).
- */
+/** Cerita (barel 3D) */
 function StoryCollage() {
   const { t, pick } = useLanguage()
   const [liked, setLiked] = useState(readLikes)
@@ -78,16 +68,14 @@ function StoryCollage() {
       return next
     })
 
-  // Sinkronkan state dengan <dialog> native (focus trap, Esc, dan backdrop gratis).
+  // Buka/tutup dialog
   useEffect(() => {
     const dialog = dialogRef.current
     if (!dialog) return
     if (openId && !dialog.open) dialog.showModal()
     if (!openId && dialog.open) {
       dialog.close()
-      // Dibuka pakai mouse: lepas focus yang dikembalikan browser supaya tidak
-      // muncul outline dan barel langsung berputar lagi. Dibuka pakai keyboard:
-      // focus tetap di foto supaya navigasi keyboard tidak putus.
+      // Lepas focus setelah klik mouse
       if (!openedByKeyboard.current) document.activeElement?.blur()
     }
   }, [openId])
@@ -167,7 +155,7 @@ function StoryCollage() {
           setOpenId(null)
         }}
         onClick={(event) => {
-          // Klik di luar kartu (area backdrop) menutup dialog.
+          // Klik backdrop
           if (event.target === event.currentTarget) setOpenId(null)
         }}
       >

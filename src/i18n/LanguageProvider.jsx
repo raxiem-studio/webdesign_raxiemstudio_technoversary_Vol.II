@@ -13,11 +13,11 @@ function readStoredLang() {
   }
 }
 
-/** Konten dua bahasa ditulis sebagai `{ en: …, id: … }`. */
+/** Konten dua bahasa */
 const isBilingual = (value) =>
   value !== null && typeof value === 'object' && !Array.isArray(value) && 'en' in value && 'id' in value
 
-/** Menyimpan bahasa pilihan; diingat per browser dan disalin ke <html lang>. */
+/** Provider bahasa */
 function LanguageProvider({ children }) {
   const [lang, setLang] = useState(readStoredLang)
 
@@ -26,7 +26,7 @@ function LanguageProvider({ children }) {
     try {
       localStorage.setItem(STORAGE_KEY, lang)
     } catch {
-      /* Storage tidak tersedia: pilihan hanya berlaku di kunjungan ini. */
+      /* Storage tidak tersedia */
     }
   }, [lang])
 

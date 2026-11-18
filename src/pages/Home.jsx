@@ -5,7 +5,7 @@ import Journal from '../sections/Journal/Journal.jsx'
 import ResponsibleTravel from '../sections/ResponsibleTravel/ResponsibleTravel.jsx'
 import StoryCollage from '../sections/StoryCollage/StoryCollage.jsx'
 
-/** Urutan section Homepage. Nav, CTA, dan footer datang dari kerangka App. */
+/** Home */
 function Home() {
   return (
     <>

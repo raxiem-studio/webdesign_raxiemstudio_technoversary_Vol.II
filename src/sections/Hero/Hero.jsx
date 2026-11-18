@@ -3,7 +3,7 @@ import { images } from '../../data/images.js'
 import { useLanguage } from '../../i18n/context.js'
 import './Hero.css'
 
-/** Home: hero selebar layar. Satu-satunya gambar yang dimuat eager dengan prioritas tinggi. */
+/** Hero */
 function Hero() {
   const { t, pick } = useLanguage()
   const photo = images.heroPatiRicefield

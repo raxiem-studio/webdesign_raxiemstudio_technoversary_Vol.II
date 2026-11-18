@@ -1,10 +1,6 @@
 import { images } from './images.js'
 
-/**
- * Destinasi (carousel Home, /destinations, /destinations/:slug).
- * Teks dua bahasa `{ en, id }`. `detail` opsional; destinasi tanpa detail
- * menampilkan halaman "segera hadir". Copy dibuat umum: tanpa angka atau harga.
- */
+/** Destinasi */
 export const DESTINATIONS = [
   {
     slug: 'labuan-bajo',

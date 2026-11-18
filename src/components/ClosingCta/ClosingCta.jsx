@@ -6,7 +6,7 @@ import Button from '../Button/Button.jsx'
 import Container from '../Container/Container.jsx'
 import './ClosingCta.css'
 
-/** CTA penutup di semua halaman: kartu foto dengan zoom ikut scroll dan reveal bertahap. */
+/** CTA penutup */
 function ClosingCta({ content = CLOSING_CTA }) {
   const [frameRef, inView] = useInView()
   const zoomRef = useScrollZoom()
@@ -35,8 +35,7 @@ function ClosingCta({ content = CLOSING_CTA }) {
             >
               {pick(title)}
             </h2>
-            {/* Bukan .reveal: parent yang fade bakal menyembunyikan blur glass sampai
-                fade selesai. Tombol dianimasikan sendiri (lihat ClosingCta.css). */}
+            {/* Aksi */}
             <div className="closing-cta__action">
               <Button href={cta.href} size="lg" variant="glass">
                 {pick(cta.label)}

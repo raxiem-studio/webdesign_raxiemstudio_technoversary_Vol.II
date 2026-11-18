@@ -1,7 +1,4 @@
-/**
- * Tombol bulat prev/next untuk track carousel (pasangan useCarousel).
- * @param {{prev: string, next: string}} props.labels  Nama aksesibel.
- */
+/** Kontrol carousel */
 function CarouselControls({ canPrev, canNext, onPrev, onNext, labels, className = '', ...rest }) {
   return (
     <div className={className} {...rest}>

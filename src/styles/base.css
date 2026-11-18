@@ -1,4 +1,4 @@
-/* Style elemen global, tipografi, form, utilitas, dan dasar animasi. */
+/* Style global */
 
 /* ---------- Dokumen ---------- */
 html {
@@ -10,9 +10,7 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Dipasang per elemen (bukan sekali di <html>): letter-spacing em yang diwarisi
-   dihitung jadi px di root, sehingga ukuran font lain dapat nilai yang salah.
-   Spesifisitas nol supaya aturan komponen tetap menang. */
+/* Letter-spacing */
 :where(*, *::before, *::after) {
   letter-spacing: var(--ls-text);
 }
@@ -303,7 +301,7 @@ hr {
 /* ---------- Ritme section ---------- */
 .section {
   padding-block: var(--section-y);
-  /* Memberi ruang untuk navbar sticky saat lompat ke anchor. */
+  /* Offset anchor */
   scroll-margin-top: var(--nav-height);
 }
 
@@ -333,9 +331,7 @@ main {
   outline-color: var(--text-primary);
 }
 
-/* ---------- Reveal saat scroll ----------
-   Tambahkan .reveal ke elemen dan .is-visible ke parent-nya (lihat useInView).
-   Atur jeda dengan --reveal-delay; setel lewat --reveal-duration / -distance / -ease. */
+/* ---------- Reveal ---------- */
 .reveal {
   opacity: 0;
   transform: translateY(var(--reveal-distance, 20px));
@@ -358,8 +354,7 @@ main {
   }
 }
 
-/* ---------- Header "More …" di halaman detail ----------
-   Judul di kiri, link lihat semua di kanan; ditumpuk di bawah tablet. */
+/* ---------- Header "More" ---------- */
 .detail-more__header {
   display: flex;
   flex-direction: column;
@@ -383,7 +378,7 @@ main {
   }
 }
 
-/* ---------- Tersembunyi secara visual ---------- */
+/* ---------- Visually hidden ---------- */
 .visually-hidden {
   position: absolute !important;
   width: 1px;

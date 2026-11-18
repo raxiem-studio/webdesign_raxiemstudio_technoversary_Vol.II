@@ -24,7 +24,7 @@ import JournalPage from './pages/JournalPage.jsx'
 import NotFound from './pages/NotFound.jsx'
 import { pageTitle, usePageChange, usePath } from './router.js'
 
-/* `titleKey` = kunci judul halaman di src/i18n/strings.js. */
+/* Rute */
 const PAGES = {
   '/': { Page: Home, titleKey: null },
   '/destinations': { Page: DestinationsPage, titleKey: 'destinationsPage.title' },
@@ -34,7 +34,7 @@ const PAGES = {
   '/credits': { Page: Credits, titleKey: 'credits.title' },
 }
 
-/** Cocokkan path ke komponen halaman, judul, dan props. Path tak dikenal → halaman 404. */
+/** Resolve rute */
 function resolve(path, t, pick) {
   const page = PAGES[path]
   if (page) return { Page: page.Page, name: page.titleKey && t(page.titleKey), props: {} }
@@ -51,7 +51,7 @@ function resolve(path, t, pick) {
   return { Page: NotFound, name: t('notFound.title'), props: {} }
 }
 
-/** Kerangka app: navigasi, halaman aktif, CTA penutup, dan footer. */
+/** App */
 function App() {
   const { lang, t, pick } = useLanguage()
   const path = usePath()
@@ -59,7 +59,7 @@ function App() {
   const { Page, name, props } = resolve(path, t, pick)
   usePageChange(path, pageTitle(name, t('site.title')), mainRef)
 
-  // Di-memo per bahasa: scroll spy di Navigation subscribe ulang tiap `links` berubah.
+  // Link nav
   const navLinks = useMemo(
     () => NAV_LINKS.map((link) => ({ ...link, label: pick(link.label) })),
     [pick],
@@ -85,12 +85,12 @@ function App() {
       <a href="#konten-utama" className="skip-link">
         {t('site.skipLink')}
       </a>
-      {/* Nav transparan hanya di atas hero Home. */}
+      {/* Navigasi */}
       <Navigation links={navLinks} cta={navCta} inverse={isHome} path={path} noActive={Page === NotFound} />
       <main id="konten-utama" ref={mainRef} tabIndex={-1}>
-        {/* Key pakai path supaya animasi masuk diputar ulang tiap pindah halaman. */}
+        {/* Halaman */}
         <Page key={path} {...props} />
-        {/* Disembunyikan di Contact (link ke dirinya sendiri) dan di halaman 404. */}
+        {/* CTA penutup */}
         {Page !== ContactPage && Page !== NotFound && <ClosingCta key={`cta-${path}`} />}
       </main>
       <Footer

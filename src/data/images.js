@@ -1,10 +1,4 @@
-/**
- * Registry gambar — satu-satunya tempat untuk ganti foto.
- * width/height = ukuran asli file (mencegah layout shift).
- * Sumber dan lisensi: src/assets/ASSETS.md. Hanya foto yang dipakai yang
- * di-import di sini (Vite mem-bundle semua import); file lain tetap di assets/.
- * `alt` dua bahasa `{ en, id }` (string kosong = dekoratif).
- */
+/** Registry gambar */
 import heroTegalalang from '../assets/images/hero-tegalalang.jpg'
 import storyTongkonan from '../assets/images/story-tongkonan.jpg'
 import storyKelimutu from '../assets/images/story-kelimutu.jpg'
@@ -51,7 +45,7 @@ export const images = {
     width: 1080,
     height: 2400,
     alt: { en: 'A traditional jukung fishing boat on calm blue-green water at Lovina, Bali.', id: 'Perahu jukung nelayan di laut biru kehijauan yang tenang di Lovina, Bali.' },
-    /* Supaya perahu tidak tertutup teks di kartu. */
+    /* Posisi crop */
     cardPosition: '50% 88%',
   },
   articleBogorHiker: {
@@ -147,14 +141,14 @@ export const images = {
     height: 1281,
     alt: { en: 'Stepped green rice fields in Penebel, Tabanan, Bali, with a small hut, coconut palms and clouded mountains.', id: 'Sawah hijau berundak di Penebel, Tabanan, Bali, dengan pondok kecil, pohon kelapa, dan pegunungan berawan.' },
   },
-  /* Latar CTA penutup (dekoratif). */
+  /* Latar CTA (dekoratif) */
   aboutHiker: {
     src: aboutHiker,
     width: 1920,
     height: 1080,
     alt: '',
   },
-  /* Pill di judul About (dekoratif). */
+  /* Pill About (dekoratif) */
   aboutAccent: {
     src: aboutPillViewer,
     width: 640,

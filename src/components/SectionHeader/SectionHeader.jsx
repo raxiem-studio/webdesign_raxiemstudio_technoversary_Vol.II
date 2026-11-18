@@ -2,14 +2,7 @@ import Eyebrow from '../Eyebrow/Eyebrow.jsx'
 import SectionIndex from '../SectionIndex/SectionIndex.jsx'
 import './SectionHeader.css'
 
-/**
- * Blok judul section: garis (opsional), nomor + eyebrow, judul, dan lead.
- * @param {1|2|3} [props.headingLevel=2]  Pastikan hanya ada satu h1 per halaman.
- * @param {boolean} [props.compact]  Jarak lebih rapat, judul seukuran H1, tanpa lead.
- * @param {'left'|'center'} [props.align='left']
- * @param {boolean} [props.rule=true]  Garis tipis di atas judul.
- * @param {string}  [props.titleId]    Untuk aria-labelledby di section induk.
- */
+/** Judul section */
 function SectionHeader({
   index,
   eyebrow,

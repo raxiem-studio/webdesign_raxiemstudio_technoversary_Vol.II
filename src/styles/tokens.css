@@ -1,6 +1,4 @@
-/* Design token (sumber: style guide Figma). Mobile-first; tablet ≥768px dan
-   desktop ≥1280px menimpa di bawah. Breakpoint ditulis ulang di media query
-   karena custom property tidak bisa dipakai di sana. */
+/* Design token */
 
 :root {
   /* ---- Warna · primitif ---- */
@@ -66,7 +64,7 @@
   --fw-medium: 500;
   --fw-semibold: 600;
 
-  /* Satu nilai tracking; token per peran disimpan sebagai alias supaya jelas saat dipakai. */
+  /* Tracking */
   --ls-text: -0.02em;
   --ls-display: var(--ls-text);
   --ls-display-l: var(--ls-text);
@@ -78,7 +76,7 @@
   --ls-nav: var(--ls-text);
   --ls-wordmark: var(--ls-text);
 
-  /* Skala tipografi — mobile (ukuran / line-height) */
+  /* Skala tipografi (mobile) */
   --fs-display-xl: 36px; --lh-display-xl: 44px;
   --fs-display-l: 30px;  --lh-display-l: 38px;
   --fs-h1: 26px; --lh-h1: 34px;

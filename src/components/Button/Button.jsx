@@ -1,12 +1,6 @@
 import './Button.css'
 
-/**
- * @param {'primary'|'accent'|'secondary'|'text'|'glass'} [props.variant='primary']
- *   `glass` khusus dipakai di atas foto.
- * @param {'sm'|'md'|'lg'} [props.size='md']
- * @param {boolean} [props.arrow]  Tambah ikon panah di belakang.
- * @param {string}  [props.href]   Render <a>, bukan <button>.
- */
+/** Tombol */
 function Button({
   variant = 'primary',
   size = 'md',

@@ -6,13 +6,7 @@ const CATEGORY = {
   responsible: { en: 'Responsible Travel', id: 'Wisata Bertanggung Jawab' },
 }
 
-/**
- * Artikel jurnal (carousel Home, /journal, /journal/:slug).
- * Teks dua bahasa `{ en, id }`; tanggal diformat per bahasa dan
- * `readingMinutes` jadi "6 min read" / "6 menit baca". `body` opsional;
- * artikel tanpa body menampilkan halaman "segera hadir".
- * Copy dibuat umum: tanpa statistik, harga, atau klaim ilmiah.
- */
+/** Artikel jurnal */
 export const ARTICLES = [
   {
     slug: 'hidup-berdampingan-dengan-laut',

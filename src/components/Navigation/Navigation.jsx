@@ -4,10 +4,7 @@ import Button from '../Button/Button.jsx'
 import Container from '../Container/Container.jsx'
 import './Navigation.css'
 
-/**
- * Toggle EN / ID. Tipografinya sama dengan link nav (ikut warnanya di atas
- * hero); bahasa aktif Medium, yang lain diredupkan.
- */
+/** Tombol bahasa */
 function LanguageSwitch() {
   const { lang, setLang, t } = useLanguage()
   return (
@@ -35,15 +32,7 @@ function LanguageSwitch() {
   )
 }
 
-/**
- * Navigasi utama: link inline di desktop, menu layar penuh di bawahnya.
- * @param {Array<{label: string, href: string, current?: boolean}>} props.links
- *   `current` cuma nilai awal; setelah mount diambil alih scroll spy.
- * @param {{label: string, href: string, variant?: string}} [props.cta]
- * @param {boolean} [props.inverse]  Transparan di atas hero, solid setelah melewatinya.
- * @param {string}  [props.path]     Route aktif; scroll spy dijalankan ulang tiap pindah halaman.
- * @param {boolean} [props.noActive] Tidak ada link yang ditandai aktif (mis. di halaman 404).
- */
+/** Navigasi */
 function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, noActive = false }) {
   const { t } = useLanguage()
   const [open, setOpen] = useState(false)
@@ -54,7 +43,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
   const toggleRef = useRef(null)
   const firstLinkRef = useRef(null)
 
-  // Hitung status scrolled / lewat hero dan link aktif dari posisi scroll.
+  // Scroll spy
   useEffect(() => {
     const onScroll = () => {
       const y = window.scrollY
@@ -69,9 +58,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
         setPastHero(true)
       }
 
-      // Hanya link ke route yang sedang aktif yang dihitung. Link halaman (tanpa hash)
-      // aktif untuk route itu dan sub-route-nya; link section aktif setelah
-      // section-nya lewat di bawah navbar.
+      // Link aktif
       const here = window.location.pathname
       let current = null
       for (const link of links) {
@@ -98,7 +85,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
     }
   }, [inverse, links, path])
 
-  // Saat terbuka: Esc menutup, scroll body dikunci, focus masuk ke menu lalu kembali.
+  // Menu terbuka
   useEffect(() => {
     if (!open) return undefined
     const onKey = (event) => {
@@ -115,10 +102,10 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
     }
   }, [open])
 
-  // Tutup otomatis kalau layar diperlebar melewati breakpoint desktop.
+  // Tutup otomatis di desktop
   useEffect(() => {
     if (!open) return undefined
-    // Samakan dengan breakpoint desktop di Navigation.css.
+    // Breakpoint desktop
     const mq = window.matchMedia('(min-width: 1280px)')
     const onChange = (event) => {
       if (event.matches) setOpen(false)
@@ -129,7 +116,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
 
   const ctaVariant = cta?.variant ?? 'primary'
 
-  // Transparan di atas hero, buram setelah di-scroll, solid setelah lewat hero atau saat menu terbuka.
+  // State nav
   const overHero = inverse && !open && !pastHero
   const classes = [
     'nav',

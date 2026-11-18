@@ -1,7 +1,4 @@
-/**
- * Link nav, footer, dan legal. Teks dua bahasa `{ en, id }`; komponen memilih
- * bahasa aktif. Anchor section diawali "/" supaya bisa diakses dari route mana pun.
- */
+/** Navigasi & footer */
 export const NAV_LINKS = [
   { label: { en: 'Destinations', id: 'Destinasi' }, href: '/destinations' },
   { label: { en: 'Journal', id: 'Jurnal' }, href: '/journal' },
@@ -39,7 +36,7 @@ export const FOOTER_COLUMNS = [
   },
   {
     title: { en: 'Follow', id: 'Ikuti' },
-    // TODO: pastikan akun media sosial resmi sebelum rilis.
+    // TODO: akun medsos resmi
     links: [
       { label: 'Instagram', href: 'https://www.instagram.com/jejak.id', external: true },
       { label: 'Facebook', href: 'https://www.facebook.com/jejak.id', external: true },
@@ -48,7 +45,7 @@ export const FOOTER_COLUMNS = [
   },
 ]
 
-/** Blok brand footer. TODO: pastikan alamat dan kontak sebelum rilis. */
+/** Brand footer (TODO: alamat & kontak) */
 export const FOOTER_ADDRESS = ['JEJAK Indonesia', 'Jl. Kemang Raya No. 8', 'Jakarta Selatan 12730, Indonesia']
 
 export const FOOTER_CONTACTS = [
@@ -57,10 +54,7 @@ export const FOOTER_CONTACTS = [
   { type: 'whatsapp', label: '+62 812 8000 0800', href: 'https://wa.me/6281280000800' },
 ]
 
-/**
- * Link baris bawah. Privacy dan Terms belum punya halaman, jadi membuka
- * halaman 404 (seperti route tak dikenal lainnya); Photo Credits halaman asli.
- */
+/** Link legal */
 export const LEGAL_LINKS = [
   { label: { en: 'Privacy Policy', id: 'Kebijakan Privasi' }, href: '/privacy-policy' },
   { label: { en: 'Terms of Service', id: 'Syarat Layanan' }, href: '/terms-of-service' },

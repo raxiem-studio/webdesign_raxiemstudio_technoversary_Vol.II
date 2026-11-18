@@ -11,7 +11,7 @@ import { useCarousel } from '../../hooks/useCarousel.js'
 import { useInView } from '../../hooks/useInView.js'
 import './Journal.css'
 
-/** Home: carousel jurnal dengan link ke /journal. */
+/** Jurnal */
 function Journal({ articles = ARTICLES }) {
   const { t } = useLanguage()
   const { trackRef, canPrev, canNext, scrollByItem } = useCarousel(

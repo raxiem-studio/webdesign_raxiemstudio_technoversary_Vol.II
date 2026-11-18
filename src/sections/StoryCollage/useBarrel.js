@@ -1,23 +1,14 @@
 import { useCallback, useEffect, useRef } from 'react'
 
 const DRAG_DEG_PER_PX = 0.22
-const MAX_SPEED = 240 // derajat per detik, batas lemparan saat drag dilepas
+const MAX_SPEED = 240 // °/detik
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia?.('(prefers-reduced-motion: reduce)').matches
 
-/** Normalisasi sudut ke rentang -180…180. */
+/** Normalisasi sudut */
 const normalize = (deg) => ((((deg + 180) % 360) + 360) % 360) - 180
 
-/**
- * Logika carousel barel 3D: putar otomatis pelan, bisa di-drag (dengan inersia),
- * dan digeser per item lewat keyboard. Semua update ditulis langsung ke DOM di
- * rAF supaya tidak re-render tiap frame.
- *
- * - `frontCount` item terdekat ke depan bisa diklik; sisanya diredupkan.
- * - Berhenti pelan saat kursor di atas foto, focus keyboard, di luar layar, atau
- *   `paused`. Setelah itu kecepatan kembali normal dalam ±1 detik.
- * - prefers-reduced-motion: tanpa putar otomatis, drag tetap jalan.
- */
+/** Barel 3D */
 export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = false }) {
   const stageRef = useRef(null)
   const ringRef = useRef(null)
@@ -41,7 +32,7 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
     pausedRef.current = paused
   }, [paused])
 
-  /* Tulis sudut ring, lalu atur opacity dan status "depan" tiap item. */
+  /* Update posisi */
   const apply = useCallback(() => {
     const st = state.current
     ringRef.current?.style.setProperty('--angle', `${st.angle.toFixed(3)}deg`)
@@ -56,7 +47,7 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
     itemRefs.current.forEach((el, i) => {
       if (!el) return
       const d = dists[i]
-      // Tiga foto depan penuh; makin ke belakang memudar sampai 40%, tidak hilang.
+      // Opacity
       const opacity = d <= 60 ? 1 : 0.4 + 0.6 * Math.min(Math.max((110 - d) / 50, 0), 1)
       el.style.opacity = opacity.toFixed(3)
       const isFront = front.has(i)
@@ -71,7 +62,7 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
     })
   }, [frontCount, step])
 
-  /* Loop animasi: tween keyboard > drag > putar otomatis dengan easing kecepatan. */
+  /* Loop animasi */
   useEffect(() => {
     const reduced = prefersReducedMotion()
     let frame
@@ -100,7 +91,7 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
     return () => cancelAnimationFrame(frame)
   }, [apply, autoSpeed])
 
-  /* Berhenti kerja saat section di luar layar. */
+  /* Visibilitas */
   useEffect(() => {
     const node = stageRef.current
     if (!node || typeof IntersectionObserver === 'undefined') {
@@ -114,7 +105,7 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
     return () => observer.disconnect()
   }, [])
 
-  /* Drag: listener di window supaya klik pada tombol tetap sampai ke tombolnya. */
+  /* Drag */
   useEffect(() => {
     const onMove = (event) => {
       const st = state.current
@@ -159,7 +150,7 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
       st.lastT = performance.now()
       event.currentTarget.classList.add('is-dragging')
     },
-    // Hover dihitung hanya saat kursor tepat di atas foto, bukan area kosong barel.
+    // Hover foto
     onPointerMove: (event) => {
       if (event.pointerType === 'mouse') {
         state.current.hover = Boolean(event.target.closest?.('.story-barrel__card'))
@@ -168,8 +159,7 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
     onPointerLeave: (event) => {
       if (event.pointerType === 'mouse') state.current.hover = false
     },
-    // Hanya focus keyboard yang menghentikan putaran. Focus sisa klik mouse
-    // (mis. setelah dialog ditutup) tidak, jadi barel langsung jalan lagi.
+    // Focus keyboard
     onFocus: (event) => {
       state.current.focus = event.target.matches(':focus-visible')
     },
@@ -178,10 +168,10 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
     },
   }
 
-  /** True kalau gerakan terakhir adalah drag, jadi klik tidak membuka foto. */
+  /** Cek drag */
   const wasDragged = () => state.current.moved > 6
 
-  /** Geser satu item ke kiri (-1) atau kanan (1); mengembalikan index yang jadi pusat. */
+  /** Geser satu item */
   const nudge = (dir) => {
     const st = state.current
     const base = Math.round(st.angle / step) * step
@@ -190,12 +180,12 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
     return ((center % count) + count) % count
   }
 
-  /** Callback ref untuk item ke-i. */
+  /** Ref item */
   const setItemRef = (i) => (el) => {
     itemRefs.current[i] = el
   }
 
-  /** Focus tombol di item ke-i (dipakai setelah geser pakai keyboard). */
+  /** Focus item */
   const focusItem = (i) => itemRefs.current[i]?.firstElementChild?.focus()
 
   return { stageRef, ringRef, setItemRef, focusItem, stageProps, wasDragged, nudge }

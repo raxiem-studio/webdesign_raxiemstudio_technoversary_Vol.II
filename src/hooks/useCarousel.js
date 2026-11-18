@@ -3,11 +3,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 const prefersReducedMotion = () =>
   typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
-/**
- * Kontrol prev/next untuk track scroll-snap native.
- * Bergeser satu item (diukur dari `itemSelector`) dan melaporkan apakah
- * sudah mentok di ujung. Scroll instan kalau prefers-reduced-motion.
- */
+/** Carousel */
 export function useCarousel(itemSelector, itemCount) {
   const trackRef = useRef(null)
   const [canPrev, setCanPrev] = useState(false)

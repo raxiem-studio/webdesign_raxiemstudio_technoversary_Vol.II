@@ -1,13 +1,11 @@
-/* Navigasi utama. Link inline ≥1280px; di bawahnya menu layar penuh.
-   `.nav--inverse` transparan di atas hero Home. */
+/* Navigasi */
 .nav {
   position: sticky;
   top: 0;
   z-index: var(--z-nav);
   background: var(--bg-primary);
   color: var(--text-primary);
-  /* Pakai inset shadow, bukan border: hero ditarik naik persis
-     --nav-height, jadi border 1px bakal meninggalkan celah. */
+  /* Garis bawah nav */
   box-shadow: inset 0 calc(-1 * var(--hairline)) 0 transparent;
   transition: background-color var(--duration-base) var(--ease-standard),
     box-shadow var(--duration-base) var(--ease-standard);
@@ -88,8 +86,7 @@
   gap: var(--space-5);
 }
 
-/* Tombol bahasa: tipografi sama dengan .nav__link (ukuran, tracking, warna).
-   Bahasa aktif Medium; yang lain diredupkan dan terang saat hover. */
+/* Tombol bahasa */
 .nav__lang {
   display: flex;
   align-items: center;
@@ -130,7 +127,7 @@
   opacity: 0.4;
 }
 
-/* CTA: efek kaca buram; warnanya dibalik di atas hero. */
+/* CTA */
 .nav__cta {
   display: none;
   background: rgba(17, 17, 17, 0.06);
@@ -184,7 +181,7 @@
   color: inherit;
 }
 
-/* Di atas hero: transparan di paling atas, buram setelah di-scroll. */
+/* Nav di atas hero */
 .nav.nav--inverse {
   background: transparent;
   color: var(--text-inverse);
@@ -265,7 +262,7 @@
   color: var(--accent);
 }
 
-/* Tidak ditempel di bawah: toolbar browser mobile bisa menutupinya. */
+/* CTA mobile */
 .nav__mobile-cta {
   margin-top: var(--space-8);
 }
@@ -282,7 +279,7 @@
   }
 }
 
-/* ---- Desktop: link inline menggantikan menu ---- */
+/* ---- Desktop ---- */
 @media (min-width: 1280px) {
   .nav__desktop {
     display: block;
