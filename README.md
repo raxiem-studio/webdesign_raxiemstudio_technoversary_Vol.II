@@ -2,7 +2,7 @@
 
 **Karya Web Design Competition | Techno Versary Vol. II**
 Tema: **Lingkungan** | Konsep: **Website Traveling/Destinasi**
-Website: **https://webdesign-raxiemstudio-technoversar.vercel.app**
+Website: **https://webdesign-raxiemstudio-technoversary-vol-2.vercel.app**
 
 ## Tim
 
