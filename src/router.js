@@ -19,7 +19,16 @@ export function usePath() {
       if (!link || (link.target && link.target !== '_self') || link.hasAttribute('download')) return
       const url = new URL(link.href, window.location.href)
       if (url.origin !== window.location.origin) return
-      if (normalise(url.pathname) === normalise(window.location.pathname)) return
+      if (normalise(url.pathname) === normalise(window.location.pathname)) {
+        if (url.hash) return
+        // Halaman sama: naik ke atas
+        event.preventDefault()
+        if (window.location.hash || window.location.search !== url.search) {
+          window.history.pushState({}, '', url.pathname + url.search)
+        }
+        window.scrollTo({ top: 0, behavior: 'smooth' })
+        return
+      }
       event.preventDefault()
       window.history.pushState({}, '', url.pathname + url.search + url.hash)
       sync()

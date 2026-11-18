@@ -131,7 +131,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, n
   return (
     <header className={classes}>
       <Container size="full" className="nav__inner">
-        <a href="/#top" className="nav__brand" aria-label={t('nav.home')}>
+        <a href="/" className="nav__brand" aria-label={t('nav.home')}>
           {brand}
         </a>
 

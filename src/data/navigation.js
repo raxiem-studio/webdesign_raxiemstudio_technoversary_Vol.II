@@ -1,6 +1,6 @@
 /** Navigasi & footer */
 export const NAV_LINKS = [
-  { label: { en: 'Home', id: 'Beranda' }, href: '/#top' },
+  { label: { en: 'Home', id: 'Beranda' }, href: '/' },
   { label: { en: 'Destinations', id: 'Destinasi' }, href: '/destinations' },
   { label: { en: 'Journal', id: 'Jurnal' }, href: '/journal' },
   { label: { en: 'About', id: 'Tentang Kami' }, href: '/about' },
