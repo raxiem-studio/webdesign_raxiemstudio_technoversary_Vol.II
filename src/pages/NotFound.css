@@ -45,6 +45,23 @@
   margin-top: var(--space-4);
 }
 
+/* Outline hijau */
+.not-found__outline {
+  color: var(--accent);
+  border-color: var(--accent);
+}
+
+.not-found__outline:hover {
+  background: var(--color-forest-50);
+  color: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.not-found__outline:active {
+  background: var(--color-forest-100);
+  color: var(--accent-active);
+}
+
 @media (min-width: 768px) {
   .not-found {
     padding-top: var(--space-20);

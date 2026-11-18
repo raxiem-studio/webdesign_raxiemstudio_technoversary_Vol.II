@@ -23,7 +23,11 @@
   margin-inline: calc(-1 * var(--margin-page));
   padding-inline: var(--margin-page);
   scroll-padding-inline: var(--margin-page);
+  /* Kunci sumbu Y */
   overflow-x: auto;
+  overflow-y: hidden;
+  padding-bottom: var(--space-6);
+  margin-bottom: calc(-1 * var(--space-6));
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;

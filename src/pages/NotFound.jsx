@@ -22,10 +22,10 @@ function NotFound() {
             {t('notFound.lead')}
           </p>
           <div className="not-found__actions reveal" style={{ '--reveal-delay': '400ms' }}>
-            <Button href="/" size="lg">
+            <Button href="/" size="lg" variant="accent">
               {t('notFound.home')}
             </Button>
-            <Button href="/destinations" size="lg" variant="secondary">
+            <Button href="/destinations" size="lg" variant="secondary" className="not-found__outline">
               {t('notFound.destinations')}
             </Button>
           </div>
