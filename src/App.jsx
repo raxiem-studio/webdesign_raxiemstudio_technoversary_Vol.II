@@ -21,6 +21,7 @@ import DestinationDetail from './pages/DestinationDetail.jsx'
 import DestinationsPage from './pages/DestinationsPage.jsx'
 import Home from './pages/Home.jsx'
 import JournalPage from './pages/JournalPage.jsx'
+import NotFound from './pages/NotFound.jsx'
 import { pageTitle, usePageChange, usePath } from './router.js'
 
 /* `titleKey` names the page title in src/i18n/strings.js. */
@@ -33,7 +34,7 @@ const PAGES = {
   '/credits': { Page: Credits, titleKey: 'credits.title' },
 }
 
-/** Resolves a path to its page component, title and props. Unknown paths render Home. */
+/** Resolves a path to its page component, title and props. Unknown paths render the 404 page. */
 function resolve(path, t, pick) {
   const page = PAGES[path]
   if (page) return { Page: page.Page, name: page.titleKey && t(page.titleKey), props: {} }
@@ -47,7 +48,7 @@ function resolve(path, t, pick) {
   if (article) {
     return { Page: ArticleDetail, name: pick(article.title), props: { article } }
   }
-  return { Page: Home, name: null, props: {} }
+  return { Page: NotFound, name: t('notFound.title'), props: {} }
 }
 
 /** App shell: navigation, routed page, closing CTA and footer. */
@@ -85,12 +86,12 @@ function App() {
         {t('site.skipLink')}
       </a>
       {/* Transparent nav only over the Home hero. */}
-      <Navigation links={navLinks} cta={navCta} inverse={isHome} path={path} />
+      <Navigation links={navLinks} cta={navCta} inverse={isHome} path={path} noActive={Page === NotFound} />
       <main id="konten-utama" ref={mainRef} tabIndex={-1}>
         {/* Keyed by path so entrance animations replay on navigation. */}
         <Page key={path} {...props} />
-        {/* Hidden on Contact, where the CTA would link to itself. */}
-        {Page !== ContactPage && <ClosingCta key={`cta-${path}`} />}
+        {/* Hidden on Contact (it would link to itself) and on the 404 page. */}
+        {Page !== ContactPage && Page !== NotFound && <ClosingCta key={`cta-${path}`} />}
       </main>
       <Footer
         background={images.heroTegalalang}

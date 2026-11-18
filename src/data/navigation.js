@@ -38,21 +38,32 @@ export const FOOTER_COLUMNS = [
       { label: { en: 'Contact Us', id: 'Hubungi Kami' }, href: '/contact' },
     ],
   },
-  // No social column: JEJAK has no official accounts yet, and links to
-  // unverified handles would be non-working, fictitious contact data.
+  {
+    title: { en: 'Follow', id: 'Ikuti' },
+    // TODO: confirm official social handles before launch.
+    links: [
+      { label: 'Instagram', href: 'https://www.instagram.com/jejak.id', external: true },
+      { label: 'Facebook', href: 'https://www.facebook.com/jejak.id', external: true },
+      { label: 'Threads', href: 'https://www.threads.net/@jejak.id', external: true },
+    ],
+  },
+]
+
+/** Footer brand block. TODO: confirm address and contact details before launch. */
+export const FOOTER_ADDRESS = ['JEJAK Indonesia', 'Jl. Kemang Raya No. 8', 'Jakarta Selatan 12730, Indonesia']
+
+export const FOOTER_CONTACTS = [
+  { type: 'email', label: 'halo@jejak.id', href: 'mailto:halo@jejak.id' },
+  { type: 'phone', label: '+62 21 7179 0800', href: 'tel:+622171790800' },
+  { type: 'whatsapp', label: '+62 812 8000 0800', href: 'https://wa.me/6281280000800' },
 ]
 
 /**
- * Footer brand block. Only real, working channels are listed (competition
- * rule: no decorative or fictitious contact data). Add a street address,
- * phone or WhatsApp here once they really exist; the footer and the Contact
- * page both read from these lists.
+ * Bottom-row links. Privacy and Terms have no pages yet, so they open the
+ * 404 page (any unknown route does); Photo Credits is a real page.
  */
-export const FOOTER_ADDRESS = []
-
-export const FOOTER_CONTACTS = [
-  { type: 'email', label: 'raxiemstudio@gmail.com', href: 'mailto:raxiemstudio@gmail.com' },
+export const LEGAL_LINKS = [
+  { label: { en: 'Privacy Policy', id: 'Kebijakan Privasi' }, href: '/privacy-policy' },
+  { label: { en: 'Terms of Service', id: 'Syarat Layanan' }, href: '/terms-of-service' },
+  { label: { en: 'Photo Credits', id: 'Kredit Foto' }, href: '/credits' },
 ]
-
-/* Bottom-row links. Privacy / Terms are omitted until real pages exist. */
-export const LEGAL_LINKS = [{ label: { en: 'Photo Credits', id: 'Kredit Foto' }, href: '/credits' }]

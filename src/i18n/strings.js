@@ -60,6 +60,11 @@ export const STRINGS = {
 
     'aboutPage.title': 'About',
 
+    'notFound.title': 'Page not found',
+    'notFound.lead': 'This path has no trace yet. The page you are looking for may have moved, or it has not been written.',
+    'notFound.home': 'Back to Home',
+    'notFound.destinations': 'Explore Destinations',
+
     'credits.title': 'Photo Credits',
     'credits.lead': 'The photographs that carry these stories, and the people who made them.',
     'credits.list': 'Credited photographs',
@@ -168,6 +173,11 @@ export const STRINGS = {
     'journalPage.list': 'Semua cerita',
 
     'aboutPage.title': 'Tentang Kami',
+
+    'notFound.title': 'Halaman tidak ditemukan',
+    'notFound.lead': 'Jalan ini belum punya jejak. Halaman yang kamu cari mungkin sudah pindah, atau memang belum ditulis.',
+    'notFound.home': 'Kembali ke Beranda',
+    'notFound.destinations': 'Jelajahi Destinasi',
 
     'credits.title': 'Kredit Foto',
     'credits.lead': 'Foto-foto yang membawa cerita ini, dan orang-orang yang memotretnya.',

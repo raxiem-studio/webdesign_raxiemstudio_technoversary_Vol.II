@@ -1,0 +1,58 @@
+/* 404: centred message, same reveal rhythm and type scale as the page intros. */
+.not-found {
+  --reveal-duration: 1600ms;
+  --reveal-distance: 20px;
+  --reveal-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding: var(--space-16) 0 calc(var(--section-y) * 1.25);
+}
+
+.not-found__inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  max-width: 40rem;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.not-found__code {
+  font-size: var(--fs-display-xl);
+  line-height: var(--lh-display-xl);
+  font-weight: var(--fw-medium);
+  color: var(--accent);
+}
+
+.not-found__title {
+  font-size: var(--fs-display-l);
+  line-height: var(--lh-display-l);
+  font-weight: var(--fw-medium);
+}
+
+.not-found__lead {
+  max-width: 40ch;
+  font-size: var(--fs-body-l);
+  line-height: var(--lh-body-l);
+  color: var(--text-secondary);
+  text-wrap: balance;
+}
+
+.not-found__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 768px) {
+  .not-found {
+    padding-top: var(--space-20);
+  }
+}
+
+@media (min-width: 1280px) {
+  .not-found {
+    padding-top: var(--space-24);
+  }
+}

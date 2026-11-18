@@ -29,6 +29,7 @@ Nilai utama JEJAK: **Discover Nature · Preserve Stories · Travel Responsibly**
 | Galeri | `/#gallery` | Galeri foto alam Indonesia (bagian Home) |
 | Contact | `/contact` | Formulir kontak yang benar-benar mengirim email, serta email yang dapat dihubungi |
 | Kredit Foto | `/credits` | Atribusi foto berlisensi Creative Commons |
+| Halaman 404 | rute lain | Halaman "tidak ditemukan" dengan tautan kembali ke Beranda dan Destinasi. Tautan Kebijakan Privasi dan Syarat Layanan saat ini mengarah ke sini |
 
 ### Fitur
 

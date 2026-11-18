@@ -42,8 +42,9 @@ function LanguageSwitch() {
  * @param {{label: string, href: string, variant?: string}} [props.cta]
  * @param {boolean} [props.inverse]  Transparent over the hero, solid once past it.
  * @param {string}  [props.path]     Current route; re-runs scroll spy on navigation.
+ * @param {boolean} [props.noActive] Mark no link as current (e.g. on the 404 page).
  */
-function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path }) {
+function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path, noActive = false }) {
   const { t } = useLanguage()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
@@ -154,7 +155,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path })
                 <a
                   href={link.href}
                   className="nav__link"
-                  aria-current={link.href === activeHref ? 'page' : undefined}
+                  aria-current={!noActive && link.href === activeHref ? 'page' : undefined}
                 >
                   {link.label}
                 </a>
@@ -203,7 +204,7 @@ function Navigation({ brand = 'JEJAK', links = [], cta, inverse = false, path })
                 ref={i === 0 ? firstLinkRef : undefined}
                 href={link.href}
                 className="nav__mobile-link"
-                aria-current={link.href === activeHref ? 'page' : undefined}
+                aria-current={!noActive && link.href === activeHref ? 'page' : undefined}
                 onClick={() => setOpen(false)}
               >
                 {link.label}
