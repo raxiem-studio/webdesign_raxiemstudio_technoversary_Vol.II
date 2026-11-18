@@ -100,4 +100,5 @@ email-templates/  template email notifikasi formulir
 ## Kredit dan lisensi
 
 - **Foto:** dari Unsplash (Unsplash License), Wikimedia Commons (CC0, CC BY, CC BY-SA), dan sumber bebas lainnya. Foto yang mewajibkan atribusi dicantumkan di halaman **Kredit Foto** (`/credits`). Daftar lengkap sumber dan lisensi ada di `src/assets/ASSETS.md`.
+- **Favicon:** ikon *footprints* dari [Lucide](https://lucide.dev) (lisensi ISC), hijau di tema terang dan putih di tema gelap.
 - **Kode:** dibuat oleh tim Raxiem Studio untuk Techno Versary Vol. II.
