@@ -37,11 +37,10 @@ export const FOOTER_COLUMNS = [
   },
   {
     title: { en: 'Follow', id: 'Ikuti' },
-    // TODO: akun medsos resmi
     links: [
-      { label: 'Instagram', href: 'https://www.instagram.com/jejak.id', external: true },
-      { label: 'Facebook', href: 'https://www.facebook.com/jejak.id', external: true },
-      { label: 'Threads', href: 'https://www.threads.net/@jejak.id', external: true },
+      { label: 'Instagram', href: 'https://www.instagram.com/raxiem.studio/', external: true },
+      { label: 'Facebook', href: 'https://www.facebook.com/', external: true },
+      { label: 'Threads', href: 'https://www.threads.com/', external: true },
     ],
   },
 ]
