@@ -62,6 +62,7 @@ function StoryCollage() {
   const [liked, setLiked] = useState(readLikes)
   const [openId, setOpenId] = useState(null)
   const dialogRef = useRef(null)
+  const openedByKeyboard = useRef(false)
   const { stageRef, ringRef, setItemRef, focusItem, stageProps, wasDragged, nudge } = useBarrel({
     count: STORIES.length,
     paused: openId !== null,
@@ -82,7 +83,13 @@ function StoryCollage() {
     const dialog = dialogRef.current
     if (!dialog) return
     if (openId && !dialog.open) dialog.showModal()
-    if (!openId && dialog.open) dialog.close()
+    if (!openId && dialog.open) {
+      dialog.close()
+      // Dibuka pakai mouse: lepas focus yang dikembalikan browser supaya tidak
+      // muncul outline dan barel langsung berputar lagi. Dibuka pakai keyboard:
+      // focus tetap di foto supaya navigasi keyboard tidak putus.
+      if (!openedByKeyboard.current) document.activeElement?.blur()
+    }
   }, [openId])
 
   const onItemKeyDown = (event) => {
@@ -124,8 +131,10 @@ function StoryCollage() {
                   type="button"
                   className="story-barrel__card"
                   aria-label={t('story.open', { place: pick(story.location) })}
-                  onClick={() => {
-                    if (!wasDragged()) setOpenId(story.id)
+                  onClick={(event) => {
+                    if (wasDragged()) return
+                    openedByKeyboard.current = event.detail === 0
+                    setOpenId(story.id)
                   }}
                   onKeyDown={onItemKeyDown}
                 >

@@ -14,8 +14,8 @@ const normalize = (deg) => ((((deg + 180) % 360) + 360) % 360) - 180
  * rAF supaya tidak re-render tiap frame.
  *
  * - `frontCount` item terdekat ke depan bisa diklik; sisanya diredupkan.
- * - Melambat saat di-hover; berhenti saat focus keyboard, di luar layar, atau `paused`.
- *   Setelah itu kecepatan kembali normal dalam ±1 detik.
+ * - Berhenti pelan saat kursor di atas foto, focus keyboard, di luar layar, atau
+ *   `paused`. Setelah itu kecepatan kembali normal dalam ±1 detik.
  * - prefers-reduced-motion: tanpa putar otomatis, drag tetap jalan.
  */
 export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = false }) {
@@ -88,7 +88,7 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
         if (p === 1) st.tween = null
       } else if (!st.dragging) {
         const stopped = reduced || pausedRef.current || st.focus || !st.visible
-        const target = stopped ? 0 : st.hover ? autoSpeed * 0.35 : autoSpeed
+        const target = stopped || st.hover ? 0 : autoSpeed
         st.vel += (target - st.vel) * (1 - Math.exp(-dt * 3))
         st.angle += st.vel * dt
       }
@@ -159,8 +159,11 @@ export function useBarrel({ count, frontCount = 3, autoSpeed = -7, paused = fals
       st.lastT = performance.now()
       event.currentTarget.classList.add('is-dragging')
     },
-    onPointerEnter: (event) => {
-      if (event.pointerType === 'mouse') state.current.hover = true
+    // Hover dihitung hanya saat kursor tepat di atas foto, bukan area kosong barel.
+    onPointerMove: (event) => {
+      if (event.pointerType === 'mouse') {
+        state.current.hover = Boolean(event.target.closest?.('.story-barrel__card'))
+      }
     },
     onPointerLeave: (event) => {
       if (event.pointerType === 'mouse') state.current.hover = false
