@@ -1,0 +1,254 @@
+/* Likeable photo cards. Mobile: snap-scroll row. ≥768px: a fan positioned
+   by --fan (-2…2): rotated by --fan × --story-tilt and dropped by |--fan|. */
+.story {
+  overflow-x: clip;
+}
+
+.story__collage {
+  --like-color: var(--error-accent);
+  display: flex;
+  gap: var(--space-4);
+  margin-inline: calc(-1 * var(--margin-page));
+  padding: var(--space-2) var(--margin-page) var(--space-6);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.story__collage::-webkit-scrollbar {
+  display: none;
+}
+
+.story__hint {
+  margin-top: var(--space-2);
+  text-align: center;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: var(--text-tertiary);
+}
+
+/* ---------- Card ---------- */
+.story-card {
+  flex: 0 0 64%;
+  max-width: 240px;
+  margin: 0;
+  padding: var(--space-3);
+  background: var(--bg-primary);
+  border: var(--hairline) solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-subtle);
+  scroll-snap-align: center;
+  /* Entrance uses the individual translate/rotate properties so it composes
+     with the fan `transform` and hover lift instead of overriding them. */
+  --enter-x: 0px;
+  --enter-rot: 0deg;
+  --enter-delay: calc(300ms + var(--i, 0) * 140ms);
+  --enter-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  translate: var(--enter-x) 32px;
+  rotate: var(--enter-rot);
+  transition: opacity 1600ms var(--enter-ease), translate 1600ms var(--enter-ease),
+    rotate 1600ms var(--enter-ease);
+  transition-delay: var(--enter-delay);
+}
+
+.is-visible .story-card {
+  opacity: 1;
+  translate: 0 0;
+  rotate: 0deg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .story-card {
+    opacity: 1;
+    translate: none;
+    rotate: none;
+  }
+}
+
+.story-card__photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: var(--radius-md);
+  background: var(--bg-sunken);
+  cursor: pointer;
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.story-card__photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-card__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+  padding-top: var(--space-2);
+}
+
+.story-card__like {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  position: relative;
+  min-height: 32px;
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: var(--fs-label-l);
+  line-height: var(--lh-label-l);
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+/* Extends the hit area to 44px without adding visible height. */
+.story-card__like::after {
+  content: '';
+  position: absolute;
+  inset: -6px 0;
+}
+
+.story-card__like strong {
+  font-weight: var(--fw-semibold);
+  color: var(--text-primary);
+}
+
+.story-card__heart {
+  display: inline-flex;
+  color: var(--text-primary);
+  transition: color var(--duration-fast) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.story-card__like:hover .story-card__heart {
+  transform: scale(1.12);
+}
+
+.story-card__like.is-liked .story-card__heart {
+  color: var(--like-color);
+}
+
+.story-card__heart.is-popping {
+  animation: story-heart-pop var(--duration-slow) var(--ease-editorial);
+}
+
+/* Pulse unliked hearts until the visitor likes something. */
+.story-card__like.is-hinting .story-card__heart {
+  animation: story-heart-beat 2.4s var(--ease-in-out) infinite;
+}
+
+.story-card:nth-child(2) .is-hinting .story-card__heart { animation-delay: 0.3s; }
+.story-card:nth-child(3) .is-hinting .story-card__heart { animation-delay: 0.6s; }
+.story-card:nth-child(4) .is-hinting .story-card__heart { animation-delay: 0.9s; }
+.story-card:nth-child(5) .is-hinting .story-card__heart { animation-delay: 1.2s; }
+
+.story-card__location {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: var(--text-tertiary);
+}
+
+.story-card__burst {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: var(--color-white);
+  pointer-events: none;
+  filter: drop-shadow(0 4px 12px rgba(17, 17, 17, 0.3));
+  animation: story-heart-burst 900ms var(--ease-editorial) forwards;
+}
+
+.story-card__burst svg {
+  width: 30%;
+  height: auto;
+}
+
+@keyframes story-heart-pop {
+  0% { transform: scale(1); }
+  35% { transform: scale(1.35); }
+  60% { transform: scale(0.9); }
+  100% { transform: scale(1); }
+}
+
+@keyframes story-heart-beat {
+  0%, 70%, 100% { transform: scale(1); }
+  78% { transform: scale(1.18); }
+  86% { transform: scale(1); }
+  92% { transform: scale(1.1); }
+}
+
+@keyframes story-heart-burst {
+  0% { opacity: 0; transform: scale(0.4); }
+  25% { opacity: 1; transform: scale(1.1); }
+  45% { transform: scale(0.95); }
+  70% { opacity: 1; transform: scale(1); }
+  100% { opacity: 0; transform: scale(1.05); }
+}
+
+/* ---------- Fan (≥768px) ---------- */
+@media (min-width: 768px) {
+  .story__collage {
+    --story-card-width: clamp(184px, 20vw, 248px);
+    --story-tilt: 5deg;
+    --story-overlap: 72px;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
+    margin-inline: 0;
+    padding: var(--space-4) 0 var(--space-12);
+    overflow: visible;
+  }
+
+  .story-card {
+    position: relative;
+    z-index: calc(3 - var(--fan-abs));
+    flex: 0 0 var(--story-card-width);
+    max-width: none;
+    margin-inline: calc(-0.5 * var(--story-overlap));
+    --story-lift: 0px;
+    transform: translateY(calc(var(--fan-abs) * 18px - var(--story-lift))) rotate(calc(var(--fan) * var(--story-tilt)));
+    transform-origin: bottom center;
+    /* Stable compositing layer: avoids a blurry-to-sharp snap after hover. */
+    backface-visibility: hidden;
+    /* Entrance: start stacked and untilted at the centre, then fan out
+       (centre card first). */
+    --enter-x: calc(var(--fan) * (var(--story-overlap) - var(--story-card-width)));
+    --enter-rot: calc(var(--fan) * var(--story-tilt) * -1);
+    --enter-delay: calc(300ms + var(--fan-abs) * 180ms);
+    transition: transform var(--duration-slow) var(--ease-editorial),
+      box-shadow var(--duration-slow) var(--ease-editorial),
+      opacity 1600ms var(--enter-ease), translate 1800ms var(--enter-ease),
+      rotate 1800ms var(--enter-ease);
+    transition-delay: 0ms, 0ms, var(--enter-delay), var(--enter-delay), var(--enter-delay);
+  }
+
+  /* Hover only lifts; un-rotating would force a repaint of the photo. */
+  .story-card:hover,
+  .story-card:focus-within {
+    --story-lift: 12px;
+    z-index: 5;
+    box-shadow: var(--shadow-overlay);
+  }
+}
+
+@media (min-width: 1280px) {
+  .story__collage {
+    --story-overlap: 40px;
+    --story-tilt: 6deg;
+  }
+}

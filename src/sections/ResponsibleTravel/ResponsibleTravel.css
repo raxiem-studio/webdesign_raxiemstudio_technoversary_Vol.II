@@ -1,0 +1,264 @@
+/* Responsible travel: header, three panels, impact statistics. */
+.responsible__header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--heading-to-content);
+}
+
+.responsible__heading {
+  margin-bottom: 0;
+}
+
+.responsible__lead {
+  max-width: 384px;
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+  color: var(--text-secondary);
+}
+
+/* Panels */
+.responsible__panels {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--card-gap);
+}
+
+.impact-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  aspect-ratio: 400 / 362;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background: var(--bg-sunken);
+  isolation: isolate;
+}
+
+.impact-panel__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.impact-panel__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 17, 0.62) 0%,
+    rgba(17, 17, 17, 0.5) 60%,
+    rgba(17, 17, 17, 0.72) 100%
+  );
+}
+
+.impact-panel__content {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-6);
+  color: var(--text-inverse);
+}
+
+.impact-panel--quote .impact-panel__content p {
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+  font-weight: var(--fw-regular);
+  max-width: 365px;
+}
+
+.impact-panel--quote strong {
+  font-weight: var(--fw-medium);
+}
+
+.impact-panel__quote {
+  flex-shrink: 0;
+  margin-bottom: var(--space-4);
+}
+
+/* Portrait photo in a landscape panel: keep the waterfall in frame. */
+.impact-panel--photo .impact-panel__image {
+  object-position: 50% 68%;
+}
+
+.impact-panel--themes .impact-panel__content {
+  justify-content: space-between;
+}
+
+/* Frosted panel: blurred photo, scaled so the blur edges stay outside the card. */
+.impact-panel--themes .impact-panel__image {
+  filter: blur(18px) saturate(1.15);
+  transform: scale(1.2);
+}
+
+.impact-panel--themes .impact-panel__scrim {
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 17, 0.28) 0%,
+    rgba(17, 17, 17, 0.22) 55%,
+    rgba(17, 17, 17, 0.42) 100%
+  );
+  box-shadow: inset 0 0 0 var(--hairline) rgba(255, 255, 255, 0.18);
+  border-radius: inherit;
+}
+
+.impact-panel__intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.impact-panel__title {
+  font-size: var(--fs-h2);
+  line-height: var(--lh-h2);
+  font-weight: var(--fw-medium);
+}
+
+/* One block per line keeps the title at exactly two lines. */
+.impact-panel__title-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.impact-panel__description {
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+  font-weight: var(--fw-regular);
+  max-width: 255px;
+  color: var(--color-gray-200);
+}
+
+.impact-panel__themes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+  font-weight: var(--fw-medium);
+}
+
+.impact-panel__theme {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+.impact-panel__theme-number {
+  font-variant-numeric: tabular-nums;
+  color: var(--color-gray-200);
+}
+
+/* Impact statistics */
+.impact {
+  margin-top: var(--section-y);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.impact__stats {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-8);
+  width: 100%;
+  text-align: center;
+}
+
+.impact-stat {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.impact-stat__value {
+  font-weight: var(--fw-medium);
+  font-variant-numeric: tabular-nums;
+}
+
+.impact-stat--pending .impact-stat__value {
+  color: var(--color-gray-300);
+}
+
+.impact-stat__label {
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+  /* Shared measure so all three labels break into two even lines at every
+     width and language, keeping the row visually level. */
+  max-width: 22ch;
+  text-wrap: balance;
+}
+
+/* Attribution for the figures above: caption scale, tertiary text. */
+.impact__sources {
+  max-width: 64ch;
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: var(--text-tertiary);
+  text-align: center;
+}
+
+
+/* ---- Tablet ---- */
+@media (min-width: 768px) {
+  /* Title on the lead's first baseline, like the page intros. */
+  .responsible__header {
+    flex-direction: row;
+    align-items: first baseline;
+    justify-content: space-between;
+    gap: var(--space-10);
+  }
+
+  .responsible__heading {
+    flex: 1 1 auto;
+    max-width: 424px;
+  }
+
+  .responsible__lead {
+    flex: 0 1 384px;
+  }
+
+  /* Named areas: two text panels side by side, photo full width below. */
+  .responsible__panels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'quote themes'
+      'photo photo';
+  }
+
+  .impact-panel--quote {
+    grid-area: quote;
+  }
+
+  .impact-panel--themes {
+    grid-area: themes;
+  }
+
+  .impact-panel--photo {
+    grid-area: photo;
+    aspect-ratio: 16 / 7;
+  }
+
+  .impact__stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    max-width: 1034px;
+  }
+}
+
+/* ---- Desktop ---- */
+@media (min-width: 1280px) {
+  .responsible__panels {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-areas: 'quote photo themes';
+  }
+
+  .impact-panel--photo {
+    aspect-ratio: 400 / 362;
+  }
+}

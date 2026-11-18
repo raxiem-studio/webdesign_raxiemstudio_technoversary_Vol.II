@@ -1,0 +1,154 @@
+/* Featured destinations: heading/controls column + scroll-snap card track. */
+.destinations__inner {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+.destinations__aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.destinations__header {
+  margin-bottom: 0;
+}
+
+.destinations__header .section-header__title {
+  font-weight: var(--fw-medium);
+  max-width: none;
+}
+
+.destinations__br {
+  display: none;
+}
+
+.destinations__controls {
+  display: flex;
+  gap: var(--space-4);
+}
+
+/* Circle icon buttons (44px) shared by every carousel. */
+.carousel-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  border: var(--hairline) solid var(--border-default);
+  border-radius: var(--radius-full);
+  background: transparent;
+  color: var(--text-primary);
+  transition: background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard),
+    transform var(--duration-fast) var(--ease-standard);
+}
+
+.carousel-button:hover,
+.carousel-button:focus-visible {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--text-inverse);
+}
+
+.carousel-button:active {
+  background: var(--accent-active);
+  border-color: var(--accent-active);
+  color: var(--text-inverse);
+  transform: translateY(1px);
+}
+
+.carousel-button:disabled {
+  background: var(--color-gray-100);
+  border-color: transparent;
+  color: var(--color-gray-300);
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* Bleeds past the page margin; vertical padding leaves room for the hover shadow. */
+.destinations__track {
+  display: flex;
+  gap: var(--card-gap);
+  margin-inline: calc(-1 * var(--margin-page));
+  padding-inline: var(--margin-page);
+  padding-block: var(--space-2) var(--space-6);
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: var(--margin-page);
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.destinations__track::-webkit-scrollbar {
+  display: none;
+}
+
+.destinations__item {
+  flex: 0 0 min(304px, 82%);
+  scroll-snap-align: start;
+}
+
+/* ---- Tablet: heading and controls share a row ---- */
+@media (min-width: 768px) {
+  .destinations__br {
+    display: inline;
+  }
+
+  /* Line breaks are authored with <br>; disable balancing. */
+  .destinations__header .section-header__title {
+    white-space: nowrap;
+    text-wrap: initial;
+  }
+
+  .destinations__aside {
+    flex-direction: row;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: var(--space-8);
+  }
+
+  .destinations__header {
+    flex: 1 1 auto;
+    max-width: 480px;
+  }
+
+  .destinations__controls {
+    flex-shrink: 0;
+    padding-bottom: var(--space-1);
+  }
+
+  .destinations__item {
+    flex-basis: 304px;
+  }
+}
+
+/* ---- Desktop: two columns, track bleeds right only ---- */
+@media (min-width: 1280px) {
+  .destinations__inner {
+    display: grid;
+    grid-template-columns: 480px minmax(0, 1fr);
+    gap: var(--space-12);
+    align-items: stretch;
+  }
+
+  .destinations__aside {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .destinations__controls {
+    padding-bottom: 0;
+  }
+
+  .destinations__track {
+    margin-inline: 0 calc(-1 * var(--margin-page));
+    padding-inline: 0 var(--margin-page);
+    scroll-padding-inline: 0;
+  }
+
+}
