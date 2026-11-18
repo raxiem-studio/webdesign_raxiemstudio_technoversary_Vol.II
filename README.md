@@ -1,7 +1,7 @@
 # JEJAK | Closer to Nature, Closer to Indonesia
 
 **Karya Web Design Competition | Techno Versary Vol. II**
-Tema: **EcoDigital For Environment: Web Design Competition**
+Tema: **Destinasi Wisata Ramah Lingkungan**
 
 ## Tim
 
@@ -22,7 +22,7 @@ Nilai utama JEJAK: **Discover Nature · Preserve Stories · Travel Responsibly**
 
 | Halaman | Rute | Isi |
 |---|---|---|
-| Home | `/` | Hero, destinasi pilihan, cerita (Our Story), jurnal, galeri, *Responsible Travel*, dan angka lingkungan Indonesia bersumber resmi |
+| Home | `/` | Hero, destinasi pilihan, cerita perjalanan dalam carousel foto 3D (Our Story), jurnal, galeri, *Responsible Travel*, dan angka lingkungan Indonesia bersumber resmi |
 | About | `/about` | Identitas JEJAK, cerita di balik JEJAK, dan tiga nilai perjalanan bertanggung jawab |
 | Konten: Destinasi | `/destinations`, `/destinations/:slug` | Daftar destinasi dan panduan destinasi (sekilas, pengalaman utama, tips berkunjung dengan bijak) |
 | Konten: Jurnal | `/journal`, `/journal/:slug` | Artikel edukasi dan cerita perjalanan |
@@ -35,7 +35,10 @@ Nilai utama JEJAK: **Discover Nature · Preserve Stories · Travel Responsibly**
 
 - **Dua bahasa:** English (default, untuk audiens internasional) dan Bahasa Indonesia, dengan tombol EN / ID di navigasi. Pilihan bahasa diingat oleh browser.
 - **Formulir kontak fungsional:** validasi per kolom, dropdown topik yang bisa dipakai dengan keyboard, dan pengiriman email lewat EmailJS.
-- **Responsif:** mobile, tablet, dan desktop, tanpa *horizontal scroll*.
+- **Carousel cerita 3D:** foto cerita berputar pelan dan otomatis, bisa diseret dengan mouse atau jari, dan berhenti saat kursor berada di atas foto. Klik foto di depan untuk membuka ceritanya. Jumlah suka di setiap foto adalah data contoh, dan suka dari pengunjung disimpan di browser.
+- **Navigasi:** menu Home, Destinations, Journal, dan About, serta halaman 404 untuk rute yang tidak ada.
+- **Favicon adaptif:** ikon jejak kaki berwarna hijau di tema terang dan putih di tema gelap.
+- **Responsif:** mobile, tablet, dan desktop, tanpa *horizontal scroll*. Tombol panah carousel hanya tampil di desktop. Di tablet dan mobile, carousel digeser langsung.
 - **Aksesibilitas:** HTML semantik, *skip link*, *focus state*, teks alternatif gambar dalam dua bahasa, kontras warna sesuai WCAG AA, dan dukungan *reduced motion*.
 - **Data lingkungan bersumber resmi:** tidak ada statistik karangan. Sumber tercantum di halaman dan di bagian [Sumber data](#sumber-data).
 
@@ -80,7 +83,7 @@ Saat di-*hosting*, semua rute harus diarahkan ke `index.html` karena website ini
 ```
 src/
   components/   komponen yang dipakai ulang (Button, Navigation, Footer, kartu, dll.)
-  sections/     bagian halaman Home
+  sections/     bagian halaman Home (termasuk carousel cerita 3D di StoryCollage/)
   pages/        halaman (About, Contact, Destinasi, Jurnal, Kredit Foto, dll.)
   data/         seluruh konten dalam dua bahasa ({ en, id })
   i18n/         sistem bahasa dan teks antarmuka
