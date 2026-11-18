@@ -1,0 +1,374 @@
+/* Contact page: details (5/12) beside the form (7/12) from tablet. */
+.contact-page {
+  --reveal-duration: 1600ms;
+  --reveal-distance: 20px;
+  --reveal-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding-bottom: calc(var(--section-y) * 1.25);
+}
+
+.contact-page__intro {
+  padding-top: var(--space-12);
+}
+
+.contact-page__head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin-bottom: var(--heading-to-content);
+}
+
+.contact-page__title {
+  font-size: var(--fs-display-l);
+  line-height: var(--lh-display-l);
+  font-weight: var(--fw-medium);
+}
+
+.contact-page__lead {
+  max-width: 46ch;
+  font-size: var(--fs-body-l);
+  line-height: var(--lh-body-l);
+  color: var(--text-secondary);
+}
+
+.contact-page__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-12);
+}
+
+/* ---- Contact details ---- */
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.contact-details__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.contact-details__icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-full);
+  background: var(--bg-secondary);
+  color: var(--accent);
+}
+
+.contact-details__text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.contact-details__value {
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+  font-weight: var(--fw-medium);
+  color: var(--text-primary);
+  text-decoration: none;
+  overflow-wrap: anywhere;
+  transition: color var(--duration-base) var(--ease-standard);
+}
+
+.contact-details__line {
+  display: block;
+}
+
+a.contact-details__value:hover,
+a.contact-details__value:focus-visible {
+  color: var(--accent);
+}
+
+/* ---- Form ---- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.contact-form__row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-5);
+}
+
+.contact-form__optional {
+  font-weight: var(--fw-regular);
+  color: var(--text-tertiary);
+}
+
+/* Fields: radius-md, soft fill, hairline border. */
+.contact-form input,
+.contact-form textarea,
+.contact-form .contact-select__trigger {
+  border-radius: var(--radius-md);
+  border-color: var(--border-subtle);
+  background: var(--color-gray-50);
+  transition: border-color var(--duration-base) var(--ease-standard),
+    background-color var(--duration-base) var(--ease-standard);
+}
+
+.contact-form input:hover,
+.contact-form textarea:hover,
+.contact-form .contact-select__trigger:hover {
+  border-color: var(--border-strong);
+}
+
+/* Single-stroke focus: the accent border replaces the global outline
+   (≥3:1 against the fill). */
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form .contact-select__trigger:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: var(--bg-primary);
+}
+
+.contact-form [aria-invalid='true'],
+.contact-form [aria-invalid='true']:focus {
+  border-color: var(--error-accent);
+}
+
+/* Grows with its content from JS (see MESSAGE_MAX_HEIGHT), so no manual handle. */
+.contact-form textarea {
+  resize: none;
+  overflow-y: hidden;
+}
+
+.contact-form__required {
+  margin-left: var(--space-1);
+  color: var(--error-accent);
+}
+
+/* Honeypot: kept out of sight and out of the tab order. */
+.contact-form .contact-form__honey {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  min-height: 0;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ---- Topic dropdown (custom listbox) ---- */
+.contact-select {
+  position: relative;
+}
+
+/* Mirrors the base field box: the trigger is a div, so base input rules don't reach it. */
+.contact-select__trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  width: 100%;
+  min-height: 48px;
+  padding: 0 var(--space-4);
+  font: var(--fw-regular) 16px / 1.5 var(--font-sans);
+  border: var(--hairline) solid var(--border-subtle);
+  cursor: pointer;
+  user-select: none;
+}
+
+.contact-select__value {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.contact-select__value.is-placeholder {
+  color: var(--text-tertiary);
+}
+
+.contact-select__chevron {
+  flex-shrink: 0;
+  color: var(--text-secondary);
+  transition: transform var(--duration-slow) var(--ease-editorial),
+    color var(--duration-slow) var(--ease-standard);
+}
+
+.contact-select.is-open .contact-select__chevron {
+  transform: rotate(180deg);
+  color: var(--accent);
+}
+
+/* Menu: floats below the trigger, fades and settles in slowly. Visibility
+   flips after the fade so the closed list leaves the accessibility tree. */
+.contact-select__list {
+  position: absolute;
+  top: calc(100% + var(--space-2));
+  left: 0;
+  right: 0;
+  /* Above page content, below the sticky navigation. */
+  z-index: calc(var(--z-nav) - 1);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  max-height: 280px;
+  margin: 0;
+  padding: var(--space-2);
+  overflow-y: auto;
+  list-style: none;
+  background: var(--bg-primary);
+  border: var(--hairline) solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-overlay);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(calc(var(--space-2) * -1));
+  transition: opacity var(--duration-slow) var(--ease-editorial),
+    transform var(--duration-slow) var(--ease-editorial),
+    visibility 0s linear var(--duration-slow);
+}
+
+.contact-select.is-open .contact-select__list {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+  transition-delay: 0s;
+}
+
+.contact-select__option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  min-height: var(--touch-target-min);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-body-m);
+  line-height: var(--lh-body-m);
+  color: var(--text-primary);
+  cursor: pointer;
+  transition: background-color var(--duration-base) var(--ease-standard),
+    color var(--duration-base) var(--ease-standard);
+}
+
+.contact-select__option.is-active {
+  background: var(--color-forest-50);
+}
+
+/* Selected: solid Forest with white text (≈7.6:1). */
+.contact-select__option[aria-selected='true'] {
+  background: var(--accent);
+  color: var(--text-inverse);
+  font-weight: var(--fw-medium);
+}
+
+.contact-select__option[aria-selected='true'].is-active {
+  background: var(--accent-hover);
+}
+
+.contact-select__check {
+  flex-shrink: 0;
+  opacity: 0;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.contact-select__option[aria-selected='true'] .contact-select__check {
+  opacity: 1;
+}
+
+/* Submit: two states only. Disabled is a flat grey (not the faded accent the
+   shared .btn:disabled opacity would give); ready is the accent. Slow cross-fade. */
+.contact-form__submit {
+  transition: background-color var(--duration-slow) var(--ease-standard),
+    color var(--duration-slow) var(--ease-standard);
+}
+
+.contact-form__submit:disabled {
+  opacity: 1;
+  background: var(--color-gray-200);
+  color: var(--text-tertiary);
+}
+
+/* While sending it stays the solid accent ("Mengirim…"), not the shared faded look. */
+.contact-form__submit[aria-disabled='true'] {
+  opacity: 1;
+}
+
+.contact-form__actions {
+  display: flex;
+  margin-top: var(--space-2);
+}
+
+.contact-form__status {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  border-radius: var(--radius-md);
+  background: var(--success-bg);
+  color: var(--success-fg);
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+}
+
+.contact-form__status svg {
+  flex-shrink: 0;
+}
+
+/* Receives focus programmatically after a send; not interactive. */
+.contact-form__status:focus {
+  outline: none;
+}
+
+.contact-form__status--error {
+  background: var(--error-bg);
+  color: var(--error-fg);
+}
+
+.contact-form__status--error a {
+  color: inherit;
+  font-weight: var(--fw-medium);
+  text-decoration: none;
+  text-underline-offset: 3px;
+}
+
+.contact-form__status--error a:hover,
+.contact-form__status--error a:focus-visible {
+  text-decoration: underline;
+}
+
+/* ---- Tablet ---- */
+@media (min-width: 768px) {
+  .contact-page__intro {
+    padding-top: var(--space-16);
+  }
+
+  .contact-page__head,
+  .contact-page__body {
+    display: grid;
+    grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+    gap: var(--gutter);
+  }
+
+  /* Title on the lead's first baseline, like the other page intros; the lead
+     keeps the form's left edge (7fr column) so the two still line up. */
+  .contact-page__head {
+    align-items: first baseline;
+  }
+
+  .contact-page__body {
+    align-items: start;
+  }
+
+  .contact-form__row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* ---- Desktop ---- */
+@media (min-width: 1280px) {
+  .contact-page__intro {
+    padding-top: var(--space-20);
+  }
+}

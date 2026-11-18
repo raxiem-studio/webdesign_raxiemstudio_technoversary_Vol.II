@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="id" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="x-apple-disable-message-reformatting">
+<meta name="color-scheme" content="light">
+<meta name="supported-color-schemes" content="light">
+<title>Pesan baru dari {{name}}</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; padding: 0; background: #f7f8f7; -webkit-text-size-adjust: 100%; }
+  table { border-collapse: collapse; }
+  a { color: #2f5d46; }
+  @media (max-width: 620px) {
+    .outer { padding: 24px 12px !important; }
+    .card { padding: 28px 22px !important; border-radius: 12px !important; }
+    .title { font-size: 21px !important; line-height: 30px !important; }
+    .message { padding: 18px !important; }
+    .label { width: 72px !important; }
+  }
+</style>
+</head>
+<body style="margin:0; padding:0; background:#f7f8f7;">
+
+<!-- Inbox preview text -->
+<div style="display:none; max-height:0; overflow:hidden; opacity:0; mso-hide:all;">{{topic}} · {{message}}</div>
+
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f7f8f7;">
+  <tr>
+    <td class="outer" align="center" style="padding:48px 16px;">
+
+      <!-- separate: collapsed borders would cancel the card's border-radius -->
+      <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" style="width:100%; max-width:560px; border-collapse:separate;">
+
+        <!-- Brand -->
+        <tr>
+          <td style="padding:0 4px 20px;">
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:18px; line-height:26px; font-weight:600; letter-spacing:-0.02em; color:#111111;">JEJAK</td>
+                <td align="right" style="font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:12px; line-height:18px; letter-spacing:-0.02em; color:#6d726f;">Formulir Contact</td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+
+        <!-- Card -->
+        <tr>
+          <td class="card" style="background:#ffffff; border:1px solid #e2e5e3; border-radius:16px; padding:40px;">
+
+            <!-- Topic -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0">
+              <tr>
+                <td style="background:#e3ede6; border-radius:9999px; padding:4px 12px; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:12px; line-height:18px; font-weight:500; letter-spacing:-0.02em; color:#1b3829;">{{topic}}</td>
+              </tr>
+            </table>
+
+            <!-- Title -->
+            <h1 class="title" style="margin:20px 0 6px; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:24px; line-height:32px; font-weight:500; letter-spacing:-0.02em; color:#111111;">Pesan baru dari {{name}}</h1>
+            <p style="margin:0; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px; line-height:20px; letter-spacing:-0.02em; color:#6d726f;">{{sent_at}}</p>
+
+            <!-- Message -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:32px;">
+              <tr>
+                <td class="message" style="background:#f7f8f7; border-radius:12px; padding:24px; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:15px; line-height:26px; letter-spacing:-0.02em; color:#111111; white-space:pre-wrap; word-break:break-word;">{{message}}</td>
+              </tr>
+            </table>
+
+            <!-- Sender -->
+            <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="margin-top:32px;">
+              <tr>
+                <td class="label" width="88" style="width:88px; padding:6px 0; vertical-align:top; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px; line-height:22px; letter-spacing:-0.02em; color:#6d726f;">Nama</td>
+                <td style="padding:6px 0; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; font-weight:500; letter-spacing:-0.02em; color:#111111;">{{name}}</td>
+              </tr>
+              <tr>
+                <td class="label" width="88" style="width:88px; padding:6px 0; vertical-align:top; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px; line-height:22px; letter-spacing:-0.02em; color:#6d726f;">Email</td>
+                <td style="padding:6px 0; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; font-weight:500; letter-spacing:-0.02em; color:#111111; word-break:break-all;"><a href="mailto:{{email}}" style="color:#2f5d46; text-decoration:none;">{{email}}</a></td>
+              </tr>
+              <tr>
+                <td class="label" width="88" style="width:88px; padding:6px 0; vertical-align:top; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:13px; line-height:22px; letter-spacing:-0.02em; color:#6d726f;">Topik</td>
+                <td style="padding:6px 0; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:14px; line-height:22px; font-weight:500; letter-spacing:-0.02em; color:#111111;">{{topic}}</td>
+              </tr>
+            </table>
+
+            <!-- Reply -->
+            <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin-top:32px;">
+              <tr>
+                <td style="background:#2f5d46; border-radius:24px;">
+                  <a href="mailto:{{email}}" style="display:inline-block; padding:13px 28px; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:14px; line-height:20px; font-weight:500; letter-spacing:-0.02em; color:#ffffff; text-decoration:none; border-radius:24px;">Balas pesan</a>
+                </td>
+              </tr>
+            </table>
+
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding:24px 4px 0; font-family:'Poppins','Helvetica Neue',Helvetica,Arial,sans-serif; font-size:12px; line-height:19px; letter-spacing:-0.02em; color:#6d726f;">
+            Email ini dikirim otomatis dari formulir Contact di situs JEJAK. Tekan Balas di aplikasi emailmu untuk menjawab langsung ke {{name}}.
+          </td>
+        </tr>
+
+      </table>
+
+    </td>
+  </tr>
+</table>
+
+</body>
+</html>
