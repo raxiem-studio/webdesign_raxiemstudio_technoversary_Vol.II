@@ -1,0 +1,99 @@
+/* Closing CTA photo card. --scroll-zoom is driven by useScrollZoom. */
+.closing-cta {
+  --reveal-duration: 1600ms;
+  --reveal-distance: 20px;
+  --reveal-ease: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  padding-bottom: calc(var(--section-y) * 1.25);
+}
+
+.closing-cta__card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-8);
+  min-height: 360px;
+  padding: var(--space-16) var(--space-5);
+  overflow: hidden;
+  text-align: center;
+  color: var(--text-inverse);
+  border-radius: var(--radius-lg);
+  background: var(--color-forest-700);
+}
+
+.closing-cta__image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* Keep the off-centre subject in frame on narrow screens. */
+  object-position: 68% 50%;
+  transform: scale(var(--scroll-zoom, 1));
+  will-change: transform;
+}
+
+.closing-cta__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 17, 0.32) 0%,
+    rgba(17, 17, 17, 0.22) 50%,
+    rgba(17, 17, 17, 0.42) 100%
+  );
+}
+
+.closing-cta__title {
+  max-width: 16ch;
+  font-size: var(--fs-section-title);
+  line-height: var(--lh-section-title);
+  font-weight: var(--fw-medium);
+}
+
+.closing-cta__action .btn {
+  font-weight: var(--fw-medium);
+}
+
+/* Glass button entrance. The fade runs on the button itself: backdrop-filter
+   can't see through an ancestor with opacity < 1, so a fading wrapper made
+   the glass pop in only after the reveal. `backwards` fill keeps it hidden
+   during the delay and hands back to the normal styles at the end, so hover
+   and press still work. Same timing as the other reveals. */
+.closing-cta__action .btn {
+  opacity: 0;
+}
+
+.is-visible .closing-cta__action .btn {
+  opacity: 1;
+  animation: closing-cta-rise var(--reveal-duration) var(--reveal-ease) 650ms backwards;
+}
+
+@keyframes closing-cta-rise {
+  from {
+    opacity: 0;
+    transform: translateY(var(--reveal-distance));
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .closing-cta__action .btn {
+    opacity: 1;
+    animation: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .closing-cta__card {
+    min-height: 440px;
+    padding-block: var(--space-20);
+  }
+}

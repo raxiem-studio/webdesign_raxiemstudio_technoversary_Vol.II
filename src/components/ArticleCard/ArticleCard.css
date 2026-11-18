@@ -1,0 +1,124 @@
+/* Photo-led article card: text overlays the lower part of a 4:5 photo. */
+.article-card {
+  display: flex;
+  width: 100%;
+  height: 100%;
+}
+
+.article-card__link {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  /* Transparent (not dark) so any sub-pixel seam at the rounded edge during
+     the hover zoom shows page white instead of a dark stroke. */
+  background: transparent;
+  color: var(--text-inverse);
+  text-decoration: none;
+}
+
+.article-card__link:hover,
+.article-card__link:active {
+  color: var(--text-inverse);
+}
+
+.article-card__image {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1200ms var(--ease-editorial);
+}
+
+.article-card__link:hover .article-card__image,
+.article-card__link:focus-visible .article-card__image {
+  transform: scale(1.04);
+}
+
+.article-card__scrim {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(
+    to bottom,
+    rgba(17, 17, 17, 0) 35%,
+    rgba(17, 17, 17, 0.35) 58%,
+    rgba(17, 17, 17, 0.78) 100%
+  );
+}
+
+.article-card__body {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-2);
+  padding: var(--space-6);
+}
+
+.article-card__category {
+  margin-bottom: var(--space-1);
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 0 0 var(--hairline) rgba(255, 255, 255, 0.3);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  font-size: var(--fs-label-s);
+  line-height: var(--lh-label-s);
+  font-weight: var(--fw-medium);
+}
+
+/* Exactly two lines on every card: the measure (tested across all cards,
+   widths and both languages) is narrow enough that every title wraps and
+   wide enough that none needs a third line; balance splits it evenly. */
+.article-card__title {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: var(--fw-medium);
+  max-width: 17.5ch;
+  min-height: calc(2 * var(--lh-h3));
+  text-wrap: balance;
+}
+
+/* Exactly two filled lines, same method as the title (24ch measure +
+   balance); the clamp is only a safety net for future copy. */
+.article-card__excerpt {
+  display: -webkit-box;
+  max-width: 24ch;
+  text-wrap: balance;
+  min-height: calc(2 * var(--lh-body-s));
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+  color: var(--color-gray-200);
+}
+
+.article-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  padding-top: var(--space-2);
+  font-size: var(--fs-caption);
+  line-height: var(--lh-caption);
+  color: var(--color-gray-200);
+}
+
+.article-card__meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+}
+
+.article-card__meta-item svg {
+  flex-shrink: 0;
+}

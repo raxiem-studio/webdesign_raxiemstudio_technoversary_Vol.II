@@ -1,0 +1,299 @@
+/* Primary navigation. Inline links ≥1280px; full-screen menu below.
+   `.nav--inverse` sits transparent over the Home hero. */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  /* Inset shadow instead of a border: the hero is pulled up by exactly
+     --nav-height, so a 1px border would leave a gap. */
+  box-shadow: inset 0 calc(-1 * var(--hairline)) 0 transparent;
+  transition: background-color var(--duration-base) var(--ease-standard),
+    box-shadow var(--duration-base) var(--ease-standard);
+}
+
+.nav.is-scrolled {
+  box-shadow: inset 0 calc(-1 * var(--hairline)) 0 var(--border-subtle);
+}
+
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  min-height: var(--nav-height);
+}
+
+/* Wordmark */
+.nav__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target-min);
+  font-size: 18px;
+  line-height: 1;
+  font-weight: var(--fw-semibold);
+  letter-spacing: var(--ls-text);
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav__brand:hover,
+.nav__brand:active {
+  color: inherit;
+}
+
+/* Desktop links */
+.nav__desktop {
+  display: none;
+}
+
+.nav__list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-8);
+}
+
+.nav__link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target-min);
+  font-size: var(--fs-nav);
+  line-height: var(--lh-nav);
+  font-weight: var(--fw-regular);
+  letter-spacing: var(--ls-nav);
+  text-decoration: none;
+  color: inherit;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.nav__link:hover {
+  color: inherit;
+  opacity: 0.7;
+}
+
+.nav__link[aria-current='page'] {
+  font-weight: var(--fw-medium);
+}
+
+.nav__link[aria-current='page']:hover {
+  opacity: 1;
+}
+
+/* Actions */
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+/* Language switch: same type as .nav__link (size, tracking, colour). The
+   active language is Medium; the other is dimmed and brightens on hover. */
+.nav__lang {
+  display: flex;
+  align-items: center;
+  font-size: var(--fs-nav);
+  line-height: var(--lh-nav);
+  letter-spacing: var(--ls-nav);
+}
+
+.nav__lang-option {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--touch-target-min);
+  min-height: var(--touch-target-min);
+  padding: 0 var(--space-1);
+  font: inherit;
+  font-weight: var(--fw-regular);
+  letter-spacing: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  opacity: 0.6;
+  cursor: pointer;
+  transition: opacity var(--duration-base) var(--ease-standard);
+}
+
+.nav__lang-option:hover {
+  opacity: 1;
+}
+
+.nav__lang-option[aria-pressed='true'] {
+  font-weight: var(--fw-medium);
+  opacity: 1;
+  cursor: default;
+}
+
+.nav__lang-divider {
+  opacity: 0.4;
+}
+
+/* CTA: frosted glass; inverted over the hero. */
+.nav__cta {
+  display: none;
+  background: rgba(17, 17, 17, 0.06);
+  border-color: rgba(17, 17, 17, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+}
+
+.nav__cta:hover,
+.nav__cta:focus-visible {
+  background: var(--accent);
+  border-color: transparent;
+  color: var(--text-inverse);
+  box-shadow: none;
+}
+
+.nav__cta:active {
+  background: var(--accent-active);
+  border-color: transparent;
+  color: var(--text-inverse);
+  box-shadow: none;
+}
+
+.nav--inverse .nav__cta {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+}
+
+.nav--inverse .nav__cta:hover,
+.nav--inverse .nav__cta:focus-visible {
+  background: var(--accent);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.nav--inverse .nav__cta:active {
+  background: var(--accent-active);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.nav__toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target-min);
+  height: var(--touch-target-min);
+  margin-inline-end: calc(-1 * (var(--touch-target-min) - 24px) / 2);
+  color: inherit;
+}
+
+/* Over the hero: transparent at the top, frosted once scrolled. */
+.nav.nav--inverse {
+  background: transparent;
+  color: var(--text-inverse);
+  box-shadow: none;
+}
+
+.nav.nav--glass {
+  background: rgba(17, 17, 17, 0.28);
+  box-shadow: none;
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+}
+
+/* Mobile menu */
+.nav__mobile {
+  position: fixed;
+  inset: var(--nav-height) 0 0 0;
+  z-index: var(--z-overlay);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-y: auto;
+  padding: var(--space-2) var(--margin-page) var(--space-4);
+  display: flex;
+  flex-direction: column;
+  animation: nav-slide-down var(--duration-slow) var(--ease-in-out) both;
+}
+
+.nav__mobile[hidden] {
+  display: none;
+}
+
+@keyframes nav-slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav__mobile-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav__mobile-item {
+  animation: nav-item-in var(--duration-slow) var(--ease-editorial) both;
+  animation-delay: calc(var(--i, 0) * 60ms);
+}
+
+@keyframes nav-item-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.nav__mobile-link {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding-block: 14px;
+  font-size: var(--fs-mobile-menu);
+  line-height: var(--lh-mobile-menu);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-heading-sm);
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav__mobile-link:hover {
+  color: var(--accent);
+}
+
+/* Not pinned to the bottom: mobile browser toolbars can cover it. */
+.nav__mobile-cta {
+  margin-top: var(--space-8);
+}
+
+.nav__mobile-button {
+  width: 100%;
+}
+
+/* ---- Tablet ---- */
+@media (min-width: 768px) {
+  .nav__brand {
+    font-size: 24px;
+    letter-spacing: var(--ls-text);
+  }
+}
+
+/* ---- Desktop: inline links replace the menu ---- */
+@media (min-width: 1280px) {
+  .nav__desktop {
+    display: block;
+  }
+
+  .nav__cta {
+    display: inline-flex;
+  }
+
+  .nav__toggle,
+  .nav__mobile {
+    display: none;
+  }
+}

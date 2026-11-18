@@ -1,0 +1,13 @@
+.section-index {
+  display: inline-block;
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-text);
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.section-index--inverse {
+  color: var(--text-inverse);
+}

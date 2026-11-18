@@ -1,0 +1,117 @@
+/* Photo-led destination card; only the "Explore" pill reacts to hover/focus. */
+.destination-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  aspect-ratio: 4 / 5;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  background: var(--bg-sunken);
+  color: var(--text-inverse);
+  text-decoration: none;
+  isolation: isolate;
+}
+
+.destination-card:hover,
+.destination-card:active {
+  color: var(--text-inverse);
+}
+
+.destination-card__image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.destination-card__scrim {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(17, 17, 17, 0.92) 0%,
+    rgba(17, 17, 17, 0.72) 32%,
+    rgba(17, 17, 17, 0.32) 58%,
+    rgba(17, 17, 17, 0) 78%
+  );
+}
+
+.destination-card__body {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-2);
+  padding: var(--space-5);
+}
+
+.destination-card__name {
+  font-size: var(--fs-h3);
+  line-height: var(--lh-h3);
+  font-weight: var(--fw-medium);
+}
+
+/* Exactly two filled lines on every card (24ch measure + balance, same as
+   ArticleCard); the clamp is only a safety net for future copy. */
+.destination-card__description {
+  display: -webkit-box;
+  max-width: 24ch;
+  text-wrap: balance;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  min-height: calc(2 * var(--lh-body-s));
+  overflow: hidden;
+  font-size: var(--fs-body-s);
+  line-height: var(--lh-body-s);
+  color: var(--color-gray-200);
+}
+
+.destination-card__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  margin-top: var(--space-3);
+  padding: 0 var(--space-5);
+  font-size: var(--fs-button);
+  line-height: var(--lh-button);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-button);
+  color: var(--text-inverse);
+  background: rgba(255, 255, 255, 0.16);
+  border: var(--hairline) solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--radius-xl);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  -webkit-backdrop-filter: blur(16px) saturate(160%);
+  backdrop-filter: blur(16px) saturate(160%);
+  transition: background-color var(--duration-base) var(--ease-standard),
+    border-color var(--duration-base) var(--ease-standard);
+}
+
+.destination-card__cta:hover,
+.destination-card:focus-visible .destination-card__cta {
+  background: var(--accent);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.destination-card__cta:active {
+  background: var(--accent-active);
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.destination-card:focus-visible {
+  outline: var(--focus-ring-width) solid var(--text-primary);
+  outline-offset: var(--focus-ring-offset);
+}
+
+@media (min-width: 1280px) {
+  .destination-card__body {
+    padding: var(--space-6);
+  }
+}

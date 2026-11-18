@@ -1,0 +1,19 @@
+.eyebrow {
+  font-size: var(--fs-overline);
+  line-height: var(--lh-overline);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-overline);
+  text-transform: uppercase;
+}
+
+.eyebrow--accent {
+  color: var(--accent);
+}
+
+.eyebrow--secondary {
+  color: var(--text-secondary);
+}
+
+.eyebrow--inverse {
+  color: var(--color-gray-200);
+}
